@@ -76,6 +76,9 @@ const touches = {
   w: {
     pressed: false,
   },
+  s: {
+    pressed: false,
+  },
 }
 
 // Cette variable servira pour savoir, quelle a été la dernière touche appuyée.
@@ -114,6 +117,9 @@ window.addEventListener('keydown', (e) => {
     case 'w':
       joueur.vitesse.y = -5
       break
+    case 's':
+      joueur.vitesse.y = +5
+      break
   }
 })
 window.addEventListener('keyup', (e) => {
@@ -123,9 +129,6 @@ window.addEventListener('keyup', (e) => {
       break
     case 'a':
       touches.a.pressed = false
-      break
-    case 'w':
-      touches.w.pressed = false
       break
   }
 })
