@@ -13,11 +13,18 @@ class Sprite {
   constructor(pos) {
     this.pos = pos
   }
+
+  draw() {
+    c.fillStyle = 'red'
+    c.fillRect(this.pos.x, this.pos.y, 50, 150)
+  }
 }
 
 const joueur = new Sprite({
   x: 0,
   y: 0,
 })
+
+joueur.draw()
 
 console.log(joueur)
