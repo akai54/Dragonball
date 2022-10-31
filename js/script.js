@@ -10,10 +10,12 @@ c.fillRect(0, 0, canvas.width, canvas.height)
 
 // Une classe dédiée aux sprites.
 class Sprite {
-  constructor(pos) {
+  constructor(pos, vitesse) {
     this.pos = pos
+    this.vitesse = vitesse
   }
 
+  // Methode pour afficher les sprites.
   draw() {
     c.fillStyle = 'red'
     c.fillRect(this.pos.x, this.pos.y, 50, 150)
