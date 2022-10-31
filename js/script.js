@@ -75,6 +75,9 @@ const touches = {
   },
 }
 
+// Cette variable servira pour savoir, quelle a été la dernière touche appuyée.
+let derniere_touche
+
 // La fonction qui va etre appeler en boucle.
 function update() {
   window.requestAnimationFrame(update)
@@ -86,9 +89,9 @@ function update() {
   // La vitesse par défaut est 0.
   joueur.vitesse.x = 0
 
-  if (touches.d.pressed) {
+  if (touches.d.pressed && derniere_touche === 'd') {
     joueur.vitesse.x = 1
-  } else if (touches.a.pressed) {
+  } else if (touches.a.pressed && derniere_touche === 'a') {
     joueur.vitesse.x = -1
   }
 }
@@ -99,9 +102,11 @@ window.addEventListener('keydown', (e) => {
   switch (e.key) {
     case 'd':
       touches.d.pressed = true
+      derniere_touche = 'd'
       break
     case 'a':
       touches.a.pressed = true
+      derniere_touche = 'a'
       break
   }
 })
