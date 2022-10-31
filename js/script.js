@@ -33,3 +33,9 @@ joueur.draw()
 ennemi.draw()
 
 console.log(joueur)
+
+function update() {
+  window.requestAnimationFrame(update)
+}
+
+update()
