@@ -10,7 +10,7 @@ c.fillRect(0, 0, canvas.width, canvas.height)
 
 // Une classe dédiée aux sprites.
 class Sprite {
-  constructor(pos, vitesse) {
+  constructor({ pos, vitesse }) {
     this.pos = pos
     this.vitesse = vitesse
   }
@@ -22,20 +22,36 @@ class Sprite {
   }
 }
 
+// Le joueur principale.
 const joueur = new Sprite({
-  x: 0,
-  y: 0,
+  pos: {
+    x: 0,
+    y: 0,
+  },
+  vitesse: {
+    x: 0,
+    y: 0,
+  },
 })
 
+// Le deuxième joueur.
 const ennemi = new Sprite({
-  x: 400,
-  y: 100,
+  pos: {
+    x: 400,
+    y: 100,
+  },
+  vitesse: {
+    x: 0,
+    y: 0,
+  },
 })
+
 joueur.draw()
 ennemi.draw()
 
 console.log(joueur)
 
+// La fonction qui va etre appeler en boucle.
 function update() {
   window.requestAnimationFrame(update)
 }
