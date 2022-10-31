@@ -10,5 +10,14 @@ c.fillRect(0, 0, canvas.width, canvas.height)
 
 // Une classe dédiée aux sprites.
 class Sprite {
-  constructor() { }
+  constructor(pos) {
+    this.pos = pos
+  }
 }
+
+const joueur = new Sprite({
+  x: 0,
+  y: 0,
+})
+
+console.log(joueur)
