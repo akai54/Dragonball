@@ -65,6 +65,16 @@ const joueur2 = new Sprite({
 
 console.log(joueur)
 
+// Les touches pour interagir avec les personnages.
+const touches = {
+  a: {
+    pressed: false,
+  },
+  d: {
+    pressed: false,
+  },
+}
+
 // La fonction qui va etre appeler en boucle.
 function update() {
   window.requestAnimationFrame(update)
@@ -72,6 +82,15 @@ function update() {
   c.fillRect(0, 0, canvas.width, canvas.height)
   joueur.update_pos()
   joueur2.update_pos()
+
+  // La vitesse par défaut est 0.
+  joueur.vitesse.x = 0
+
+  if (touches.d.pressed) {
+    joueur.vitesse.x = 1
+  } else if (touches.a.pressed) {
+    joueur.vitesse.x = -1
+  }
 }
 
 update()
@@ -79,20 +98,20 @@ update()
 window.addEventListener('keydown', (e) => {
   switch (e.key) {
     case 'd':
-      joueur.vitesse.x = 1
+      touches.d.pressed = true
       break
     case 'a':
-      joueur.vitesse.x = -1
+      touches.a.pressed = true
       break
   }
 })
 window.addEventListener('keyup', (e) => {
   switch (e.key) {
     case 'd':
-      joueur.vitesse.x = 0
+      touches.d.pressed = false
       break
     case 'a':
-      joueur.vitesse.x = 0
+      touches.a.pressed = false
       break
   }
 })
