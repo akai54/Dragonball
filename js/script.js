@@ -27,6 +27,7 @@ class Sprite {
   // Methode pour mettre a jour, les pos des personnages.
   update_pos() {
     this.draw()
+    this.pos.x += this.vitesse.x
     this.pos.y += this.vitesse.y
 
     // Tant que le perso est en l'air, on mettra 0 comme vitesse y, pour le faire descendre.
@@ -74,3 +75,24 @@ function update() {
 }
 
 update()
+
+window.addEventListener('keydown', (e) => {
+  switch (e.key) {
+    case 'd':
+      joueur.vitesse.x = 1
+      break
+    case 'a':
+      joueur.vitesse.x = -1
+      break
+  }
+})
+window.addEventListener('keyup', (e) => {
+  switch (e.key) {
+    case 'd':
+      joueur.vitesse.x = 0
+      break
+    case 'a':
+      joueur.vitesse.x = 0
+      break
+  }
+})
