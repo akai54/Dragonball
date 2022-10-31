@@ -20,6 +20,12 @@ class Sprite {
     c.fillStyle = 'red'
     c.fillRect(this.pos.x, this.pos.y, 50, 150)
   }
+
+  // Methode pour mettre a jour, les pos des personnages.
+  update_pos() {
+    this.draw()
+    this.pos.y += this.vitesse.y
+  }
 }
 
 // Le joueur principale.
@@ -30,30 +36,31 @@ const joueur = new Sprite({
   },
   vitesse: {
     x: 0,
-    y: 0,
+    y: 10,
   },
 })
 
 // Le deuxième joueur.
-const ennemi = new Sprite({
+const joueur2 = new Sprite({
   pos: {
     x: 400,
     y: 100,
   },
   vitesse: {
     x: 0,
-    y: 0,
+    y: 5,
   },
 })
-
-joueur.draw()
-ennemi.draw()
 
 console.log(joueur)
 
 // La fonction qui va etre appeler en boucle.
 function update() {
   window.requestAnimationFrame(update)
+  c.fillStyle = 'black'
+  c.fillRect(0, 0, canvas.width, canvas.height)
+  joueur.update_pos()
+  joueur2.update_pos()
 }
 
 update()
