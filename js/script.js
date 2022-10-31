@@ -25,6 +25,11 @@ const joueur = new Sprite({
   y: 0,
 })
 
+const ennemi = new Sprite({
+  x: 400,
+  y: 100,
+})
 joueur.draw()
+ennemi.draw()
 
 console.log(joueur)
