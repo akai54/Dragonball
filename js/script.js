@@ -1,7 +1,7 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
-const gravity = 0.2
+const gravity = 0.8
 
 // Taille de la fenêtre.
 canvas.width = 1024
@@ -28,11 +28,23 @@ class Sprite {
   update_pos() {
     this.draw()
     this.pos.x += this.vitesse.x
+  }
+
+  descendre() {
     this.pos.y += this.vitesse.y
 
     // Tant que le perso est en l'air, on mettra 0 comme vitesse y, pour le faire descendre.
     if (this.pos.y + this.height + this.vitesse.y >= canvas.height) {
       this.vitesse.y = 0
+    } else {
+      this.vitesse.y += gravity
+    }
+  }
+
+  fly() {
+    this.pos.y -= this.vitesse.y
+    if (this.pos.y < 0) {
+      this.pos.y = 0
     } else {
       this.vitesse.y += gravity
     }
@@ -100,6 +112,8 @@ function update() {
   } else if (touches.a.pressed && derniere_touche === 'a') {
     joueur.vitesse.x = -1
   }
+
+  console.log(joueur.pos.y, joueur.height, joueur.vitesse.y)
 }
 
 update()
@@ -115,10 +129,14 @@ window.addEventListener('keydown', (e) => {
       derniere_touche = 'a'
       break
     case 'w':
-      joueur.vitesse.y = -5
+      touches.w.pressed = true
+      derniere_touche = 'w'
+      joueur.fly()
       break
     case 's':
-      joueur.vitesse.y = +5
+      touches.s.pressed = true
+      derniere_touche = 's'
+      joueur.descendre()
       break
   }
 })
@@ -129,6 +147,12 @@ window.addEventListener('keyup', (e) => {
       break
     case 'a':
       touches.a.pressed = false
+      break
+    case 'w':
+      touches.w.pressed = false
+      break
+    case 's':
+      touches.s.pressed = false
       break
   }
 })
