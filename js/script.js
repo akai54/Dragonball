@@ -37,14 +37,15 @@ class Sprite {
     c.fillRect(this.pos.x, this.pos.y, this.width, this.height)
 
     // AttackBox
-    //if (this.isAttacking) {}
-    c.fillStyle = 'green'
-    c.fillRect(
-      this.attackBox.pos.x,
-      this.attackBox.pos.y,
-      this.attackBox.width,
-      this.attackBox.height
-    )
+    if (this.isAttacking) {
+      c.fillStyle = 'green'
+      c.fillRect(
+        this.attackBox.pos.x,
+        this.attackBox.pos.y,
+        this.attackBox.width,
+        this.attackBox.height
+      )
+    }
   }
 
   // Methode pour mettre a jour, les pos des personnages.
@@ -156,6 +157,19 @@ const touches = {
   ArrowDown: {
     pressed: false,
   },
+  k: {
+    pressed: false,
+  },
+}
+
+function collision_joueurs({ j1, j2 }) {
+  return (
+    j1.attackBox.pos.x + j1.attackBox.width >= j2.attackBox.pos.x &&
+    j1.attackBox.pos.x <= j2.pos.x + j2.width &&
+    j1.attackBox.pos.y + j1.attackBox.height >= j2.pos.y &&
+    j1.attackBox.pos.y <= j2.pos.y + j2.height &&
+    j1.isAttacking
+  )
 }
 
 // La fonction qui va etre appeler en boucle.
@@ -186,13 +200,24 @@ function update() {
 
   // Détection collisions.
   if (
-    joueur.attackBox.pos.x + joueur.attackBox.width >=
-      joueur2.attackBox.pos.x &&
-    joueur.attackBox.pos.x <= joueur2.pos.x + joueur2.width &&
-    joueur.attackBox.pos.y + joueur.attackBox.height >= joueur2.pos.y &&
-    joueur.attackBox.pos.y <= joueur2.pos.y + joueur2.height &&
+    collision_joueurs({
+      j1: joueur,
+      j2: joueur2,
+    }) &&
     joueur.isAttacking
   ) {
+    joueur.isAttacking = false
+    console.log('true')
+  }
+
+  if (
+    collision_joueurs({
+      j1: joueur2,
+      j2: joueur,
+    }) &&
+    joueur2.isAttacking
+  ) {
+    joueur2.isAttacking = false
     console.log('true')
   }
 }
@@ -240,6 +265,11 @@ window.addEventListener('keydown', (e) => {
       joueur2.lastKey = 'ArrowDown'
       joueur2.descendre()
       break
+    case 'k':
+      touches.k.pressed = true
+      joueur2.lastKey = 'k'
+      joueur2.attack()
+      break
   }
 })
 window.addEventListener('keyup', (e) => {
@@ -267,6 +297,9 @@ window.addEventListener('keyup', (e) => {
       break
     case 'ArrowUp':
       touches.ArrowUp.pressed = false
+      break
+    case 'k':
+      touches.k.pressed = false
       break
   }
 })
