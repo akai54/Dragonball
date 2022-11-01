@@ -31,6 +31,7 @@ class Sprite {
     this.pos.x += this.vitesse.x
   }
 
+  // Methode pour redescendre.
   descendre() {
     this.pos.y += this.vitesse.y
 
@@ -42,6 +43,7 @@ class Sprite {
     }
   }
 
+  // Methode pour Voler dans l'air.
   fly() {
     this.pos.y -= this.vitesse.y
     if (this.pos.y < 0) {
@@ -60,7 +62,7 @@ const joueur = new Sprite({
   },
   vitesse: {
     x: 0,
-    y: 10,
+    y: 5,
   },
 })
 
@@ -68,7 +70,7 @@ const joueur = new Sprite({
 const joueur2 = new Sprite({
   pos: {
     x: 400,
-    y: joueur.pos.y,
+    y: 0,
   },
   vitesse: {
     x: 0,
@@ -106,9 +108,6 @@ const touches = {
   },
 }
 
-// Cette variable servira pour savoir, quelle a été la dernière touche appuyée.
-let derniere_touche
-
 // La fonction qui va etre appeler en boucle.
 function update() {
   window.requestAnimationFrame(update)
@@ -122,9 +121,9 @@ function update() {
   joueur2.vitesse.x = 0
 
   // Mouvement joueur1.
-  if (touches.d.pressed && derniere_touche === 'd') {
+  if (touches.d.pressed && joueur.lastKey === 'd') {
     joueur.vitesse.x = 3
-  } else if (touches.a.pressed && derniere_touche === 'a') {
+  } else if (touches.a.pressed && joueur.lastKey === 'a') {
     joueur.vitesse.x = -3
   }
   // Mouvement joueur2.
@@ -141,20 +140,20 @@ window.addEventListener('keydown', (e) => {
   switch (e.key) {
     case 'd':
       touches.d.pressed = true
-      derniere_touche = 'd'
+      joueur.lastKey = 'd'
       break
     case 'a':
       touches.a.pressed = true
-      derniere_touche = 'a'
+      joueur.lastKey = 'a'
       break
     case 'w':
       touches.w.pressed = true
-      derniere_touche = 'w'
+      joueur.lastKey = 'w'
       joueur.fly()
       break
     case 's':
       touches.s.pressed = true
-      derniere_touche = 's'
+      joueur.lastKey = 's'
       joueur.descendre()
       break
     case 'ArrowRight':
@@ -167,10 +166,12 @@ window.addEventListener('keydown', (e) => {
       break
     case 'ArrowUp':
       touches.ArrowUp.pressed = true
+      joueur2.lastKey = 'ArrowUp'
       joueur2.fly()
       break
     case 'ArrowDown':
       touches.ArrowDown.pressed = true
+      joueur2.lastKey = 'ArrowDown'
       joueur2.descendre()
       break
   }
@@ -183,13 +184,23 @@ window.addEventListener('keyup', (e) => {
     case 'a':
       touches.a.pressed = false
       break
-  }
-  switch (e.key) {
+    case 'w':
+      touches.w.pressed = false
+      break
+    case 's':
+      touches.s.pressed = false
+      break
     case 'ArrowLeft':
       touches.ArrowLeft.pressed = false
       break
     case 'ArrowRight':
       touches.ArrowRight.pressed = false
+      break
+    case 'ArrowDown':
+      touches.ArrowDown.pressed = false
+      break
+    case 'ArrowUp':
+      touches.ArrowUp.pressed = false
       break
   }
 })
