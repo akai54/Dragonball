@@ -16,6 +16,7 @@ class Sprite {
     this.pos = pos
     this.vitesse = vitesse
     this.height = 150
+    this.lastKey
   }
 
   // Methode pour afficher les sprites.
@@ -67,7 +68,7 @@ const joueur = new Sprite({
 const joueur2 = new Sprite({
   pos: {
     x: 400,
-    y: 100,
+    y: joueur.pos.y,
   },
   vitesse: {
     x: 0,
@@ -91,6 +92,18 @@ const touches = {
   s: {
     pressed: false,
   },
+  ArrowLeft: {
+    pressed: false,
+  },
+  ArrowRight: {
+    pressed: false,
+  },
+  ArrowUp: {
+    pressed: false,
+  },
+  ArrowDown: {
+    pressed: false,
+  },
 }
 
 // Cette variable servira pour savoir, quelle a été la dernière touche appuyée.
@@ -106,14 +119,20 @@ function update() {
 
   // La vitesse par défaut est 0.
   joueur.vitesse.x = 0
+  joueur2.vitesse.x = 0
 
+  // Mouvement joueur1.
   if (touches.d.pressed && derniere_touche === 'd') {
-    joueur.vitesse.x = 1
+    joueur.vitesse.x = 3
   } else if (touches.a.pressed && derniere_touche === 'a') {
-    joueur.vitesse.x = -1
+    joueur.vitesse.x = -3
   }
-
-  console.log(joueur.pos.y, joueur.height, joueur.vitesse.y)
+  // Mouvement joueur2.
+  if (touches.ArrowRight.pressed && joueur2.lastKey === 'ArrowRight') {
+    joueur2.vitesse.x = 3
+  } else if (touches.ArrowLeft.pressed && joueur2.lastKey === 'ArrowLeft') {
+    joueur2.vitesse.x = -3
+  }
 }
 
 update()
@@ -138,6 +157,22 @@ window.addEventListener('keydown', (e) => {
       derniere_touche = 's'
       joueur.descendre()
       break
+    case 'ArrowRight':
+      touches.ArrowRight.pressed = true
+      joueur2.lastKey = 'ArrowRight'
+      break
+    case 'ArrowLeft':
+      touches.ArrowLeft.pressed = true
+      joueur2.lastKey = 'ArrowLeft'
+      break
+    case 'ArrowUp':
+      touches.ArrowUp.pressed = true
+      joueur2.fly()
+      break
+    case 'ArrowDown':
+      touches.ArrowDown.pressed = true
+      joueur2.descendre()
+      break
   }
 })
 window.addEventListener('keyup', (e) => {
@@ -148,11 +183,13 @@ window.addEventListener('keyup', (e) => {
     case 'a':
       touches.a.pressed = false
       break
-    case 'w':
-      touches.w.pressed = false
+  }
+  switch (e.key) {
+    case 'ArrowLeft':
+      touches.ArrowLeft.pressed = false
       break
-    case 's':
-      touches.s.pressed = false
+    case 'ArrowRight':
+      touches.ArrowRight.pressed = false
       break
   }
 })
