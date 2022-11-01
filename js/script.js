@@ -29,6 +29,13 @@ class Sprite {
   update_pos() {
     this.draw()
     this.pos.x += this.vitesse.x
+
+    // Tant que le joueur est dans la fenêtre, on lui laisse bouger à droite et à guache.
+    if (this.pos.x < 0) {
+      this.pos.x = 0
+    } else if (this.pos.x > 974) {
+      this.pos.x = 974
+    }
   }
 
   // Methode pour redescendre.
@@ -46,6 +53,7 @@ class Sprite {
   // Methode pour Voler dans l'air.
   fly() {
     this.pos.y -= this.vitesse.y
+    // Tant que le joueur est dans la fenêtre, on lui laisse voler.
     if (this.pos.y < 0) {
       this.pos.y = 0
     } else {
@@ -132,6 +140,7 @@ function update() {
   } else if (touches.ArrowLeft.pressed && joueur2.lastKey === 'ArrowLeft') {
     joueur2.vitesse.x = -3
   }
+  console.log(joueur2.pos)
 }
 
 update()
