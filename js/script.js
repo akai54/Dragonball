@@ -16,6 +16,7 @@ class Sprite {
     this.pos = pos
     this.vitesse = vitesse
     this.height = 150
+    this.width = 50
     this.lastKey
     this.attackBox = {
       pos: this.pos,
@@ -28,7 +29,7 @@ class Sprite {
   // Methode pour afficher les sprites.
   draw() {
     c.fillStyle = this.color
-    c.fillRect(this.pos.x, this.pos.y, 50, this.height)
+    c.fillRect(this.pos.x, this.pos.y, this.width, this.height)
 
     // AttackBox
     c.fillStyle = 'green'
@@ -41,7 +42,7 @@ class Sprite {
   }
 
   // Methode pour mettre a jour, les pos des personnages.
-  update_pos() {
+  async update_pos() {
     this.draw()
     this.pos.x += this.vitesse.x
 
@@ -54,7 +55,7 @@ class Sprite {
   }
 
   // Methode pour redescendre.
-  descendre() {
+  async descendre() {
     this.pos.y += this.vitesse.y
 
     // Tant que le perso est en l'air, on mettra 0 comme vitesse y, pour le faire descendre.
@@ -157,7 +158,17 @@ function update() {
   } else if (touches.ArrowLeft.pressed && joueur2.lastKey === 'ArrowLeft') {
     joueur2.vitesse.x = -3
   }
-  console.log(joueur2.pos)
+
+  // Détection collisions.
+  if (
+    joueur.attackBox.pos.x + joueur.attackBox.width >=
+      joueur2.attackBox.pos.x &&
+    joueur.attackBox.pos.x <= joueur2.pos.x + joueur2.width &&
+    joueur.attackBox.pos.y + joueur.attackBox.height >= joueur2.pos.y &&
+    joueur.attackBox.pos.y <= joueur2.pos.y + joueur2.height
+  ) {
+    console.log('true')
+  }
 }
 
 update()
