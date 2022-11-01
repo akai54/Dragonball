@@ -12,17 +12,32 @@ c.fillRect(0, 0, canvas.width, canvas.height)
 
 // Une classe dédiée aux sprites.
 class Sprite {
-  constructor({ pos, vitesse }) {
+  constructor({ pos, vitesse, color }) {
     this.pos = pos
     this.vitesse = vitesse
     this.height = 150
     this.lastKey
+    this.attackBox = {
+      pos: this.pos,
+      width: 100,
+      height: 50,
+    }
+    this.color = color
   }
 
   // Methode pour afficher les sprites.
   draw() {
-    c.fillStyle = 'red'
+    c.fillStyle = this.color
     c.fillRect(this.pos.x, this.pos.y, 50, this.height)
+
+    // AttackBox
+    c.fillStyle = 'green'
+    c.fillRect(
+      this.attackBox.pos.x,
+      this.attackBox.pos.y,
+      this.attackBox.width,
+      this.attackBox.height
+    )
   }
 
   // Methode pour mettre a jour, les pos des personnages.
@@ -72,6 +87,7 @@ const joueur = new Sprite({
     x: 0,
     y: 5,
   },
+  color: 'red',
 })
 
 // Le deuxième joueur.
@@ -84,6 +100,7 @@ const joueur2 = new Sprite({
     x: 0,
     y: 5,
   },
+  color: 'blue',
 })
 
 console.log(joueur)
