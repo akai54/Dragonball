@@ -12,18 +12,23 @@ c.fillRect(0, 0, canvas.width, canvas.height)
 
 // Une classe dédiée aux sprites.
 class Sprite {
-  constructor({ pos, vitesse, color }) {
+  constructor({ pos, vitesse, color, offset }) {
     this.pos = pos
     this.vitesse = vitesse
     this.height = 150
     this.width = 50
     this.lastKey
     this.attackBox = {
-      pos: this.pos,
+      pos: {
+        x: this.pos.x,
+        y: this.pos.y,
+      },
+      offset,
       width: 100,
       height: 50,
     }
     this.color = color
+    this.isAttacking
   }
 
   // Methode pour afficher les sprites.
@@ -32,6 +37,7 @@ class Sprite {
     c.fillRect(this.pos.x, this.pos.y, this.width, this.height)
 
     // AttackBox
+    //if (this.isAttacking) {}
     c.fillStyle = 'green'
     c.fillRect(
       this.attackBox.pos.x,
@@ -42,8 +48,10 @@ class Sprite {
   }
 
   // Methode pour mettre a jour, les pos des personnages.
-  async update_pos() {
+  update_pos() {
     this.draw()
+    this.attackBox.pos.x = this.pos.x + this.attackBox.offset.x
+    this.attackBox.pos.y = this.pos.y
     this.pos.x += this.vitesse.x
 
     // Tant que le joueur est dans la fenêtre, on lui laisse bouger à droite et à guache.
@@ -55,7 +63,7 @@ class Sprite {
   }
 
   // Methode pour redescendre.
-  async descendre() {
+  descendre() {
     this.pos.y += this.vitesse.y
 
     // Tant que le perso est en l'air, on mettra 0 comme vitesse y, pour le faire descendre.
@@ -76,6 +84,14 @@ class Sprite {
       this.vitesse.y += gravity
     }
   }
+
+  // Apres 100ms le joueur ne sera plus en état d'attaque.
+  attack() {
+    this.isAttacking = true
+    setTimeout(() => {
+      this.isAttacking = false
+    }, 100)
+  }
 }
 
 // Le joueur principale.
@@ -89,6 +105,10 @@ const joueur = new Sprite({
     y: 5,
   },
   color: 'red',
+  offset: {
+    x: 0,
+    y: 0,
+  },
 })
 
 // Le deuxième joueur.
@@ -102,6 +122,10 @@ const joueur2 = new Sprite({
     y: 5,
   },
   color: 'blue',
+  offset: {
+    x: -50,
+    y: 0,
+  },
 })
 
 console.log(joueur)
@@ -148,15 +172,16 @@ function update() {
 
   // Mouvement joueur1.
   if (touches.d.pressed && joueur.lastKey === 'd') {
-    joueur.vitesse.x = 3
+    joueur.vitesse.x = 5
   } else if (touches.a.pressed && joueur.lastKey === 'a') {
-    joueur.vitesse.x = -3
+    joueur.vitesse.x = -5
   }
+
   // Mouvement joueur2.
   if (touches.ArrowRight.pressed && joueur2.lastKey === 'ArrowRight') {
-    joueur2.vitesse.x = 3
+    joueur2.vitesse.x = 5
   } else if (touches.ArrowLeft.pressed && joueur2.lastKey === 'ArrowLeft') {
-    joueur2.vitesse.x = -3
+    joueur2.vitesse.x = -5
   }
 
   // Détection collisions.
@@ -165,7 +190,8 @@ function update() {
       joueur2.attackBox.pos.x &&
     joueur.attackBox.pos.x <= joueur2.pos.x + joueur2.width &&
     joueur.attackBox.pos.y + joueur.attackBox.height >= joueur2.pos.y &&
-    joueur.attackBox.pos.y <= joueur2.pos.y + joueur2.height
+    joueur.attackBox.pos.y <= joueur2.pos.y + joueur2.height &&
+    joueur.isAttacking
   ) {
     console.log('true')
   }
@@ -192,6 +218,9 @@ window.addEventListener('keydown', (e) => {
       touches.s.pressed = true
       joueur.lastKey = 's'
       joueur.descendre()
+      break
+    case ' ':
+      joueur.attack()
       break
     case 'ArrowRight':
       touches.ArrowRight.pressed = true
