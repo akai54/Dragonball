@@ -1,13 +1,17 @@
 // Une classe dédiée aux sprites.
 class Sprite {
-  constructor({ pos }) {
+  constructor({ pos, imgSrc }) {
     this.pos = pos
     this.height = 150
     this.width = 50
+    this.image = new Image()
+    this.image.src = imgSrc
   }
 
   // Methode pour afficher les sprites.
-  draw() {}
+  draw() {
+    c.drawImage(this.image, this.pos.x, this.pos.y)
+  }
 
   // Methode pour mettre a jour, les pos des personnages.
   update_pos() {

@@ -2,6 +2,13 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
 const gravity = 0.8
+const bg = new Sprite({
+  pos: {
+    x: 0,
+    y: 0,
+  },
+  imgSrc: 'ressources/bg/battle_bg.png',
+})
 
 // Taille de la fenêtre.
 canvas.width = 1024
@@ -118,8 +125,9 @@ dec_Timer()
 // La fonction qui va etre appeler en boucle.
 function update() {
   window.requestAnimationFrame(update)
-  c.fillStyle = 'black'
+  c.fillStyle = 'white'
   c.fillRect(0, 0, canvas.width, canvas.height)
+  bg.update_pos()
   joueur.update_pos()
   joueur2.update_pos()
 
