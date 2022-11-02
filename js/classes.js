@@ -1,21 +1,45 @@
 // Une classe dédiée aux sprites.
 class Sprite {
-  constructor({ pos, imgSrc }) {
+  constructor({ pos, imgSrc, scale = 1, framesMax = 1 }) {
     this.pos = pos
     this.height = 150
     this.width = 50
     this.image = new Image()
     this.image.src = imgSrc
+    this.scale = scale
+    this.framesMax = framesMax
+    this.framesCurrent = 0
+    this.framesElapsed = 0
+    this.framesHold = 10
   }
 
   // Methode pour afficher les sprites.
   draw() {
-    c.drawImage(this.image, this.pos.x, this.pos.y)
+    c.drawImage(
+      this.image,
+      this.framesCurrent * (this.image.width / this.framesMax),
+      0,
+      this.image.width / this.framesMax,
+      this.image.height,
+      this.pos.x,
+      this.pos.y,
+      (this.image.width / this.framesMax) * this.scale,
+      this.image.height * this.scale
+    )
   }
 
   // Methode pour mettre a jour, les pos des personnages.
   update_pos() {
     this.draw()
+    this.framesElapsed++
+
+    if (this.framesElapsed % this.framesHold === 0) {
+      if (this.framesCurrent < this.framesMax - 1) {
+        this.framesCurrent++
+      } else {
+        this.framesCurrent = 0
+      }
+    }
   }
 }
 
