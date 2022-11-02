@@ -29,6 +29,7 @@ class Sprite {
     }
     this.color = color
     this.isAttacking
+    this.vie = 100
   }
 
   // Methode pour afficher les sprites.
@@ -207,7 +208,8 @@ function update() {
     joueur.isAttacking
   ) {
     joueur.isAttacking = false
-    console.log('true')
+    joueur2.vie -= 20
+    document.querySelector('#j2Vie').style.width = joueur2.vie + '%'
   }
 
   if (
@@ -218,7 +220,8 @@ function update() {
     joueur2.isAttacking
   ) {
     joueur2.isAttacking = false
-    console.log('true')
+    joueur.vie -= 20
+    document.querySelector('#j1Vie').style.width = joueur.vie + '%'
   }
 }
 
@@ -254,6 +257,7 @@ window.addEventListener('keydown', (e) => {
     case 'ArrowLeft':
       touches.ArrowLeft.pressed = true
       joueur2.lastKey = 'ArrowLeft'
+
       break
     case 'ArrowUp':
       touches.ArrowUp.pressed = true

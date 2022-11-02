@@ -1,22 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="data:;base64,=" />
-    <title>canvas-premier-pas</title>
-    <style>
-      body {
-        margin: 0px;
-        padding: 0px;
-      }
 
-      canvas {
-        border: 1px solid black;
-      }
-    </style>
-    <script defer src="js/script.js"></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:;base64,=" />
+  <title>canvas-premier-pas</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-  <body></body>
+    body {
+      margin: 0px;
+      padding: 0px;
+    }
+  </style>
+  <script defer src="js/script.js"></script>
+</head>
+
+<body>
+  <!-- container div -->
+  <div style="position: relative; display: inline-block">
+    <!-- smaller red container div -->
+    <div style="
+          position: absolute;
+          display: flex;
+          width: 100%;
+          align-items: center;
+          padding: 20px;
+        ">
+      <!-- Joueur1 VIE-->
+      <div style="
+            position: relative;
+            height: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+          ">
+        <div style="background-color: yellow; height: 30px; width: 100%"></div>
+        <div id="j1Vie" style="
+              position: absolute;
+              background: blue;
+              top: 0;
+              bottom: 0;
+              right: 0;
+              width: 100%;
+            "></div>
+      </div>
+      <div style="
+            background-color: red;
+            height: 100px;
+            width: 100px;
+            flex-shrink: 0;
+          "></div>
+      <!-- Joueur2 VIE-->
+      <div style="position: relative; height: 30px; width: 100%">
+        <div style="background-color: yellow; height: 30px"></div>
+        <div id="j2Vie" style="
+              position: absolute;
+              background: blue;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+            "></div>
+      </div>
+      <div></div>
+    </div>
+    <canvas></canvas>
+  </div>
+</body>
+
 </html>
-<canvas></canvas>
