@@ -173,23 +173,29 @@ function collision_joueurs({ j1, j2 }) {
   )
 }
 
+function fin_jeu({ joueur, joueur2, timerId }) {
+  clearTimeout(timerId)
+  document.querySelector('#timerRes').style.display = 'flex'
+  if (joueur.vie === joueur2.vie) {
+    document.querySelector('#timerRes').innerHTML = 'Égalité'
+  } else if (joueur.vie > joueur2.vie) {
+    document.querySelector('#timerRes').innerHTML = 'Joueur1 a gagné'
+  } else if (joueur.vie < joueur2.vie) {
+    document.querySelector('#timerRes').innerHTML = 'Joueur2 a gagné'
+  }
+}
+
 let timer = 10
+let timerId
 function dec_Timer() {
   if (timer > 0) {
-    setTimeout(dec_Timer, 1000)
+    timerId = setTimeout(dec_Timer, 1000)
     timer--
     document.querySelector('#timer').innerHTML = timer
   }
 
   if (timer === 0) {
-    document.querySelector('#timerRes').style.display = 'flex'
-    if (joueur.vie === joueur2.vie) {
-      document.querySelector('#timerRes').innerHTML = 'Égalité'
-    } else if (joueur.vie > joueur2.vie) {
-      document.querySelector('#timerRes').innerHTML = 'Joueur1 a gagné'
-    } else if (joueur.vie < joueur2.vie) {
-      document.querySelector('#timerRes').innerHTML = 'Joueur2 a gagné'
-    }
+    fin_jeu({ joueur, joueur2, timerId })
   }
 }
 
@@ -244,6 +250,11 @@ function update() {
     joueur2.isAttacking = false
     joueur.vie -= 20
     document.querySelector('#j1Vie').style.width = joueur.vie + '%'
+  }
+
+  // Fin jeu
+  if (joueur.vie <= 0 || joueur2.vie <= 0) {
+    fin_jeu({ joueur, joueur2, timerId })
   }
 }
 
