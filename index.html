@@ -47,12 +47,18 @@
               width: 100%;
             "></div>
       </div>
-      <div style="
+      <!-- Timer -->
+      <div id="timer" style="
             background-color: red;
             height: 100px;
             width: 100px;
             flex-shrink: 0;
-          "></div>
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          ">
+        10
+      </div>
       <!-- Joueur2 VIE-->
       <div style="position: relative; height: 30px; width: 100%">
         <div style="background-color: yellow; height: 30px"></div>
@@ -66,6 +72,19 @@
             "></div>
       </div>
       <div></div>
+    </div>
+    <div id="timerRes" style="
+          position: absolute;
+          color: white;
+          align-items: center;
+          justify-content: center;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          display: none;
+        ">
+      Tie
     </div>
     <canvas></canvas>
   </div>

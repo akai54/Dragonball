@@ -173,6 +173,28 @@ function collision_joueurs({ j1, j2 }) {
   )
 }
 
+let timer = 10
+function dec_Timer() {
+  if (timer > 0) {
+    setTimeout(dec_Timer, 1000)
+    timer--
+    document.querySelector('#timer').innerHTML = timer
+  }
+
+  if (timer === 0) {
+    document.querySelector('#timerRes').style.display = 'flex'
+    if (joueur.vie === joueur2.vie) {
+      document.querySelector('#timerRes').innerHTML = 'Égalité'
+    } else if (joueur.vie > joueur2.vie) {
+      document.querySelector('#timerRes').innerHTML = 'Joueur1 a gagné'
+    } else if (joueur.vie < joueur2.vie) {
+      document.querySelector('#timerRes').innerHTML = 'Joueur2 a gagné'
+    }
+  }
+}
+
+dec_Timer()
+
 // La fonction qui va etre appeler en boucle.
 function update() {
   window.requestAnimationFrame(update)
