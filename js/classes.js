@@ -35,9 +35,7 @@ class Sprite {
     )
   }
 
-  // Methode pour mettre a jour, les pos des personnages.
-  update_pos() {
-    this.draw()
+  animateFrame() {
     this.framesElapsed++
 
     if (this.framesElapsed % this.framesHold === 0) {
@@ -47,6 +45,11 @@ class Sprite {
         this.framesCurrent = 0
       }
     }
+  }
+  // Methode pour mettre a jour, les pos des personnages.
+  animation() {
+    this.draw()
+    this.animateFrame()
   }
 }
 
@@ -86,11 +89,14 @@ class Joueur extends Sprite {
     this.framesCurrent = 0
     this.framesElapsed = 0
     this.framesHold = 10
+    this.on_ground = false
   }
 
   // Methode pour mettre a jour, les pos des personnages.
-  update_pos() {
+  animation() {
     this.draw()
+    this.animateFrame()
+    console.log(this.pos)
     this.attackBox.pos.x = this.pos.x + this.attackBox.offset.x
     this.attackBox.pos.y = this.pos.y
     this.pos.x += this.vitesse.x
@@ -108,10 +114,12 @@ class Joueur extends Sprite {
     this.pos.y += this.vitesse.y
 
     // Tant que le perso est en l'air, on mettra 0 comme vitesse y, pour le faire descendre.
-    if (this.pos.y + this.height + this.vitesse.y >= canvas.height - 120) {
-      this.vitesse.y = 0
+    if (this.pos.y >= 410) {
+      this.pos.y = 410
+      this.on_ground = true
     } else {
       this.vitesse.y += gravity
+      this.on_ground = false
     }
   }
 

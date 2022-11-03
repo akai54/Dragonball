@@ -33,8 +33,8 @@ const joueur = new Joueur({
     x: 0,
     y: 0,
   },
-  imgSrc: 'ressources/sprites/goku/winning.png',
-  framesMax: 2,
+  imgSrc: 'ressources/sprites/goku/idle.png',
+  framesMax: 4,
   scale: 1.6,
 })
 
@@ -95,9 +95,9 @@ function update() {
   window.requestAnimationFrame(update)
   c.fillStyle = 'white'
   c.fillRect(0, 0, canvas.width, canvas.height)
-  bg.update_pos()
-  joueur.update_pos()
-  joueur2.update_pos()
+  bg.animation()
+  joueur.animation()
+  //joueur2.animation()
 
   // La vitesse par défaut est 0.
   joueur.vitesse.x = 0
