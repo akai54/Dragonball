@@ -31,7 +31,7 @@ class Sprite {
         this.pos.y + this.image.height / 2
       )
 
-      c.scale(1, 1)
+      c.scale(-1, 1)
 
       c.drawImage(
         this.image,

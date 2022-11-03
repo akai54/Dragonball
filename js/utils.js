@@ -27,7 +27,7 @@ function fin_jeu({ joueur, joueur2, timerId }) {
   }
 }
 
-let timer = 10
+let timer = 100
 let timerId
 function dec_Timer() {
   if (timer > 0) {

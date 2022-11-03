@@ -123,14 +123,20 @@ function update() {
     joueur.image = joueur.sprites.idle.image
     joueur.framesMax = joueur.sprites.idle.framesMax
     joueur.limit = joueur.sprites.idle.limit
+
     // Mouvement joueur1.
     if (touches.d.pressed && joueur.lastKey === 'd') {
       joueur.vitesse.x = 5
+      joueur.flip = false
       joueur.image = joueur.sprites.walk.image
       joueur.framesMax = joueur.sprites.walk.framesMax
       joueur.limit = joueur.sprites.walk.limit
     } else if (touches.a.pressed && joueur.lastKey === 'a') {
       joueur.vitesse.x = -5
+      joueur.flip = true
+      joueur.image = joueur.sprites.walk.image
+      joueur.framesMax = joueur.sprites.walk.framesMax
+      joueur.limit = joueur.sprites.walk.limit
     }
 
     // Mouvement joueur2.
@@ -196,7 +202,7 @@ window.addEventListener('keydown', (e) => {
       if (!fin) joueur.descendre()
       break
     case ' ':
-      joueur.attack()
+      if (!fin) joueur.attack()
       break
     case 'ArrowRight':
       touches.ArrowRight.pressed = true
@@ -220,7 +226,7 @@ window.addEventListener('keydown', (e) => {
     case 'k':
       touches.k.pressed = true
       joueur2.lastKey = 'k'
-      joueur2.attack()
+      if (!fin) joueur2.attack()
       break
   }
 })
