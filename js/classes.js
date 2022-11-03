@@ -16,8 +16,7 @@ class Sprite {
     this.framesMax = framesMax
     this.framesCurrent = 0
     this.framesElapsed = 0
-    this.framesHold = 5
-    this.offset = offset
+    this.framesHold = this.offset = offset
   }
 
   // Methode pour afficher les sprites.
@@ -97,15 +96,12 @@ class Joueur extends Sprite {
       sprites[sprite].image = new Image()
       sprites[sprite].image.src = sprites[sprite].imgSrc
     }
-
-    console.log(this.sprites)
   }
 
   // Methode pour mettre a jour, les pos des personnages.
   animation() {
     this.draw()
     this.animateFrame()
-    console.log(this.pos)
     this.attackBox.pos.x = this.pos.x + this.attackBox.offset.x
     this.attackBox.pos.y = this.pos.y
     this.pos.x += this.vitesse.x
@@ -127,7 +123,7 @@ class Joueur extends Sprite {
       this.pos.y = 410
       this.on_ground = true
     } else {
-      this.vitesse.y += gravity
+      this.vitesse.y += 5
       this.on_ground = false
     }
   }
@@ -137,9 +133,11 @@ class Joueur extends Sprite {
     this.pos.y -= this.vitesse.y
     // Tant que le joueur est dans la fenêtre, on lui laisse voler.
     if (this.pos.y < 0) {
+      this.on_ground = false
       this.pos.y = 0
     } else {
-      this.vitesse.y += gravity
+      this.vitesse.y += 5
+      this.on_ground = false
     }
   }
 

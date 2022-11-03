@@ -38,11 +38,18 @@ const joueur = new Joueur({
   scale: 1.6,
   sprites: {
     idle: {
+      name: 'idle',
       imgSrc: 'ressources/sprites/goku/idle.png',
       framesMax: 4,
     },
     walk: {
+      name: 'walk',
       imgSrc: 'ressources/sprites/goku/walk.png',
+      framesMax: 2,
+    },
+    winning: {
+      name: 'winning',
+      imgSrc: 'ressources/sprites/goku/winning.png',
       framesMax: 2,
     },
   },
@@ -113,10 +120,12 @@ function update() {
 
   // Par defaut, on joue le sprite idle.
   joueur.image = joueur.sprites.idle.image
+  joueur.framesMax = joueur.sprites.idle.framesMax
   // Mouvement joueur1.
   if (touches.d.pressed && joueur.lastKey === 'd') {
     joueur.vitesse.x = 5
     joueur.image = joueur.sprites.walk.image
+    joueur.framesMax = joueur.sprites.walk.framesMax
   } else if (touches.a.pressed && joueur.lastKey === 'a') {
     joueur.vitesse.x = -5
   }
@@ -157,6 +166,7 @@ function update() {
   if (joueur.vie <= 0 || joueur2.vie <= 0) {
     fin_jeu({ joueur, joueur2, timerId })
   }
+  console.log(joueur.pos, joueur.on_ground)
 }
 
 update()
