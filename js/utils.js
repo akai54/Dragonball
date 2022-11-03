@@ -15,8 +15,10 @@ function fin_jeu({ joueur, joueur2, timerId }) {
     document.querySelector('#timerRes').innerHTML = 'Égalité'
   } else if (joueur.vie > joueur2.vie) {
     document.querySelector('#timerRes').innerHTML = 'Joueur1 a gagné'
-    joueur.sprites.idle.image = joueur.sprites.winning.image
+    joueur.image = joueur.sprites.winning.image
     joueur.framesMax = joueur.sprites.winning.framesMax
+    joueur.limit = joueur.sprites.winning.limit
+    joueur.pos = { x: 460, y: 299 }
   } else if (joueur.vie < joueur2.vie) {
     document.querySelector('#timerRes').innerHTML = 'Joueur2 a gagné'
   }

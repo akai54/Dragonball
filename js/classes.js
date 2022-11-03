@@ -62,6 +62,7 @@ class Joueur extends Sprite {
     framesMax = 1,
     offset = { x: 0, y: 0 },
     sprites,
+    limit = 410,
   }) {
     super({
       pos,
@@ -91,6 +92,7 @@ class Joueur extends Sprite {
     this.framesHold = 10
     this.on_ground = false
     this.sprites = sprites
+    this.limit = limit
 
     for (let sprite in this.sprites) {
       sprites[sprite].image = new Image()
@@ -119,11 +121,11 @@ class Joueur extends Sprite {
     this.pos.y += this.vitesse.y
 
     // Tant que le perso est en l'air, on mettra 0 comme vitesse y, pour le faire descendre.
-    if (this.pos.y >= 410) {
-      this.pos.y = 410
+    if (this.pos.y >= this.limit) {
+      this.pos.y = this.limit
       this.on_ground = true
     } else {
-      this.vitesse.y += 5
+      this.vitesse.y += 2
       this.on_ground = false
     }
   }
@@ -136,7 +138,7 @@ class Joueur extends Sprite {
       this.on_ground = false
       this.pos.y = 0
     } else {
-      this.vitesse.y += 5
+      this.vitesse.y += 2
       this.on_ground = false
     }
   }
