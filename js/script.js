@@ -38,19 +38,16 @@ const joueur = new Joueur({
   scale: 1.6,
   sprites: {
     idle: {
-      name: 'idle',
       imgSrc: 'ressources/sprites/goku/idle.png',
       framesMax: 4,
       limit: 410,
     },
     walk: {
-      name: 'walk',
       imgSrc: 'ressources/sprites/goku/walk.png',
       framesMax: 2,
       limit: 370,
     },
     winning: {
-      name: 'winning',
       imgSrc: 'ressources/sprites/goku/won.png',
       framesMax: 1,
       limit: 350,
