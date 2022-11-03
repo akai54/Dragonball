@@ -1,6 +1,12 @@
 // Une classe dédiée aux sprites.
 class Sprite {
-  constructor({ pos, imgSrc, scale = 1, framesMax = 1 }) {
+  constructor({
+    pos,
+    imgSrc,
+    scale = 1,
+    framesMax = 1,
+    offset = { x: 0, y: 0 },
+  }) {
     this.pos = pos
     this.height = 150
     this.width = 50
@@ -11,6 +17,7 @@ class Sprite {
     this.framesCurrent = 0
     this.framesElapsed = 0
     this.framesHold = 5
+    this.offset = offset
   }
 
   // Methode pour afficher les sprites.
@@ -21,8 +28,8 @@ class Sprite {
       0,
       this.image.width / this.framesMax,
       this.image.height,
-      this.pos.x,
-      this.pos.y,
+      this.pos.x - this.offset.x,
+      this.pos.y - this.offset.y,
       (this.image.width / this.framesMax) * this.scale,
       this.image.height * this.scale
     )
@@ -48,16 +55,17 @@ class Joueur extends Sprite {
     pos,
     vitesse,
     color,
-    offset,
     imgSrc,
     scale = 1,
     framesMax = 1,
+    offset = { x: 0, y: 0 },
   }) {
     super({
       pos,
       imgSrc,
       scale,
       framesMax,
+      offset,
     })
     this.vitesse = vitesse
     this.height = 150
@@ -100,7 +108,7 @@ class Joueur extends Sprite {
     this.pos.y += this.vitesse.y
 
     // Tant que le perso est en l'air, on mettra 0 comme vitesse y, pour le faire descendre.
-    if (this.pos.y + this.height + this.vitesse.y >= canvas.height) {
+    if (this.pos.y + this.height + this.vitesse.y >= canvas.height - 120) {
       this.vitesse.y = 0
     } else {
       this.vitesse.y += gravity

@@ -55,7 +55,7 @@ const joueur2 = new Joueur({
   },
 })
 
-console.log(joueur)
+console.log(joueur.pos)
 
 // Les touches pour interagir avec les personnages.
 const touches = {
