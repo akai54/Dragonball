@@ -119,50 +119,51 @@ function update() {
   joueur2.vitesse.x = 0
 
   // Par defaut, on joue le sprite idle.
-  joueur.image = joueur.sprites.idle.image
-  joueur.framesMax = joueur.sprites.idle.framesMax
-  joueur.limit = joueur.sprites.idle.limit
+  if (!fin) {
+    joueur.image = joueur.sprites.idle.image
+    joueur.framesMax = joueur.sprites.idle.framesMax
+    joueur.limit = joueur.sprites.idle.limit
+    // Mouvement joueur1.
+    if (touches.d.pressed && joueur.lastKey === 'd') {
+      joueur.vitesse.x = 5
+      joueur.image = joueur.sprites.walk.image
+      joueur.framesMax = joueur.sprites.walk.framesMax
+      joueur.limit = joueur.sprites.walk.limit
+    } else if (touches.a.pressed && joueur.lastKey === 'a') {
+      joueur.vitesse.x = -5
+    }
 
-  // Mouvement joueur1.
-  if (touches.d.pressed && joueur.lastKey === 'd') {
-    joueur.vitesse.x = 5
-    joueur.image = joueur.sprites.walk.image
-    joueur.framesMax = joueur.sprites.walk.framesMax
-    joueur.limit = joueur.sprites.walk.limit
-  } else if (touches.a.pressed && joueur.lastKey === 'a') {
-    joueur.vitesse.x = -5
-  }
+    // Mouvement joueur2.
+    if (touches.ArrowRight.pressed && joueur2.lastKey === 'ArrowRight') {
+      joueur2.vitesse.x = 5
+    } else if (touches.ArrowLeft.pressed && joueur2.lastKey === 'ArrowLeft') {
+      joueur2.vitesse.x = -5
+    }
 
-  // Mouvement joueur2.
-  if (touches.ArrowRight.pressed && joueur2.lastKey === 'ArrowRight') {
-    joueur2.vitesse.x = 5
-  } else if (touches.ArrowLeft.pressed && joueur2.lastKey === 'ArrowLeft') {
-    joueur2.vitesse.x = -5
-  }
+    // Détection collisions.
+    if (
+      collision_joueurs({
+        j1: joueur,
+        j2: joueur2,
+      }) &&
+      joueur.isAttacking
+    ) {
+      joueur.isAttacking = false
+      joueur2.vie -= 20
+      document.querySelector('#j2Vie').style.width = joueur2.vie + '%'
+    }
 
-  // Détection collisions.
-  if (
-    collision_joueurs({
-      j1: joueur,
-      j2: joueur2,
-    }) &&
-    joueur.isAttacking
-  ) {
-    joueur.isAttacking = false
-    joueur2.vie -= 20
-    document.querySelector('#j2Vie').style.width = joueur2.vie + '%'
-  }
-
-  if (
-    collision_joueurs({
-      j1: joueur2,
-      j2: joueur,
-    }) &&
-    joueur2.isAttacking
-  ) {
-    joueur2.isAttacking = false
-    joueur.vie -= 20
-    document.querySelector('#j1Vie').style.width = joueur.vie + '%'
+    if (
+      collision_joueurs({
+        j1: joueur2,
+        j2: joueur,
+      }) &&
+      joueur2.isAttacking
+    ) {
+      joueur2.isAttacking = false
+      joueur.vie -= 20
+      document.querySelector('#j1Vie').style.width = joueur.vie + '%'
+    }
   }
 
   // Fin jeu
@@ -187,12 +188,12 @@ window.addEventListener('keydown', (e) => {
     case 'w':
       touches.w.pressed = true
       joueur.lastKey = 'w'
-      joueur.fly()
+      if (!fin) joueur.fly()
       break
     case 's':
       touches.s.pressed = true
       joueur.lastKey = 's'
-      joueur.descendre()
+      if (!fin) joueur.descendre()
       break
     case ' ':
       joueur.attack()
@@ -209,12 +210,12 @@ window.addEventListener('keydown', (e) => {
     case 'ArrowUp':
       touches.ArrowUp.pressed = true
       joueur2.lastKey = 'ArrowUp'
-      joueur2.fly()
+      if (!fin) joueur2.fly()
       break
     case 'ArrowDown':
       touches.ArrowDown.pressed = true
       joueur2.lastKey = 'ArrowDown'
-      joueur2.descendre()
+      if (!fin) joueur2.descendre()
       break
     case 'k':
       touches.k.pressed = true

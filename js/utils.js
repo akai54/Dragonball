@@ -8,7 +8,10 @@ function collision_joueurs({ j1, j2 }) {
   )
 }
 
+let fin = false
+
 function fin_jeu({ joueur, joueur2, timerId }) {
+  fin = true
   clearTimeout(timerId)
   document.querySelector('#timerRes').style.display = 'flex'
   if (joueur.vie === joueur2.vie) {
