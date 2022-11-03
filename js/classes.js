@@ -10,7 +10,7 @@ class Sprite {
     this.framesMax = framesMax
     this.framesCurrent = 0
     this.framesElapsed = 0
-    this.framesHold = 10
+    this.framesHold = 5
   }
 
   // Methode pour afficher les sprites.
@@ -43,9 +43,22 @@ class Sprite {
   }
 }
 
-class Joueur {
-  constructor({ pos, vitesse, color, offset }) {
-    this.pos = pos
+class Joueur extends Sprite {
+  constructor({
+    pos,
+    vitesse,
+    color,
+    offset,
+    imgSrc,
+    scale = 1,
+    framesMax = 1,
+  }) {
+    super({
+      pos,
+      imgSrc,
+      scale,
+      framesMax,
+    })
     this.vitesse = vitesse
     this.height = 150
     this.width = 50
@@ -62,23 +75,9 @@ class Joueur {
     this.color = color
     this.isAttacking
     this.vie = 100
-  }
-
-  // Methode pour afficher les sprites.
-  draw() {
-    c.fillStyle = this.color
-    c.fillRect(this.pos.x, this.pos.y, this.width, this.height)
-
-    // AttackBox
-    if (this.isAttacking) {
-      c.fillStyle = 'green'
-      c.fillRect(
-        this.attackBox.pos.x,
-        this.attackBox.pos.y,
-        this.attackBox.width,
-        this.attackBox.height
-      )
-    }
+    this.framesCurrent = 0
+    this.framesElapsed = 0
+    this.framesHold = 10
   }
 
   // Methode pour mettre a jour, les pos des personnages.

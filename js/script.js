@@ -1,4 +1,5 @@
 const canvas = document.querySelector('canvas')
+
 const c = canvas.getContext('2d')
 
 const gravity = 0.8
@@ -32,6 +33,9 @@ const joueur = new Joueur({
     x: 0,
     y: 0,
   },
+  imgSrc: 'ressources/sprites/goku/winning.png',
+  framesMax: 2,
+  scale: 1.6,
 })
 
 // Le deuxième joueur.
