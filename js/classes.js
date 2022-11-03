@@ -62,6 +62,7 @@ class Joueur extends Sprite {
     scale = 1,
     framesMax = 1,
     offset = { x: 0, y: 0 },
+    sprites,
   }) {
     super({
       pos,
@@ -90,6 +91,14 @@ class Joueur extends Sprite {
     this.framesElapsed = 0
     this.framesHold = 10
     this.on_ground = false
+    this.sprites = sprites
+
+    for (let sprite in this.sprites) {
+      sprites[sprite].image = new Image()
+      sprites[sprite].image.src = sprites[sprite].imgSrc
+    }
+
+    console.log(this.sprites)
   }
 
   // Methode pour mettre a jour, les pos des personnages.

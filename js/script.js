@@ -36,6 +36,16 @@ const joueur = new Joueur({
   imgSrc: 'ressources/sprites/goku/idle.png',
   framesMax: 4,
   scale: 1.6,
+  sprites: {
+    idle: {
+      imgSrc: 'ressources/sprites/goku/idle.png',
+      framesMax: 4,
+    },
+    walk: {
+      imgSrc: 'ressources/sprites/goku/walk.png',
+      framesMax: 2,
+    },
+  },
 })
 
 // Le deuxième joueur.
@@ -54,8 +64,6 @@ const joueur2 = new Joueur({
     y: 0,
   },
 })
-
-console.log(joueur.pos)
 
 // Les touches pour interagir avec les personnages.
 const touches = {
@@ -103,9 +111,12 @@ function update() {
   joueur.vitesse.x = 0
   joueur2.vitesse.x = 0
 
+  // Par defaut, on joue le sprite idle.
+  joueur.image = joueur.sprites.idle.image
   // Mouvement joueur1.
   if (touches.d.pressed && joueur.lastKey === 'd') {
     joueur.vitesse.x = 5
+    joueur.image = joueur.sprites.walk.image
   } else if (touches.a.pressed && joueur.lastKey === 'a') {
     joueur.vitesse.x = -5
   }
