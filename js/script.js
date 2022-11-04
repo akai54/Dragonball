@@ -125,11 +125,9 @@ function update() {
     // Mouvement joueur1.
     if (touches.d.pressed && joueur.lastKey === 'd') {
       joueur.vitesse.x = 5
-      joueur.flip = false
       joueur.switchSprite('walk')
     } else if (touches.a.pressed && joueur.lastKey === 'a') {
       joueur.vitesse.x = -5
-      joueur.flip = true
       joueur.switchSprite('walk')
     }
 

@@ -6,7 +6,6 @@ class Sprite {
     scale = 1,
     framesMax = 1,
     offset = { x: 0, y: 0 },
-    flip = false,
   }) {
     this.pos = pos
     this.height = 150
@@ -18,47 +17,21 @@ class Sprite {
     this.framesCurrent = 0
     this.framesElapsed = 0
     this.framesHold = this.offset = offset
-    this.flip = flip
   }
 
   // Methode pour afficher les sprites.
   draw() {
-    if (this.flip) {
-      c.save()
-
-      c.translate(
-        this.pos.x + this.image.width / 2,
-        this.pos.y + this.image.height / 2
-      )
-
-      c.scale(-1, 1)
-
-      c.drawImage(
-        this.image,
-        this.framesCurrent * (this.image.width / this.framesMax),
-        0,
-        this.image.width / this.framesMax,
-        this.image.height,
-        -this.image.width / 2 - this.offset.x,
-        -this.image.height / 2 - this.offset.y,
-        (this.image.width / this.framesMax) * this.scale,
-        this.image.height * this.scale
-      )
-
-      c.restore()
-    } else {
-      c.drawImage(
-        this.image,
-        this.framesCurrent * (this.image.width / this.framesMax),
-        0,
-        this.image.width / this.framesMax,
-        this.image.height,
-        this.pos.x - this.offset.x,
-        this.pos.y - this.offset.y,
-        (this.image.width / this.framesMax) * this.scale,
-        this.image.height * this.scale
-      )
-    }
+    c.drawImage(
+      this.image,
+      this.framesCurrent * (this.image.width / this.framesMax),
+      0,
+      this.image.width / this.framesMax,
+      this.image.height,
+      this.pos.x - this.offset.x,
+      this.pos.y - this.offset.y,
+      (this.image.width / this.framesMax) * this.scale,
+      this.image.height * this.scale
+    )
   }
 
   animateFrame() {
@@ -85,7 +58,6 @@ class Joueur extends Sprite {
     vitesse,
     color,
     imgSrc,
-    flip = false,
     scale = 1,
     framesMax = 1,
     offset = { x: 0, y: 0 },
@@ -98,7 +70,6 @@ class Joueur extends Sprite {
       scale,
       framesMax,
       offset,
-      flip,
     })
     this.vitesse = vitesse
     this.height = 150
