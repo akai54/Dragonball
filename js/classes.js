@@ -163,6 +163,11 @@ class Joueur extends Sprite {
         this.framesMax = this.sprites.walk.framesMax
         this.limit = this.sprites.walk.limit
         break
+      case 'walkL':
+        this.image = this.sprites.walkL.image
+        this.framesMax = this.sprites.walkL.framesMax
+        this.limit = this.sprites.walkL.limit
+        break
       case 'winning':
         this.image = this.sprites.winning.image
         this.framesMax = this.sprites.winning.framesMax

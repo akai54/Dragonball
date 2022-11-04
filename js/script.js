@@ -47,6 +47,11 @@ const joueur = new Joueur({
       framesMax: 2,
       limit: 370,
     },
+    walkL: {
+      imgSrc: 'ressources/sprites/goku/walkL.png',
+      framesMax: 2,
+      limit: 370,
+    },
     winning: {
       imgSrc: 'ressources/sprites/goku/won.png',
       framesMax: 1,
@@ -128,7 +133,7 @@ function update() {
       joueur.switchSprite('walk')
     } else if (touches.a.pressed && joueur.lastKey === 'a') {
       joueur.vitesse.x = -5
-      joueur.switchSprite('walk')
+      joueur.switchSprite('walkL')
     }
 
     // Mouvement joueur2.
