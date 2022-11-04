@@ -120,23 +120,17 @@ function update() {
 
   // Par defaut, on joue le sprite idle.
   if (!fin) {
-    joueur.image = joueur.sprites.idle.image
-    joueur.framesMax = joueur.sprites.idle.framesMax
-    joueur.limit = joueur.sprites.idle.limit
+    joueur.switchSprite('idle')
 
     // Mouvement joueur1.
     if (touches.d.pressed && joueur.lastKey === 'd') {
       joueur.vitesse.x = 5
       joueur.flip = false
-      joueur.image = joueur.sprites.walk.image
-      joueur.framesMax = joueur.sprites.walk.framesMax
-      joueur.limit = joueur.sprites.walk.limit
+      joueur.switchSprite('walk')
     } else if (touches.a.pressed && joueur.lastKey === 'a') {
       joueur.vitesse.x = -5
       joueur.flip = true
-      joueur.image = joueur.sprites.walk.image
-      joueur.framesMax = joueur.sprites.walk.framesMax
-      joueur.limit = joueur.sprites.walk.limit
+      joueur.switchSprite('walk')
     }
 
     // Mouvement joueur2.
