@@ -154,25 +154,37 @@ class Joueur extends Sprite {
   switchSprite(sprite) {
     switch (sprite) {
       case 'idle':
-        this.image = this.sprites.idle.image
-        this.framesMax = this.sprites.idle.framesMax
-        this.limit = this.sprites.idle.limit
+        if (this.image !== this.sprites.idle.image) {
+          this.image = this.sprites.idle.image
+          this.framesMax = this.sprites.idle.framesMax
+          this.limit = this.sprites.idle.limit
+          this.framesCurrent = 0
+        }
         break
       case 'walk':
-        this.image = this.sprites.walk.image
-        this.framesMax = this.sprites.walk.framesMax
-        this.limit = this.sprites.walk.limit
+        if (this.image !== this.sprites.walk.image) {
+          this.image = this.sprites.walk.image
+          this.framesMax = this.sprites.walk.framesMax
+          this.limit = this.sprites.walk.limit
+          this.framesCurrent = 0
+        }
         break
       case 'walkL':
-        this.image = this.sprites.walkL.image
-        this.framesMax = this.sprites.walkL.framesMax
-        this.limit = this.sprites.walkL.limit
+        if (this.image !== this.sprites.walkL.image) {
+          this.image = this.sprites.walkL.image
+          this.framesMax = this.sprites.walkL.framesMax
+          this.limit = this.sprites.walkL.limit
+          this.framesCurrent = 0
+        }
         break
       case 'winning':
-        this.image = this.sprites.winning.image
-        this.framesMax = this.sprites.winning.framesMax
-        this.limit = this.sprites.winning.limit
-        this.pos = { x: 460, y: 299 }
+        if (this.image !== this.sprites.winning.image) {
+          this.image = this.sprites.winning.image
+          this.framesMax = this.sprites.winning.framesMax
+          this.limit = this.sprites.winning.limit
+          this.pos = { x: 460, y: 299 }
+          this.framesCurrent = 0
+        }
         break
     }
   }

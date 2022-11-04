@@ -125,8 +125,6 @@ function update() {
 
   // Par defaut, on joue le sprite idle.
   if (!fin) {
-    joueur.switchSprite('idle')
-
     // Mouvement joueur1.
     if (touches.d.pressed && joueur.lastKey === 'd') {
       joueur.vitesse.x = 5
@@ -134,6 +132,8 @@ function update() {
     } else if (touches.a.pressed && joueur.lastKey === 'a') {
       joueur.vitesse.x = -5
       joueur.switchSprite('walkL')
+    } else {
+      joueur.switchSprite('idle')
     }
 
     // Mouvement joueur2.
@@ -173,7 +173,6 @@ function update() {
   if (joueur.vie <= 0 || joueur2.vie <= 0) {
     fin_jeu({ joueur, joueur2, timerId })
   }
-  console.log(joueur.pos, joueur.on_ground)
 }
 
 update()
