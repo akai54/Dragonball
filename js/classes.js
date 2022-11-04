@@ -87,6 +87,7 @@ class Joueur extends Sprite {
     this.color = color
     this.isAttacking
     this.vie = 100
+    this.force = 20
     this.framesCurrent = 0
     this.framesElapsed = 0
     this.framesHold = 10
@@ -183,6 +184,39 @@ class Joueur extends Sprite {
           this.framesMax = this.sprites.winning.framesMax
           this.limit = this.sprites.winning.limit
           this.pos = { x: 460, y: 299 }
+          this.framesCurrent = 0
+        }
+        break
+      case 'recharge':
+        if (this.image !== this.sprites.recharge.image) {
+          this.image = this.sprites.recharge.image
+          this.framesMax = this.sprites.recharge.framesMax
+          this.limit = this.sprites.recharge.limit
+          this.framesCurrent = 0
+          this.image = this.sprites.recharge.image
+        }
+        break
+      case 'recharge2':
+        if (this.image !== this.sprites.recharge2.image) {
+          this.image = this.sprites.recharge2.image
+          this.framesMax = this.sprites.recharge2.framesMax
+          this.limit = this.sprites.recharge2.limit
+          this.framesCurrent = 0
+        }
+        break
+      case 'attack1':
+        if (this.image !== this.sprites.attack1.image) {
+          this.image = this.sprites.attack1.image
+          this.framesMax = this.sprites.attack1.framesMax
+          this.limit = this.sprites.attack1.limit
+          this.framesCurrent = 0
+        }
+        break
+      case 'attack2':
+        if (this.image !== this.sprites.attack2.image) {
+          this.image = this.sprites.attack2.image
+          this.framesMax = this.sprites.attack2.framesMax
+          this.limit = this.sprites.attack2.limit
           this.framesCurrent = 0
         }
         break
