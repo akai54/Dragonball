@@ -111,7 +111,7 @@ const joueur2 = new Joueur({
   scale: 1.6,
   sprites: {
     idle: {
-      imgSrc: 'ressources/sprites/goku/idle.png',
+      imgSrc: 'ressources/sprites/Vegeta/idle.png',
       framesMax: 4,
       limit: 397,
     },
@@ -156,7 +156,7 @@ const joueur2 = new Joueur({
       limit: 320,
     },
     block: {
-      imgSrc: 'ressources/sprites/goku/Goku_block_2.png',
+      imgSrc: 'ressources/sprites/Vegeta/block.png',
       framesMax: 1,
       limit: 410,
     },
@@ -205,6 +205,9 @@ const touches = {
     pressed: false,
   },
   k: {
+    pressed: false,
+  },
+  p: {
     pressed: false,
   },
 }
@@ -256,6 +259,10 @@ function update() {
       joueur2.vitesse.x = 5
     } else if (touches.ArrowLeft.pressed && joueur2.lastKey === 'ArrowLeft') {
       joueur2.vitesse.x = -5
+    } else if (touches.p.pressed && joueur2.lastKey === 'p') {
+      joueur2.switchSprite('block')
+    } else {
+      joueur2.switchSprite('idle')
     }
 
     // Détection collisions.
@@ -318,22 +325,22 @@ window.addEventListener('keydown', (e) => {
       if (joueur.force < 100) joueur.force++
       break
     case 'h':
+      joueur.attack('attack1')
       touches.h.pressed = true
       joueur.lastKey = 'h'
       joueur.force--
-      joueur.attack('attack1')
       break
     case 'j':
+      joueur.attack('attack2')
       touches.j.pressed = true
       joueur.lastKey = 'j'
       joueur.force--
-      joueur.attack('attack2')
       break
     case 'l':
+      joueur.attack('attack3')
       touches.l.pressed = true
       joueur.lastKey = 'l'
       joueur.force--
-      joueur.attack('attack3')
       break
     case 'q':
       touches.q.pressed = true
@@ -366,6 +373,11 @@ window.addEventListener('keydown', (e) => {
       touches.k.pressed = true
       joueur2.lastKey = 'k'
       if (!fin) joueur2.attack()
+      break
+    case 'p':
+      touches.p.pressed = true
+      joueur2.lastKey = 'p'
+      joueur2.force--
       break
   }
 })
@@ -412,6 +424,9 @@ window.addEventListener('keyup', (e) => {
       break
     case 'k':
       touches.k.pressed = false
+      break
+    case 'p':
+      touches.p.pressed = false
       break
   }
 })
