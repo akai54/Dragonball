@@ -40,7 +40,6 @@ class Sprite {
     if (this.framesElapsed % this.framesHold === 0) {
       if (this.framesCurrent < this.framesMax - 1) {
         this.framesCurrent++
-        console.log(this.framesCurrent)
       } else {
         this.framesCurrent = 0
       }
@@ -91,7 +90,7 @@ class Joueur extends Sprite {
     this.force = 20
     this.framesCurrent = 0
     this.framesElapsed = 0
-    this.framesHold = 6
+    this.framesHold = 10
     this.on_ground = false
     this.sprites = sprites
     this.limit = limit
@@ -146,8 +145,7 @@ class Joueur extends Sprite {
   }
 
   // Apres 100ms le joueur ne sera plus en état d'attaque.
-  attack(animation) {
-    this.switchSprite(animation)
+  attack() {
     this.isAttacking = true
     setTimeout(() => {
       this.isAttacking = false

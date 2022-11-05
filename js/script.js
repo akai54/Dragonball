@@ -94,7 +94,7 @@ const joueur = new Joueur({
 const joueur2 = new Joueur({
   pos: {
     x: 655,
-    y: 410,
+    y: 397,
   },
   vitesse: {
     x: 0,
@@ -107,12 +107,13 @@ const joueur2 = new Joueur({
   },
   imgSrc: 'ressources/sprites/Vegeta/idle.png',
   framesMax: 4,
+  limit: 397,
   scale: 1.6,
   sprites: {
     idle: {
       imgSrc: 'ressources/sprites/goku/idle.png',
       framesMax: 4,
-      limit: 410,
+      limit: 397,
     },
     walk: {
       imgSrc: 'ressources/sprites/goku/walk.png',
@@ -217,7 +218,7 @@ function update() {
   c.fillRect(0, 0, canvas.width, canvas.height)
   bg.animation()
   joueur.animation()
-  //joueur2.animation()
+  joueur2.animation()
 
   // La vitesse par défaut est 0.
   joueur.vitesse.x = 0
@@ -239,11 +240,11 @@ function update() {
         joueur.switchSprite('recharge')
       }
     } else if (touches.h.pressed && joueur.lastKey === 'h') {
-      joueur.attack('attack1')
+      joueur.switchSprite('attack1')
     } else if (touches.j.pressed && joueur.lastKey === 'j') {
-      joueur.attack('attack2')
+      joueur.switchSprite('attack2')
     } else if (touches.l.pressed && joueur.lastKey === 'l') {
-      joueur.attack('attack3')
+      joueur.switchSprite('attack3')
     } else if (touches.q.pressed && joueur.lastKey === 'q') {
       joueur.switchSprite('block')
     } else {
@@ -320,16 +321,19 @@ window.addEventListener('keydown', (e) => {
       touches.h.pressed = true
       joueur.lastKey = 'h'
       joueur.force--
+      joueur.attack('attack1')
       break
     case 'j':
       touches.j.pressed = true
       joueur.lastKey = 'j'
       joueur.force--
+      joueur.attack('attack2')
       break
     case 'l':
       touches.l.pressed = true
       joueur.lastKey = 'l'
       joueur.force--
+      joueur.attack('attack3')
       break
     case 'q':
       touches.q.pressed = true
