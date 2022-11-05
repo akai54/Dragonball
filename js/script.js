@@ -21,8 +21,8 @@ c.fillRect(0, 0, canvas.width, canvas.height)
 // Le joueur principale.
 const joueur = new Joueur({
   pos: {
-    x: 0,
-    y: 0,
+    x: 80,
+    y: 410,
   },
   vitesse: {
     x: 0,
@@ -93,8 +93,8 @@ const joueur = new Joueur({
 // Le deuxième joueur.
 const joueur2 = new Joueur({
   pos: {
-    x: 400,
-    y: 0,
+    x: 655,
+    y: 410,
   },
   vitesse: {
     x: 0,
@@ -104,6 +104,61 @@ const joueur2 = new Joueur({
   offset: {
     x: -50,
     y: 0,
+  },
+  imgSrc: 'ressources/sprites/Vegeta/idle.png',
+  framesMax: 4,
+  scale: 1.6,
+  sprites: {
+    idle: {
+      imgSrc: 'ressources/sprites/goku/idle.png',
+      framesMax: 4,
+      limit: 410,
+    },
+    walk: {
+      imgSrc: 'ressources/sprites/goku/walk.png',
+      framesMax: 2,
+      limit: 370,
+    },
+    walkL: {
+      imgSrc: 'ressources/sprites/goku/walkL.png',
+      framesMax: 2,
+      limit: 370,
+    },
+    winning: {
+      imgSrc: 'ressources/sprites/goku/won.png',
+      framesMax: 1,
+      limit: 350,
+    },
+    recharge: {
+      imgSrc: 'ressources/sprites/goku/power.png',
+      framesMax: 3,
+      limit: 410,
+    },
+    recharge2: {
+      imgSrc: 'ressources/sprites/goku/power1.png',
+      framesMax: 3,
+      limit: 410,
+    },
+    attack1: {
+      imgSrc: 'ressources/sprites/goku/Attack1.png',
+      framesMax: 2,
+      limit: 410,
+    },
+    attack2: {
+      imgSrc: 'ressources/sprites/goku/Attack2.png',
+      framesMax: 4,
+      limit: 410,
+    },
+    attack3: {
+      imgSrc: 'ressources/sprites/goku/Attack3.png',
+      framesMax: 5,
+      limit: 320,
+    },
+    block: {
+      imgSrc: 'ressources/sprites/goku/Goku_block_2.png',
+      framesMax: 1,
+      limit: 410,
+    },
   },
 })
 

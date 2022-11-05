@@ -219,6 +219,7 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.attack1.image) {
           this.image = this.sprites.attack1.image
           this.framesMax = this.sprites.attack1.framesMax
+          this.limit = this.sprites.recharge2.limit
           this.framesCurrent = 0
         }
         break
@@ -226,6 +227,7 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.attack2.image) {
           this.image = this.sprites.attack2.image
           this.framesMax = this.sprites.attack2.framesMax
+          this.limit = this.sprites.recharge2.limit
           this.framesCurrent = 0
         }
         break
@@ -233,6 +235,7 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.attack3.image) {
           this.image = this.sprites.attack3.image
           this.framesMax = this.sprites.attack3.framesMax
+          this.limit = this.sprites.recharge2.limit
           this.framesCurrent = 0
         }
         break
@@ -240,6 +243,7 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.block.image) {
           this.image = this.sprites.block.image
           this.framesMax = this.sprites.block.framesMax
+          this.limit = this.sprites.recharge2.limit
           this.framesCurrent = 0
         }
         break
