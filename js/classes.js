@@ -40,6 +40,7 @@ class Sprite {
     if (this.framesElapsed % this.framesHold === 0) {
       if (this.framesCurrent < this.framesMax - 1) {
         this.framesCurrent++
+        console.log(this.framesCurrent)
       } else {
         this.framesCurrent = 0
       }
@@ -90,7 +91,7 @@ class Joueur extends Sprite {
     this.force = 20
     this.framesCurrent = 0
     this.framesElapsed = 0
-    this.framesHold = 10
+    this.framesHold = 6
     this.on_ground = false
     this.sprites = sprites
     this.limit = limit
@@ -145,7 +146,8 @@ class Joueur extends Sprite {
   }
 
   // Apres 100ms le joueur ne sera plus en état d'attaque.
-  attack() {
+  attack(animation) {
+    this.switchSprite(animation)
     this.isAttacking = true
     setTimeout(() => {
       this.isAttacking = false
@@ -153,6 +155,13 @@ class Joueur extends Sprite {
   }
 
   switchSprite(sprite) {
+    // Si on attaque, on ne montre pas d'autre sprite.
+    if (
+      this.image === this.sprites.attack1.image &&
+      this.framesCurrent < this.sprites.attack1.framesMax - 1
+    )
+      return
+
     switch (sprite) {
       case 'idle':
         if (this.image !== this.sprites.idle.image) {
@@ -194,6 +203,8 @@ class Joueur extends Sprite {
           this.limit = this.sprites.recharge.limit
           this.framesCurrent = 0
           this.image = this.sprites.recharge.image
+          if (this.framesCurrent === this.sprites.attack1.framesMax - 1)
+            this.framesCurrent === this.sprites.attack1.framesMax - 1
         }
         break
       case 'recharge2':
@@ -208,7 +219,6 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.attack1.image) {
           this.image = this.sprites.attack1.image
           this.framesMax = this.sprites.attack1.framesMax
-          this.limit = this.sprites.attack1.limit
           this.framesCurrent = 0
         }
         break
@@ -216,7 +226,20 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.attack2.image) {
           this.image = this.sprites.attack2.image
           this.framesMax = this.sprites.attack2.framesMax
-          this.limit = this.sprites.attack2.limit
+          this.framesCurrent = 0
+        }
+        break
+      case 'attack3':
+        if (this.image !== this.sprites.attack3.image) {
+          this.image = this.sprites.attack3.image
+          this.framesMax = this.sprites.attack3.framesMax
+          this.framesCurrent = 0
+        }
+        break
+      case 'block':
+        if (this.image !== this.sprites.block.image) {
+          this.image = this.sprites.block.image
+          this.framesMax = this.sprites.block.framesMax
           this.framesCurrent = 0
         }
         break
