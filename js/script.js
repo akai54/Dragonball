@@ -141,13 +141,13 @@ const joueur2 = new Joueur({
       limit: 410,
     },
     attack1: {
-      imgSrc: 'ressources/sprites/goku/Attack1.png',
+      imgSrc: 'ressources/sprites/Vegeta/Attacking1.png',
       framesMax: 2,
       limit: 410,
     },
     attack2: {
-      imgSrc: 'ressources/sprites/goku/Attack2.png',
-      framesMax: 4,
+      imgSrc: 'ressources/sprites/Vegeta/Attacking2.3.png',
+      framesMax: 2,
       limit: 410,
     },
     attack3: {
@@ -204,10 +204,13 @@ const touches = {
   ArrowDown: {
     pressed: false,
   },
-  k: {
+  o: {
     pressed: false,
   },
   p: {
+    pressed: false,
+  },
+  i: {
     pressed: false,
   },
 }
@@ -261,6 +264,10 @@ function update() {
       joueur2.vitesse.x = -5
     } else if (touches.p.pressed && joueur2.lastKey === 'p') {
       joueur2.switchSprite('block')
+    } else if (touches.o.pressed && joueur2.lastKey === 'o') {
+      joueur2.switchSprite('attack1')
+    } else if (touches.i.pressed && joueur2.lastKey === 'i') {
+      joueur2.switchSprite('attack2')
     } else {
       joueur2.switchSprite('idle')
     }
@@ -325,19 +332,19 @@ window.addEventListener('keydown', (e) => {
       if (joueur.force < 100) joueur.force++
       break
     case 'h':
-      joueur.attack('attack1')
+      joueur.attack()
       touches.h.pressed = true
       joueur.lastKey = 'h'
       joueur.force--
       break
     case 'j':
-      joueur.attack('attack2')
+      joueur.attack()
       touches.j.pressed = true
       joueur.lastKey = 'j'
       joueur.force--
       break
     case 'l':
-      joueur.attack('attack3')
+      joueur.attack()
       touches.l.pressed = true
       joueur.lastKey = 'l'
       joueur.force--
@@ -348,7 +355,7 @@ window.addEventListener('keydown', (e) => {
       joueur.force--
       break
     case ' ':
-      joueur.attack('attack1')
+      joueur.attack()
       break
     case 'ArrowRight':
       touches.ArrowRight.pressed = true
@@ -369,14 +376,21 @@ window.addEventListener('keydown', (e) => {
       joueur2.lastKey = 'ArrowDown'
       if (!fin) joueur2.descendre()
       break
-    case 'k':
-      touches.k.pressed = true
-      joueur2.lastKey = 'k'
+    case 'o':
       if (!fin) joueur2.attack()
+      touches.o.pressed = true
+      joueur2.lastKey = 'o'
+      joueur2.force--
       break
     case 'p':
       touches.p.pressed = true
       joueur2.lastKey = 'p'
+      joueur2.force--
+      break
+    case 'i':
+      if (!fin) joueur2.attack()
+      touches.i.pressed = true
+      joueur2.lastKey = 'i'
       joueur2.force--
       break
   }
@@ -422,11 +436,14 @@ window.addEventListener('keyup', (e) => {
     case 'ArrowUp':
       touches.ArrowUp.pressed = false
       break
-    case 'k':
-      touches.k.pressed = false
+    case 'o':
+      touches.o.pressed = false
       break
     case 'p':
       touches.p.pressed = false
+      break
+    case 'i':
+      touches.i.pressed = false
       break
   }
 })
