@@ -43,13 +43,13 @@ const joueur = new Joueur({
       limit: 410,
     },
     walk: {
-      imgSrc: 'ressources/sprites/goku/walk.png',
-      framesMax: 2,
+      imgSrc: 'ressources/sprites/goku/test.png',
+      framesMax: 1,
       limit: 370,
     },
     walkL: {
-      imgSrc: 'ressources/sprites/goku/walkL.png',
-      framesMax: 2,
+      imgSrc: 'ressources/sprites/goku/test2.png',
+      framesMax: 1,
       limit: 370,
     },
     winning: {
@@ -105,14 +105,14 @@ const joueur2 = new Joueur({
     x: -50,
     y: 0,
   },
-  imgSrc: 'ressources/sprites/Vegeta/idle.png',
-  framesMax: 4,
+  imgSrc: 'ressources/sprites/Vegeta/idle-3.png',
+  framesMax: 2,
   limit: 397,
   scale: 1.6,
   sprites: {
     idle: {
-      imgSrc: 'ressources/sprites/Vegeta/idle.png',
-      framesMax: 4,
+      imgSrc: 'ressources/sprites/Vegeta/idle-3.png',
+      framesMax: 2,
       limit: 397,
     },
     walk: {
@@ -126,7 +126,7 @@ const joueur2 = new Joueur({
       limit: 370,
     },
     winning: {
-      imgSrc: 'ressources/sprites/goku/won.png',
+      imgSrc: 'ressources/sprites/Vegeta/won.png',
       framesMax: 1,
       limit: 350,
     },
@@ -151,8 +151,8 @@ const joueur2 = new Joueur({
       limit: 410,
     },
     attack3: {
-      imgSrc: 'ressources/sprites/goku/Attack3.png',
-      framesMax: 5,
+      imgSrc: 'ressources/sprites/Vegeta/Attack3.png',
+      framesMax: 2,
       limit: 320,
     },
     block: {
@@ -213,6 +213,9 @@ const touches = {
   i: {
     pressed: false,
   },
+  u: {
+    pressed: false,
+  },
 }
 
 dec_Timer()
@@ -268,6 +271,8 @@ function update() {
       joueur2.switchSprite('attack1')
     } else if (touches.i.pressed && joueur2.lastKey === 'i') {
       joueur2.switchSprite('attack2')
+    } else if (touches.u.pressed && joueur2.lastKey === 'u') {
+      joueur2.switchSprite('attack3')
     } else {
       joueur2.switchSprite('idle')
     }
@@ -393,6 +398,12 @@ window.addEventListener('keydown', (e) => {
       joueur2.lastKey = 'i'
       joueur2.force--
       break
+    case 'u':
+      if (!fin) joueur2.attack()
+      touches.u.pressed = true
+      joueur2.lastKey = 'u'
+      joueur2.force--
+      break
   }
 })
 window.addEventListener('keyup', (e) => {
@@ -444,6 +455,9 @@ window.addEventListener('keyup', (e) => {
       break
     case 'i':
       touches.i.pressed = false
+      break
+    case 'u':
+      touches.u.pressed = false
       break
   }
 })
