@@ -16,8 +16,13 @@ function fin_jeu({ joueur, joueur2, timerId }) {
   document.querySelector('#timerRes').style.display = 'flex'
   if (joueur.vie === joueur2.vie) {
     document.querySelector('#timerRes').innerHTML = 'Égalité'
+    joueur.pos = { x: 360, y: 299 }
+    joueur2.pos = { x: 530, y: 299 }
+    joueur.switchSprite('winning')
+    joueur2.switchSprite('winning')
   } else if (joueur.vie > joueur2.vie) {
     document.querySelector('#timerRes').innerHTML = 'Joueur1 a gagné'
+    joueur.pos = { x: 460, y: 299 }
     joueur.switchSprite('winning')
   } else if (joueur.vie < joueur2.vie) {
     document.querySelector('#timerRes').innerHTML = 'Joueur2 a gagné'

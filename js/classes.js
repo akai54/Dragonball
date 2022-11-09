@@ -190,7 +190,6 @@ class Joueur extends Sprite {
           this.image = this.sprites.winning.image
           this.framesMax = this.sprites.winning.framesMax
           this.limit = this.sprites.winning.limit
-          this.pos = { x: 460, y: 299 }
           this.framesCurrent = 0
         }
         break
