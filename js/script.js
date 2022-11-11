@@ -71,40 +71,16 @@ const joueur1 = new Joueur({
       imgSrc: 'ressources/sprites/goku/Attack1.png',
       framesMax: 2,
       limit: 410,
-      attackBox: {
-        width: 82,
-        height: 50,
-        offset: {
-          x: 130,
-          y: 15,
-        },
-      },
     },
     attack2: {
       imgSrc: 'ressources/sprites/goku/Attack2.png',
       framesMax: 4,
       limit: 410,
-      attackBox: {
-        width: 50,
-        height: 300,
-        offset: {
-          x: 130,
-          y: 0,
-        },
-      },
     },
     attack3: {
       imgSrc: 'ressources/sprites/goku/Attack3.png',
       framesMax: 5,
       limit: 410,
-      attackBox: {
-        width: 106,
-        height: 50,
-        offset: {
-          x: 130,
-          y: 10,
-        },
-      },
     },
     block: {
       imgSrc: 'ressources/sprites/goku/Goku_block_2.png',
@@ -181,40 +157,16 @@ const joueur2 = new Joueur({
       imgSrc: 'ressources/sprites/Vegeta/Attacking1.png',
       framesMax: 2,
       limit: 410,
-      attackBox: {
-        offset: {
-          x: 0,
-          y: 0,
-        },
-        width: 100,
-        height: 50,
-      },
     },
     attack2: {
       imgSrc: 'ressources/sprites/Vegeta/Attacking2.3.png',
       framesMax: 2,
       limit: 410,
-      attackBox: {
-        offset: {
-          x: 0,
-          y: 0,
-        },
-        width: 100,
-        height: 50,
-      },
     },
     attack3: {
       imgSrc: 'ressources/sprites/Vegeta/Attack3.png',
       framesMax: 2,
       limit: 320,
-      attackBox: {
-        offset: {
-          x: 0,
-          y: 0,
-        },
-        width: 100,
-        height: 50,
-      },
     },
     block: {
       imgSrc: 'ressources/sprites/Vegeta/block.png',
@@ -224,10 +176,10 @@ const joueur2 = new Joueur({
   },
   attackBox: {
     offset: {
-      x: 0,
-      y: 0,
+      x: -35,
+      y: 17,
     },
-    width: 100,
+    width: 105,
     height: 50,
   },
 })
@@ -370,7 +322,9 @@ function update() {
       }) &&
       joueur2.isAttacking
     ) {
+      console.log('test')
       dec_Health(joueur2, joueur1)
+      console.log('running')
       joueur1.switchSprite('hit')
       document.querySelector('#j1Vie').style.width = joueur1.vie + '%'
     }
@@ -536,7 +490,7 @@ window.addEventListener('keyup', (e) => {
       break
     case 'u':
       touches.u.pressed = false
-      joueur1.isAttacking = false
+      joueur2.isAttacking = false
       break
   }
 })

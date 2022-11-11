@@ -63,7 +63,6 @@ class Joueur extends Sprite {
     offset = { x: 0, y: 0 },
     sprites,
     limit = 410,
-    attackBox = { offset: {}, width: undefined, height: undefined },
   }) {
     super({
       pos,
@@ -76,15 +75,6 @@ class Joueur extends Sprite {
     this.height = 150
     this.width = 50
     this.lastKey
-    this.attackBox = {
-      pos: {
-        x: this.pos.x,
-        y: this.pos.y,
-      },
-      offset: attackBox.offset,
-      width: attackBox.width,
-      height: attackBox.height,
-    }
     this.color = color
     this.isAttacking
     this.vie = 100
@@ -107,7 +97,7 @@ class Joueur extends Sprite {
     this.draw()
     this.animateFrame()
     this.attackBox.pos.x = this.pos.x + this.attackBox.offset.x
-    this.attackBox.pos.y = this.pos.y + this.attackBox.offset.y
+    this.attackBox.pos.y = this.pos.y
 
     c.fillStyle = 'black'
     c.fillRect(
@@ -222,9 +212,6 @@ class Joueur extends Sprite {
         break
       case 'attack1':
         if (this.image !== this.sprites.attack1.image) {
-          this.attackBox.width = this.sprites.attack1.attackBox.width
-          this.attackBox.height = this.sprites.attack1.attackBox.height
-          this.attackBox.offset = this.sprites.attack1.attackBox.offset
           this.image = this.sprites.attack1.image
           this.framesMax = this.sprites.attack1.framesMax
           this.limit = this.sprites.recharge2.limit
@@ -233,9 +220,6 @@ class Joueur extends Sprite {
         break
       case 'attack2':
         if (this.image !== this.sprites.attack2.image) {
-          this.attackBox.width = this.sprites.attack2.attackBox.width
-          this.attackBox.height = this.sprites.attack2.attackBox.height
-          this.attackBox.offset = this.sprites.attack2.attackBox.offset
           this.image = this.sprites.attack2.image
           this.framesMax = this.sprites.attack2.framesMax
           this.limit = this.sprites.recharge2.limit
@@ -244,9 +228,6 @@ class Joueur extends Sprite {
         break
       case 'attack3':
         if (this.image !== this.sprites.attack3.image) {
-          this.attackBox.width = this.sprites.attack3.attackBox.width
-          this.attackBox.height = this.sprites.attack3.attackBox.height
-          this.attackBox.offset = this.sprites.attack3.attackBox.offset
           this.image = this.sprites.attack3.image
           this.framesMax = this.sprites.attack3.framesMax
           this.limit = this.sprites.recharge2.limit
