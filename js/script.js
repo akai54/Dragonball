@@ -19,7 +19,7 @@ canvas.height = 576
 c.fillRect(0, 0, canvas.width, canvas.height)
 
 // Le joueur principale.
-const joueur = new Joueur({
+const joueur1 = new Joueur({
   pos: {
     x: 80,
     y: 410,
@@ -289,44 +289,49 @@ const touches = {
 
 dec_Timer()
 
+function dec_Health(p1, p2) {
+  p1.isAttacking = false
+  p2.vie -= 20
+}
+
 // La fonction qui va etre appeler en boucle.
 function update() {
   window.requestAnimationFrame(update)
   c.fillStyle = 'white'
   c.fillRect(0, 0, canvas.width, canvas.height)
   bg.animation()
-  joueur.animation()
+  joueur1.animation()
   joueur2.animation()
 
   // La vitesse par défaut est 0.
-  joueur.vitesse.x = 0
+  joueur1.vitesse.x = 0
   joueur2.vitesse.x = 0
 
   // Par defaut, on joue le sprite idle.
   if (!fin) {
     // Mouvement joueur1.
-    if (touches.d.pressed && joueur.lastKey === 'd') {
-      joueur.vitesse.x = 5
-      joueur.switchSprite('walk')
-    } else if (touches.a.pressed && joueur.lastKey === 'a') {
-      joueur.vitesse.x = -5
-      joueur.switchSprite('walkL')
-    } else if (touches.r.pressed && joueur.lastKey === 'r') {
-      if (joueur.force < 100) {
-        joueur.switchSprite('recharge2')
+    if (touches.d.pressed && joueur1.lastKey === 'd') {
+      joueur1.vitesse.x = 5
+      joueur1.switchSprite('walk')
+    } else if (touches.a.pressed && joueur1.lastKey === 'a') {
+      joueur1.vitesse.x = -5
+      joueur1.switchSprite('walkL')
+    } else if (touches.r.pressed && joueur1.lastKey === 'r') {
+      if (joueur1.force < 100) {
+        joueur1.switchSprite('recharge2')
       } else {
-        joueur.switchSprite('recharge')
+        joueur1.switchSprite('recharge')
       }
-    } else if (touches.h.pressed && joueur.lastKey === 'h') {
-      joueur.switchSprite('attack1')
-    } else if (touches.j.pressed && joueur.lastKey === 'j') {
-      joueur.switchSprite('attack2')
-    } else if (touches.l.pressed && joueur.lastKey === 'l') {
-      joueur.switchSprite('attack3')
-    } else if (touches.q.pressed && joueur.lastKey === 'q') {
-      joueur.switchSprite('block')
+    } else if (touches.h.pressed && joueur1.lastKey === 'h') {
+      joueur1.switchSprite('attack1')
+    } else if (touches.j.pressed && joueur1.lastKey === 'j') {
+      joueur1.switchSprite('attack2')
+    } else if (touches.l.pressed && joueur1.lastKey === 'l') {
+      joueur1.switchSprite('attack3')
+    } else if (touches.q.pressed && joueur1.lastKey === 'q') {
+      joueur1.switchSprite('block')
     } else {
-      joueur.switchSprite('idle')
+      joueur1.switchSprite('idle')
     }
 
     // Mouvement joueur2.
@@ -349,33 +354,31 @@ function update() {
     // Détection collisions.
     if (
       collision_joueurs({
-        j1: joueur,
+        j1: joueur1,
         j2: joueur2,
       }) &&
-      joueur.isAttacking
+      joueur1.isAttacking
     ) {
-      joueur.isAttacking = false
-      joueur2.vie -= 20
+      dec_Health(joueur1, joueur2)
       document.querySelector('#j2Vie').style.width = joueur2.vie + '%'
     }
 
     if (
       collision_joueurs({
         j1: joueur2,
-        j2: joueur,
+        j2: joueur1,
       }) &&
       joueur2.isAttacking
     ) {
-      joueur2.isAttacking = false
-      joueur.vie -= 20
-      joueur.switchSprite('hit')
-      document.querySelector('#j1Vie').style.width = joueur.vie + '%'
+      dec_Health(joueur2, joueur1)
+      joueur1.switchSprite('hit')
+      document.querySelector('#j1Vie').style.width = joueur1.vie + '%'
     }
   }
 
   // Fin jeu
-  if (joueur.vie <= 0 || joueur2.vie <= 0) {
-    fin_jeu({ joueur, joueur2, timerId })
+  if (joueur1.vie <= 0 || joueur2.vie <= 0) {
+    fin_jeu({ joueur: joueur1, joueur2, timerId })
   }
 }
 
@@ -385,52 +388,52 @@ window.addEventListener('keydown', (e) => {
   switch (e.key) {
     case 'd':
       touches.d.pressed = true
-      joueur.lastKey = 'd'
+      joueur1.lastKey = 'd'
       break
     case 'a':
       touches.a.pressed = true
-      joueur.lastKey = 'a'
+      joueur1.lastKey = 'a'
       break
     case 'w':
       touches.w.pressed = true
-      joueur.lastKey = 'w'
-      if (!fin) joueur.fly()
+      joueur1.lastKey = 'w'
+      if (!fin) joueur1.fly()
       break
     case 's':
       touches.s.pressed = true
-      joueur.lastKey = 's'
-      if (!fin) joueur.descendre()
+      joueur1.lastKey = 's'
+      if (!fin) joueur1.descendre()
       break
     case 'r':
       touches.r.pressed = true
-      joueur.lastKey = 'r'
-      if (joueur.force < 100) joueur.force++
+      joueur1.lastKey = 'r'
+      if (joueur1.force < 100) joueur1.force++
       break
     case 'h':
-      joueur.attack()
+      joueur1.attack()
       touches.h.pressed = true
-      joueur.lastKey = 'h'
-      joueur.force--
+      joueur1.lastKey = 'h'
+      joueur1.force--
       break
     case 'j':
-      joueur.attack()
+      joueur1.attack()
       touches.j.pressed = true
-      joueur.lastKey = 'j'
-      joueur.force--
+      joueur1.lastKey = 'j'
+      joueur1.force--
       break
     case 'l':
-      joueur.attack()
+      joueur1.attack()
       touches.l.pressed = true
-      joueur.lastKey = 'l'
-      joueur.force--
+      joueur1.lastKey = 'l'
+      joueur1.force--
       break
     case 'q':
       touches.q.pressed = true
-      joueur.lastKey = 'q'
-      joueur.force--
+      joueur1.lastKey = 'q'
+      joueur1.force--
       break
     case ' ':
-      joueur.attack()
+      joueur1.attack()
       break
     case 'ArrowRight':
       touches.ArrowRight.pressed = true
