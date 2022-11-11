@@ -26,6 +26,8 @@ function fin_jeu({ joueur, joueur2, timerId }) {
     joueur.switchSprite('winning')
   } else if (joueur.vie < joueur2.vie) {
     document.querySelector('#timerRes').innerHTML = 'Joueur2 a gagné'
+    joueur2.pos = { x: 460, y: 299 }
+    joueur2.switchSprite('winning')
   }
 }
 

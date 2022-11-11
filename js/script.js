@@ -71,22 +71,47 @@ const joueur = new Joueur({
       imgSrc: 'ressources/sprites/goku/Attack1.png',
       framesMax: 2,
       limit: 410,
+      attackBox: {
+        width: 82,
+        height: 50,
+      },
     },
     attack2: {
       imgSrc: 'ressources/sprites/goku/Attack2.png',
       framesMax: 4,
       limit: 410,
+      attackBox: {
+        width: 50,
+        height: 50,
+      },
     },
     attack3: {
       imgSrc: 'ressources/sprites/goku/Attack3.png',
       framesMax: 5,
       limit: 410,
+      attackBox: {
+        width: 100,
+        height: 50,
+      },
     },
     block: {
       imgSrc: 'ressources/sprites/goku/Goku_block_2.png',
       framesMax: 1,
       limit: 410,
     },
+    hit: {
+      imgSrc: 'ressources/sprites/goku/hittest.png',
+      framesMax: 3,
+      limit: 410,
+    },
+  },
+  attackBox: {
+    offset: {
+      x: 130,
+      y: 0,
+    },
+    width: 100,
+    height: 50,
   },
 })
 
@@ -94,7 +119,7 @@ const joueur = new Joueur({
 const joueur2 = new Joueur({
   pos: {
     x: 655,
-    y: 397,
+    y: 393,
   },
   vitesse: {
     x: 0,
@@ -107,13 +132,13 @@ const joueur2 = new Joueur({
   },
   imgSrc: 'ressources/sprites/Vegeta/idle-3.png',
   framesMax: 2,
-  limit: 397,
+  limit: 393,
   scale: 1.6,
   sprites: {
     idle: {
       imgSrc: 'ressources/sprites/Vegeta/idle-3.png',
       framesMax: 2,
-      limit: 397,
+      limit: 393,
     },
     walk: {
       imgSrc: 'ressources/sprites/goku/walk.png',
@@ -144,22 +169,54 @@ const joueur2 = new Joueur({
       imgSrc: 'ressources/sprites/Vegeta/Attacking1.png',
       framesMax: 2,
       limit: 410,
+      attackBox: {
+        offset: {
+          x: 0,
+          y: 0,
+        },
+        width: 100,
+        height: 50,
+      },
     },
     attack2: {
       imgSrc: 'ressources/sprites/Vegeta/Attacking2.3.png',
       framesMax: 2,
       limit: 410,
+      attackBox: {
+        offset: {
+          x: 0,
+          y: 0,
+        },
+        width: 100,
+        height: 50,
+      },
     },
     attack3: {
       imgSrc: 'ressources/sprites/Vegeta/Attack3.png',
       framesMax: 2,
       limit: 320,
+      attackBox: {
+        offset: {
+          x: 0,
+          y: 0,
+        },
+        width: 100,
+        height: 50,
+      },
     },
     block: {
       imgSrc: 'ressources/sprites/Vegeta/block.png',
       framesMax: 1,
       limit: 410,
     },
+  },
+  attackBox: {
+    offset: {
+      x: 0,
+      y: 0,
+    },
+    width: 100,
+    height: 50,
   },
 })
 
@@ -299,6 +356,7 @@ function update() {
     ) {
       joueur2.isAttacking = false
       joueur.vie -= 20
+      joueur.switchSprite('hit')
       document.querySelector('#j1Vie').style.width = joueur.vie + '%'
     }
   }

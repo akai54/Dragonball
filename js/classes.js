@@ -63,6 +63,7 @@ class Joueur extends Sprite {
     offset = { x: 0, y: 0 },
     sprites,
     limit = 410,
+    attackBox = { offset: {}, width: undefined, height: undefined },
   }) {
     super({
       pos,
@@ -80,9 +81,9 @@ class Joueur extends Sprite {
         x: this.pos.x,
         y: this.pos.y,
       },
-      offset,
-      width: 100,
-      height: 50,
+      offset: attackBox.offset,
+      width: attackBox.width,
+      height: attackBox.height,
     }
     this.color = color
     this.isAttacking
@@ -106,7 +107,16 @@ class Joueur extends Sprite {
     this.draw()
     this.animateFrame()
     this.attackBox.pos.x = this.pos.x + this.attackBox.offset.x
-    this.attackBox.pos.y = this.pos.y
+    this.attackBox.pos.y = this.pos.y + this.attackBox.offset.y
+
+    c.fillStyle = 'black'
+    c.fillRect(
+      this.attackBox.pos.x,
+      this.attackBox.pos.y,
+      this.attackBox.width,
+      this.attackBox.height
+    )
+
     this.pos.x += this.vitesse.x
 
     // Tant que le joueur est dans la fenêtre, on lui laisse bouger à droite et à guache.
@@ -146,6 +156,7 @@ class Joueur extends Sprite {
 
   // Apres 100ms le joueur ne sera plus en état d'attaque.
   attack() {
+    //this.switchSprite('attack2')
     this.isAttacking = true
     setTimeout(() => {
       this.isAttacking = false
@@ -155,8 +166,8 @@ class Joueur extends Sprite {
   switchSprite(sprite) {
     // Si on attaque, on ne montre pas d'autre sprite.
     if (
-      this.image === this.sprites.attack1.image &&
-      this.framesCurrent < this.sprites.attack1.framesMax - 1
+      this.image === this.sprites.attack2.image &&
+      this.framesCurrent < this.sprites.attack2.framesMax - 1
     )
       return
 
@@ -216,6 +227,8 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.attack1.image) {
           this.image = this.sprites.attack1.image
           this.framesMax = this.sprites.attack1.framesMax
+          this.attackBox.width = this.sprites.attack1.attackBox.width
+          this.attackBox.height = this.sprites.attack1.attackBox.height
           this.limit = this.sprites.recharge2.limit
           this.framesCurrent = 0
         }
@@ -224,6 +237,8 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.attack2.image) {
           this.image = this.sprites.attack2.image
           this.framesMax = this.sprites.attack2.framesMax
+          this.attackBox.width = this.sprites.attack2.attackBox.width
+          this.attackBox.height = this.sprites.attack2.attackBox.height
           this.limit = this.sprites.recharge2.limit
           this.framesCurrent = 0
         }
@@ -232,6 +247,8 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.attack3.image) {
           this.image = this.sprites.attack3.image
           this.framesMax = this.sprites.attack3.framesMax
+          this.attackBox.width = this.sprites.attack3.attackBox.width
+          this.attackBox.height = this.sprites.attack3.attackBox.height
           this.limit = this.sprites.recharge2.limit
           this.framesCurrent = 0
         }
@@ -240,6 +257,14 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.block.image) {
           this.image = this.sprites.block.image
           this.framesMax = this.sprites.block.framesMax
+          this.limit = this.sprites.recharge2.limit
+          this.framesCurrent = 0
+        }
+        break
+      case 'hit':
+        if (this.image !== this.sprites.hit.image) {
+          this.image = this.sprites.hit.image
+          this.framesMax = this.sprites.hit.framesMax
           this.limit = this.sprites.recharge2.limit
           this.framesCurrent = 0
         }
