@@ -498,12 +498,15 @@ window.addEventListener('keyup', (e) => {
       break
     case 'h':
       touches.h.pressed = false
+      joueur1.isAttacking = false
       break
     case 'j':
       touches.j.pressed = false
+      joueur1.isAttacking = false
       break
     case 'l':
       touches.l.pressed = false
+      joueur1.isAttacking = false
       break
     case 'q':
       touches.q.pressed = false
@@ -522,15 +525,18 @@ window.addEventListener('keyup', (e) => {
       break
     case 'o':
       touches.o.pressed = false
+      joueur2.isAttacking = false
       break
     case 'p':
       touches.p.pressed = false
       break
     case 'i':
       touches.i.pressed = false
+      joueur2.isAttacking = false
       break
     case 'u':
       touches.u.pressed = false
+      joueur1.isAttacking = false
       break
   }
 })
