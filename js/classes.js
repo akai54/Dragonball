@@ -225,30 +225,30 @@ class Joueur extends Sprite {
         break
       case 'attack1':
         if (this.image !== this.sprites.attack1.image) {
-          this.image = this.sprites.attack1.image
-          this.framesMax = this.sprites.attack1.framesMax
           this.attackBox.width = this.sprites.attack1.attackBox.width
           this.attackBox.height = this.sprites.attack1.attackBox.height
+          this.image = this.sprites.attack1.image
+          this.framesMax = this.sprites.attack1.framesMax
           this.limit = this.sprites.recharge2.limit
           this.framesCurrent = 0
         }
         break
       case 'attack2':
         if (this.image !== this.sprites.attack2.image) {
-          this.image = this.sprites.attack2.image
-          this.framesMax = this.sprites.attack2.framesMax
           this.attackBox.width = this.sprites.attack2.attackBox.width
           this.attackBox.height = this.sprites.attack2.attackBox.height
+          this.image = this.sprites.attack2.image
+          this.framesMax = this.sprites.attack2.framesMax
           this.limit = this.sprites.recharge2.limit
           this.framesCurrent = 0
         }
         break
       case 'attack3':
         if (this.image !== this.sprites.attack3.image) {
-          this.image = this.sprites.attack3.image
-          this.framesMax = this.sprites.attack3.framesMax
           this.attackBox.width = this.sprites.attack3.attackBox.width
           this.attackBox.height = this.sprites.attack3.attackBox.height
+          this.image = this.sprites.attack3.image
+          this.framesMax = this.sprites.attack3.framesMax
           this.limit = this.sprites.recharge2.limit
           this.framesCurrent = 0
         }
