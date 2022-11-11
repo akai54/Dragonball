@@ -85,6 +85,15 @@ class Joueur extends Sprite {
     this.on_ground = false
     this.sprites = sprites
     this.limit = limit
+    this.attackBox = {
+      pos: {
+        x: this.pos.x,
+        y: this.pos.y,
+      },
+      offset,
+      width: 100,
+      height: 50,
+    }
 
     for (let sprite in this.sprites) {
       sprites[sprite].image = new Image()
