@@ -227,6 +227,7 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.attack1.image) {
           this.attackBox.width = this.sprites.attack1.attackBox.width
           this.attackBox.height = this.sprites.attack1.attackBox.height
+          this.attackBox.offset = this.sprites.attack1.attackBox.offset
           this.image = this.sprites.attack1.image
           this.framesMax = this.sprites.attack1.framesMax
           this.limit = this.sprites.recharge2.limit
@@ -237,6 +238,7 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.attack2.image) {
           this.attackBox.width = this.sprites.attack2.attackBox.width
           this.attackBox.height = this.sprites.attack2.attackBox.height
+          this.attackBox.offset = this.sprites.attack2.attackBox.offset
           this.image = this.sprites.attack2.image
           this.framesMax = this.sprites.attack2.framesMax
           this.limit = this.sprites.recharge2.limit
@@ -247,6 +249,7 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.attack3.image) {
           this.attackBox.width = this.sprites.attack3.attackBox.width
           this.attackBox.height = this.sprites.attack3.attackBox.height
+          this.attackBox.offset = this.sprites.attack3.attackBox.offset
           this.image = this.sprites.attack3.image
           this.framesMax = this.sprites.attack3.framesMax
           this.limit = this.sprites.recharge2.limit

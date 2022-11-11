@@ -74,6 +74,10 @@ const joueur = new Joueur({
       attackBox: {
         width: 82,
         height: 50,
+        offset: {
+          x: 130,
+          y: 0,
+        },
       },
     },
     attack2: {
@@ -83,6 +87,10 @@ const joueur = new Joueur({
       attackBox: {
         width: 50,
         height: 50,
+        offset: {
+          x: 130,
+          y: 0,
+        },
       },
     },
     attack3: {
@@ -92,6 +100,10 @@ const joueur = new Joueur({
       attackBox: {
         width: 100,
         height: 50,
+        offset: {
+          x: 130,
+          y: 0,
+        },
       },
     },
     block: {
