@@ -76,7 +76,7 @@ const joueur = new Joueur({
         height: 50,
         offset: {
           x: 130,
-          y: 0,
+          y: 15,
         },
       },
     },
@@ -86,7 +86,7 @@ const joueur = new Joueur({
       limit: 410,
       attackBox: {
         width: 50,
-        height: 50,
+        height: 300,
         offset: {
           x: 130,
           y: 0,
@@ -98,11 +98,11 @@ const joueur = new Joueur({
       framesMax: 5,
       limit: 410,
       attackBox: {
-        width: 100,
+        width: 106,
         height: 50,
         offset: {
           x: 130,
-          y: 0,
+          y: 10,
         },
       },
     },
