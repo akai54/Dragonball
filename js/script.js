@@ -241,11 +241,6 @@ const touches = {
 
 dec_Timer()
 
-function dec_Health(p1, p2) {
-  p1.isAttacking = false
-  p2.vie -= 20
-}
-
 // La fonction qui va etre appeler en boucle.
 function update() {
   window.requestAnimationFrame(update)
@@ -311,7 +306,6 @@ function update() {
       }) &&
       joueur1.isAttacking
     ) {
-      dec_Health(joueur1, joueur2)
       document.querySelector('#j2Vie').style.width = joueur2.vie + '%'
     }
 
@@ -322,9 +316,6 @@ function update() {
       }) &&
       joueur2.isAttacking
     ) {
-      console.log('test')
-      dec_Health(joueur2, joueur1)
-      console.log('running')
       joueur1.switchSprite('hit')
       document.querySelector('#j1Vie').style.width = joueur1.vie + '%'
     }
