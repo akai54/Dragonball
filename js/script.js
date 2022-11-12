@@ -331,7 +331,9 @@ function update() {
     ) {
       joueur2.switchSprite('hit')
       dec_Health(joueur1, joueur2)
-      document.querySelector('#j2Vie').style.width = joueur2.vie + '%'
+      gsap.to('#j2Vie', {
+        width: joueur2.vie + '%',
+      })
     }
 
     if (
@@ -344,7 +346,9 @@ function update() {
     ) {
       joueur1.switchSprite('hit')
       dec_Health(joueur2, joueur1)
-      document.querySelector('#j1Vie').style.width = joueur1.vie + '%'
+      gsap.to('#j1Vie', {
+        width: joueur1.vie + '%',
+      })
     }
   }
 
