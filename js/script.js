@@ -174,8 +174,8 @@ const joueur2 = new Joueur({
       limit: 410,
     },
     hit: {
-      imgSrc: 'ressources/sprites/Vegeta/block.png',
-      framesMax: 1,
+      imgSrc: 'ressources/sprites/Vegeta/hit.png',
+      framesMax: 3,
       limit: 410,
     },
   },
