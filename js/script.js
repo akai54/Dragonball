@@ -267,6 +267,8 @@ function update() {
   c.fillStyle = 'white'
   c.fillRect(0, 0, canvas.width, canvas.height)
   bg.animation()
+  c.fillStyle = 'rgba(255,255,255, 0.15)'
+  c.fillRect(0, 0, canvas.width, canvas.height)
   joueur1.animation()
   joueur2.animation()
 
