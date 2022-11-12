@@ -327,6 +327,7 @@ function update() {
         j2: joueur2,
       }) &&
       joueur1.isAttacking &&
+      !joueur2.isBlocking &&
       !fin
     ) {
       joueur2.switchSprite('hit')
@@ -342,6 +343,7 @@ function update() {
         j2: joueur1,
       }) &&
       joueur2.isAttacking &&
+      !joueur1.isBlocking &&
       !fin
     ) {
       joueur1.switchSprite('hit')
@@ -406,6 +408,7 @@ window.addEventListener('keydown', (e) => {
     case 'q':
       touches.q.pressed = true
       joueur1.lastKey = 'q'
+      joueur1.isBlocking = true
       joueur1.force--
       break
     case ' ':
@@ -439,6 +442,7 @@ window.addEventListener('keydown', (e) => {
     case 'p':
       touches.p.pressed = true
       joueur2.lastKey = 'p'
+      joueur2.isBlocking = true
       joueur2.force--
       break
     case 'i':
@@ -486,6 +490,7 @@ window.addEventListener('keyup', (e) => {
       break
     case 'q':
       touches.q.pressed = false
+      joueur1.isBlocking = false
       break
     case 'ArrowLeft':
       touches.ArrowLeft.pressed = false
@@ -505,6 +510,7 @@ window.addEventListener('keyup', (e) => {
       break
     case 'p':
       touches.p.pressed = false
+      joueur2.isBlocking = false
       break
     case 'i':
       touches.i.pressed = false

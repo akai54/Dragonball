@@ -86,6 +86,7 @@ class Joueur extends Sprite {
     this.sprites = sprites
     this.limit = limit
     this.mort = false
+    this.isBlocking = false
     this.attackBox = {
       pos: {
         x: this.pos.x,
