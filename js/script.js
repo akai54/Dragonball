@@ -306,6 +306,7 @@ function update() {
       }) &&
       joueur1.isAttacking
     ) {
+      joueur2.takeHit()
       document.querySelector('#j2Vie').style.width = joueur2.vie + '%'
     }
 
@@ -316,7 +317,7 @@ function update() {
       }) &&
       joueur2.isAttacking
     ) {
-      joueur1.switchSprite('hit')
+      joueur1.takeHit()
       document.querySelector('#j1Vie').style.width = joueur1.vie + '%'
     }
   }

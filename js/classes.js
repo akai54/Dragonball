@@ -159,11 +159,23 @@ class Joueur extends Sprite {
     this.isAttacking = true
   }
 
+  takeHit() {
+    this.switchSprite('hit')
+    this.vie -= 20
+  }
+
   switchSprite(sprite) {
     // Si on attaque, on ne montre pas d'autre sprite.
     if (
       this.image === this.sprites.attack2.image &&
       this.framesCurrent < this.sprites.attack2.framesMax - 1
+    )
+      return
+
+    // Si on est touchée, on ne montre pas d'autre sprite.
+    if (
+      this.image === this.sprites.hit.image &&
+      this.framesCurrent < this.sprites.hit.framesMax - 1
     )
       return
 
