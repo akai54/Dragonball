@@ -92,6 +92,11 @@ const joueur1 = new Joueur({
       framesMax: 3,
       limit: 410,
     },
+    mort: {
+      imgSrc: 'ressources/sprites/goku/death.png',
+      framesMax: 4,
+      limit: 410,
+    },
   },
   attackBox: {
     offset: {
@@ -176,6 +181,11 @@ const joueur2 = new Joueur({
     hit: {
       imgSrc: 'ressources/sprites/Vegeta/hit.png',
       framesMax: 3,
+      limit: 410,
+    },
+    mort: {
+      imgSrc: 'ressources/sprites/Vegeta/death.png',
+      framesMax: 4,
       limit: 410,
     },
   },
@@ -314,7 +324,8 @@ function update() {
         j1: joueur1,
         j2: joueur2,
       }) &&
-      joueur1.isAttacking
+      joueur1.isAttacking &&
+      !fin
     ) {
       joueur2.switchSprite('hit')
       dec_Health(joueur1, joueur2)
@@ -326,7 +337,8 @@ function update() {
         j1: joueur2,
         j2: joueur1,
       }) &&
-      joueur2.isAttacking
+      joueur2.isAttacking &&
+      !fin
     ) {
       joueur1.switchSprite('hit')
       dec_Health(joueur2, joueur1)

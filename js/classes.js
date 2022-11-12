@@ -162,16 +162,19 @@ class Joueur extends Sprite {
   switchSprite(sprite) {
     // Si on attaque, on ne montre pas d'autre sprite.
     if (
+      !fin &&
       this.image === this.sprites.attack1.image &&
       this.framesCurrent < this.sprites.attack1.framesMax - 1
     )
       return
     if (
+      !fin &&
       this.image === this.sprites.attack2.image &&
       this.framesCurrent < this.sprites.attack2.framesMax - 1
     )
       return
     if (
+      !fin &&
       this.image === this.sprites.attack3.image &&
       this.framesCurrent < this.sprites.attack3.framesMax - 1
     )
@@ -179,8 +182,16 @@ class Joueur extends Sprite {
 
     // Si on est touchée, on ne montre pas d'autre sprite.
     if (
+      !fin &&
       this.image === this.sprites.hit.image &&
       this.framesCurrent < this.sprites.hit.framesMax - 1
+    )
+      return
+
+    if (
+      fin &&
+      this.image === this.sprites.mort.image &&
+      this.framesCurrent < this.sprites.mort.framesMax - 1
     )
       return
 
@@ -272,6 +283,14 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.hit.image) {
           this.image = this.sprites.hit.image
           this.framesMax = this.sprites.hit.framesMax
+          this.limit = this.sprites.recharge2.limit
+          this.framesCurrent = 0
+        }
+        break
+      case 'mort':
+        if (this.image !== this.sprites.mort.image) {
+          this.image = this.sprites.mort.image
+          this.framesMax = this.sprites.mort.framesMax
           this.limit = this.sprites.recharge2.limit
           this.framesCurrent = 0
         }
