@@ -108,14 +108,6 @@ class Joueur extends Sprite {
     this.attackBox.pos.x = this.pos.x + this.attackBox.offset.x
     this.attackBox.pos.y = this.pos.y
 
-    c.fillStyle = 'black'
-    c.fillRect(
-      this.attackBox.pos.x,
-      this.attackBox.pos.y,
-      this.attackBox.width,
-      this.attackBox.height
-    )
-
     this.pos.x += this.vitesse.x
 
     // Tant que le joueur est dans la fenêtre, on lui laisse bouger à droite et à guache.
