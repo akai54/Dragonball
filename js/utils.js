@@ -23,17 +23,15 @@ function fin_jeu({ joueur: joueur1, joueur2, timerId }) {
   } else if (joueur1.vie > joueur2.vie) {
     document.querySelector('#timerRes').innerHTML = 'Joueur1 a gagné'
     joueur1.pos = { x: 460, y: 299 }
-    joueur1.isAttacking = false
-    joueur2.isAttacking = false
-    joueur1.switchSprite('winning')
+    joueur2.pos.y = joueur2.sprites.mort.limit
     joueur2.switchSprite('mort')
+    joueur1.switchSprite('winning')
   } else if (joueur1.vie < joueur2.vie) {
     document.querySelector('#timerRes').innerHTML = 'Joueur2 a gagné'
     joueur2.pos = { x: 460, y: 299 }
-    joueur1.isAttacking = false
-    joueur2.isAttacking = false
-    joueur2.switchSprite('winning')
+    joueur1.pos.y = joueur1.sprites.mort.limit
     joueur1.switchSprite('mort')
+    joueur2.switchSprite('winning')
   }
 }
 

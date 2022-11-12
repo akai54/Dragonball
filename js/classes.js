@@ -85,6 +85,7 @@ class Joueur extends Sprite {
     this.on_ground = false
     this.sprites = sprites
     this.limit = limit
+    this.mort = false
     this.attackBox = {
       pos: {
         x: this.pos.x,
@@ -104,7 +105,7 @@ class Joueur extends Sprite {
   // Methode pour mettre a jour, les pos des personnages.
   animation() {
     this.draw()
-    this.animateFrame()
+    if (!this.mort) this.animateFrame()
     this.attackBox.pos.x = this.pos.x + this.attackBox.offset.x
     this.attackBox.pos.y = this.pos.y
 
@@ -180,12 +181,12 @@ class Joueur extends Sprite {
     )
       return
 
-    if (
-      fin &&
-      this.image === this.sprites.mort.image &&
-      this.framesCurrent < this.sprites.mort.framesMax - 1
-    )
+    // Si on est mort, on ne montre pas d'autre sprite.
+    if (fin && this.image === this.sprites.mort.image) {
+      if (this.framesCurrent === this.sprites.mort.framesMax - 1)
+        this.mort = true
       return
+    }
 
     switch (sprite) {
       case 'idle':

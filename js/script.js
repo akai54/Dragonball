@@ -95,7 +95,7 @@ const joueur1 = new Joueur({
     mort: {
       imgSrc: 'ressources/sprites/goku/death.png',
       framesMax: 4,
-      limit: 410,
+      limit: 480,
     },
   },
   attackBox: {
@@ -186,7 +186,7 @@ const joueur2 = new Joueur({
     mort: {
       imgSrc: 'ressources/sprites/Vegeta/death.png',
       framesMax: 4,
-      limit: 410,
+      limit: 500,
     },
   },
   attackBox: {
