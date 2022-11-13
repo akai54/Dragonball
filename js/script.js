@@ -287,6 +287,11 @@ function update() {
       joueur1.switchSprite('walkL')
     } else if (touches.r.pressed && joueur1.lastKey === 'r') {
       if (joueur1.force < 100) {
+        console.log(joueur1.on_ground)
+        if (joueur1.on_ground) {
+          joueur1.pos.y -= 20
+          joueur1.on_ground = false
+        }
         joueur1.switchSprite('recharge2')
       } else {
         joueur1.switchSprite('recharge')
