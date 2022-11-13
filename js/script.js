@@ -26,7 +26,7 @@ const joueur1 = new Joueur({
   },
   vitesse: {
     x: 0,
-    y: 5,
+    y: 2,
   },
   color: 'red',
   offset: {
@@ -95,6 +95,11 @@ const joueur1 = new Joueur({
     mort: {
       imgSrc: 'ressources/sprites/goku/death.png',
       framesMax: 4,
+      limit: 480,
+    },
+    fly: {
+      imgSrc: 'ressources/sprites/goku/fly.png',
+      framesMax: 1,
       limit: 480,
     },
   },
@@ -287,7 +292,8 @@ function update() {
       joueur1.switchSprite('walkL')
     } else if (touches.r.pressed && joueur1.lastKey === 'r') {
       if (joueur1.force < 100) {
-        console.log(joueur1.on_ground)
+        /* Si le joueur essaie de recharger ses forces, alors qu'il est sur le sol,
+           On monte un peu sa position pour mieux montrer le sprite. */
         if (joueur1.on_ground) {
           joueur1.pos.y -= 20
           joueur1.on_ground = false
@@ -304,6 +310,8 @@ function update() {
       joueur1.switchSprite('attack3')
     } else if (touches.q.pressed && joueur1.lastKey === 'q') {
       joueur1.switchSprite('block')
+    } else if (touches.w.pressed && joueur1.lastKey === 'w') {
+      joueur1.switchSprite('fly')
     } else {
       joueur1.switchSprite('idle')
     }

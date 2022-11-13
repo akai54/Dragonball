@@ -126,7 +126,6 @@ class Joueur extends Sprite {
 
     // Tant que le perso est en l'air, on mettra 0 comme vitesse y, pour le faire descendre.
     if (this.pos.y >= this.limit) {
-      console.log(this.on_ground)
       this.pos.y = this.limit
       this.on_ground = true
     } else {
@@ -286,6 +285,14 @@ class Joueur extends Sprite {
         if (this.image !== this.sprites.mort.image) {
           this.image = this.sprites.mort.image
           this.framesMax = this.sprites.mort.framesMax
+          this.limit = this.sprites.recharge2.limit
+          this.framesCurrent = 0
+        }
+        break
+      case 'fly':
+        if (this.image !== this.sprites.fly.image) {
+          this.image = this.sprites.fly.image
+          this.framesMax = this.sprites.fly.framesMax
           this.limit = this.sprites.recharge2.limit
           this.framesCurrent = 0
         }
