@@ -69,7 +69,7 @@ const joueur1 = new Joueur({
     },
     attack1: {
       imgSrc: 'ressources/sprites/goku/Attack1.png',
-      framesMax: 2,
+      framesMax: 1,
       limit: 410,
     },
     attack2: {
@@ -160,7 +160,7 @@ const joueur2 = new Joueur({
     },
     attack1: {
       imgSrc: 'ressources/sprites/Vegeta/Attacking1.png',
-      framesMax: 2,
+      framesMax: 1,
       limit: 410,
     },
     attack2: {
