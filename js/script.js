@@ -198,6 +198,16 @@ const joueur2 = new Joueur({
       framesMax: 4,
       limit: 500,
     },
+    fly: {
+      imgSrc: 'ressources/sprites/Vegeta/fly.png',
+      framesMax: 1,
+      limit: 480,
+    },
+    descendre: {
+      imgSrc: 'ressources/sprites/Vegeta/descendre.png',
+      framesMax: 1,
+      limit: 393,
+    },
   },
   attackBox: {
     offset: {
@@ -328,6 +338,10 @@ function update() {
       joueur2.vitesse.x = 5
     } else if (touches.ArrowLeft.pressed && joueur2.lastKey === 'ArrowLeft') {
       joueur2.vitesse.x = -5
+    } else if (touches.ArrowUp.pressed && joueur2.lastKey === 'ArrowUp') {
+      joueur2.switchSprite('fly')
+    } else if (touches.ArrowDown.pressed && joueur2.lastKey === 'ArrowDown') {
+      joueur2.switchSprite('descendre')
     } else if (touches.p.pressed && joueur2.lastKey === 'p') {
       joueur2.switchSprite('block')
     } else if (touches.o.pressed && joueur2.lastKey === 'o') {
