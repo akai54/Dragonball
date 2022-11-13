@@ -102,6 +102,11 @@ const joueur1 = new Joueur({
       framesMax: 1,
       limit: 480,
     },
+    descendre: {
+      imgSrc: 'ressources/sprites/goku/descendre.png',
+      framesMax: 1,
+      limit: 480,
+    },
   },
   attackBox: {
     offset: {
@@ -312,6 +317,8 @@ function update() {
       joueur1.switchSprite('block')
     } else if (touches.w.pressed && joueur1.lastKey === 'w') {
       joueur1.switchSprite('fly')
+    } else if (touches.s.pressed && joueur1.lastKey === 's') {
+      joueur1.switchSprite('descendre')
     } else {
       joueur1.switchSprite('idle')
     }

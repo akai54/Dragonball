@@ -297,6 +297,14 @@ class Joueur extends Sprite {
           this.framesCurrent = 0
         }
         break
+      case 'descendre':
+        if (this.image !== this.sprites.descendre.image) {
+          this.image = this.sprites.descendre.image
+          this.framesMax = this.sprites.descendre.framesMax
+          this.limit = this.sprites.recharge2.limit
+          this.framesCurrent = 0
+        }
+        break
     }
   }
 }
