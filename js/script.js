@@ -59,7 +59,7 @@ const joueur1 = new Joueur({
     },
     recharge: {
       imgSrc: 'ressources/sprites/goku/power.png',
-      framesMax: 3,
+      framesMax: 2,
       limit: 410,
     },
     recharge2: {
