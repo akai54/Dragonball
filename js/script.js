@@ -144,13 +144,13 @@ const joueur2 = new Joueur({
       limit: 393,
     },
     walk: {
-      imgSrc: 'ressources/sprites/goku/walk.png',
-      framesMax: 2,
+      imgSrc: 'ressources/sprites/Vegeta/walk.png',
+      framesMax: 1,
       limit: 370,
     },
     walkL: {
-      imgSrc: 'ressources/sprites/goku/walkL.png',
-      framesMax: 2,
+      imgSrc: 'ressources/sprites/Vegeta/walk2.png',
+      framesMax: 1,
       limit: 370,
     },
     winning: {
@@ -336,8 +336,10 @@ function update() {
     // Mouvement joueur2.
     if (touches.ArrowRight.pressed && joueur2.lastKey === 'ArrowRight') {
       joueur2.vitesse.x = 5
+      joueur2.switchSprite('walkL')
     } else if (touches.ArrowLeft.pressed && joueur2.lastKey === 'ArrowLeft') {
       joueur2.vitesse.x = -5
+      joueur2.switchSprite('walk')
     } else if (touches.ArrowUp.pressed && joueur2.lastKey === 'ArrowUp') {
       joueur2.switchSprite('fly')
     } else if (touches.ArrowDown.pressed && joueur2.lastKey === 'ArrowDown') {
