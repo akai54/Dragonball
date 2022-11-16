@@ -2,8 +2,8 @@ const canvas = document.querySelector('canvas')
 
 const c = canvas.getContext('2d')
 
-const myAudio = document.createElement('audio')
-myAudio.src = './ressources/sounds/musics/DBZ_theme.ogg'
+const dbz_music = document.createElement('audio')
+dbz_music.src = './ressources/sounds/musics/DBZ_theme.ogg'
 const gokuBlock = document.createElement('audio')
 gokuBlock.src = './ressources/sounds/voices/goku/gokuBlock.ogg'
 const goku1 = document.createElement('audio')
@@ -16,7 +16,10 @@ const gokuHit = document.createElement('audio')
 gokuHit.src = './ressources/sounds/voices/goku/gokuTouchedPropels.ogg'
 const ko = document.createElement('audio')
 ko.src = './ressources/sounds/effects/DBZ_KO.ogg'
+const fight = document.createElement('audio')
+fight.src = './ressources/sounds/effects/DBZ_FIGHT.ogg'
 
+let play_fight = true
 const gravity = 0.8
 const bg = new Sprite({
   pos: {
@@ -306,14 +309,15 @@ function update() {
   c.fillRect(0, 0, canvas.width, canvas.height)
   joueur1.animation()
   joueur2.animation()
-  myAudio.play()
 
   // La vitesse par défaut est 0.
   joueur1.vitesse.x = 0
   joueur2.vitesse.x = 0
 
+  if (play_fight) fight.play()
   // Par defaut, on joue le sprite idle.
   if (!fin) {
+    dbz_music.play()
     // Mouvement joueur1.
     if (touches.d.pressed && joueur1.lastKey === 'd') {
       joueur1.vitesse.x = 5
@@ -411,6 +415,8 @@ function update() {
   if (joueur1.vie <= 0 || joueur2.vie <= 0) {
     fin_jeu({ joueur: joueur1, joueur2, timerId })
   }
+
+  play_fight = false
 }
 
 update()
