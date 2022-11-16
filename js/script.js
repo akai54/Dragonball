@@ -2,13 +2,16 @@ const canvas = document.querySelector('canvas')
 
 const c = canvas.getContext('2d')
 
+const myAudio = document.createElement('audio')
+myAudio.src = 'ressources/sounds/musics/DBZ_theme.ogg'
+
 const gravity = 0.8
 const bg = new Sprite({
   pos: {
     x: 0,
     y: 0,
   },
-  imgSrc: 'ressources/bg/battle_bg.png',
+  imgSrc: './ressources/bg/battle_bg.png',
 })
 
 // Taille de la fenêtre.
@@ -291,6 +294,7 @@ function update() {
   c.fillRect(0, 0, canvas.width, canvas.height)
   joueur1.animation()
   joueur2.animation()
+  myAudio.play()
 
   // La vitesse par défaut est 0.
   joueur1.vitesse.x = 0
