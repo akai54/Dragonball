@@ -3,7 +3,17 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
 const myAudio = document.createElement('audio')
-myAudio.src = 'ressources/sounds/musics/DBZ_theme.ogg'
+myAudio.src = './ressources/sounds/musics/DBZ_theme.ogg'
+const gokuBlock = document.createElement('audio')
+gokuBlock.src = './ressources/sounds/voices/goku/gokuBlock.ogg'
+const goku1 = document.createElement('audio')
+goku1.src = './ressources/sounds/voices/goku/gokuHandAttack.ogg'
+const goku2 = document.createElement('audio')
+goku2.src = './ressources/sounds/voices/goku/gokuJumpKick.ogg'
+const goku3 = document.createElement('audio')
+goku3.src = './ressources/sounds/voices/goku/gokuRushAttack.ogg'
+const gokuHit = document.createElement('audio')
+gokuHit.src = './ressources/sounds/voices/goku/gokuTouchedPropels.ogg'
 
 const gravity = 0.8
 const bg = new Sprite({
@@ -36,77 +46,77 @@ const joueur1 = new Joueur({
     x: 0,
     y: 0,
   },
-  imgSrc: 'ressources/sprites/goku/idle.png',
+  imgSrc: './ressources/sprites/goku/idle.png',
   framesMax: 4,
   scale: 1.6,
   sprites: {
     idle: {
-      imgSrc: 'ressources/sprites/goku/idle.png',
+      imgSrc: './ressources/sprites/goku/idle.png',
       framesMax: 4,
       limit: 410,
     },
     walk: {
-      imgSrc: 'ressources/sprites/goku/test.png',
+      imgSrc: './ressources/sprites/goku/test.png',
       framesMax: 1,
       limit: 370,
     },
     walkL: {
-      imgSrc: 'ressources/sprites/goku/test2.png',
+      imgSrc: './ressources/sprites/goku/test2.png',
       framesMax: 1,
       limit: 370,
     },
     winning: {
-      imgSrc: 'ressources/sprites/goku/won.png',
+      imgSrc: './ressources/sprites/goku/won.png',
       framesMax: 1,
       limit: 350,
     },
     recharge: {
-      imgSrc: 'ressources/sprites/goku/power.png',
+      imgSrc: './ressources/sprites/goku/power.png',
       framesMax: 2,
       limit: 410,
     },
     recharge2: {
-      imgSrc: 'ressources/sprites/goku/power1.png',
+      imgSrc: './ressources/sprites/goku/power1.png',
       framesMax: 3,
       limit: 410,
     },
     attack1: {
-      imgSrc: 'ressources/sprites/goku/Attack1.png',
+      imgSrc: './ressources/sprites/goku/Attack1.png',
       framesMax: 1,
       limit: 410,
     },
     attack2: {
-      imgSrc: 'ressources/sprites/goku/Attack2.png',
+      imgSrc: './ressources/sprites/goku/Attack2.png',
       framesMax: 4,
       limit: 410,
     },
     attack3: {
-      imgSrc: 'ressources/sprites/goku/Attack3.png',
+      imgSrc: './ressources/sprites/goku/Attack3.png',
       framesMax: 5,
       limit: 410,
     },
     block: {
-      imgSrc: 'ressources/sprites/goku/Goku_block_2.png',
+      imgSrc: './ressources/sprites/goku/Goku_block_2.png',
       framesMax: 1,
       limit: 410,
     },
     hit: {
-      imgSrc: 'ressources/sprites/goku/hittest.png',
+      imgSrc: './ressources/sprites/goku/hittest.png',
       framesMax: 3,
       limit: 410,
     },
     mort: {
-      imgSrc: 'ressources/sprites/goku/death.png',
+      imgSrc: './ressources/sprites/goku/death.png',
       framesMax: 4,
       limit: 480,
     },
     fly: {
-      imgSrc: 'ressources/sprites/goku/fly.png',
+      imgSrc: './ressources/sprites/goku/fly.png',
       framesMax: 1,
       limit: 480,
     },
     descendre: {
-      imgSrc: 'ressources/sprites/goku/descendre.png',
+      imgSrc: './ressources/sprites/goku/descendre.png',
       framesMax: 1,
       limit: 480,
     },
@@ -136,78 +146,78 @@ const joueur2 = new Joueur({
     x: -50,
     y: 0,
   },
-  imgSrc: 'ressources/sprites/Vegeta/idle-3.png',
+  imgSrc: './ressources/sprites/Vegeta/idle-3.png',
   framesMax: 2,
   limit: 393,
   scale: 1.6,
   sprites: {
     idle: {
-      imgSrc: 'ressources/sprites/Vegeta/idle-3.png',
+      imgSrc: './ressources/sprites/Vegeta/idle-3.png',
       framesMax: 2,
       limit: 393,
     },
     walk: {
-      imgSrc: 'ressources/sprites/Vegeta/walk.png',
+      imgSrc: './ressources/sprites/Vegeta/walk.png',
       framesMax: 1,
       limit: 370,
     },
     walkL: {
-      imgSrc: 'ressources/sprites/Vegeta/walk2.png',
+      imgSrc: './ressources/sprites/Vegeta/walk2.png',
       framesMax: 1,
       limit: 370,
     },
     winning: {
-      imgSrc: 'ressources/sprites/Vegeta/won.png',
+      imgSrc: './ressources/sprites/Vegeta/won.png',
       framesMax: 1,
       limit: 350,
     },
     recharge: {
-      imgSrc: 'ressources/sprites/goku/power.png',
+      imgSrc: './ressources/sprites/goku/power.png',
       framesMax: 3,
       limit: 410,
     },
     recharge2: {
-      imgSrc: 'ressources/sprites/goku/power1.png',
+      imgSrc: './ressources/sprites/goku/power1.png',
       framesMax: 3,
       limit: 410,
     },
     attack1: {
-      imgSrc: 'ressources/sprites/Vegeta/Attacking1.png',
+      imgSrc: './ressources/sprites/Vegeta/Attacking1.png',
       framesMax: 1,
       limit: 410,
     },
     attack2: {
-      imgSrc: 'ressources/sprites/Vegeta/Attacking2.3.png',
+      imgSrc: './ressources/sprites/Vegeta/Attacking2.3.png',
       framesMax: 2,
       limit: 410,
     },
     attack3: {
-      imgSrc: 'ressources/sprites/Vegeta/Attack3.png',
+      imgSrc: './ressources/sprites/Vegeta/Attack3.png',
       framesMax: 2,
       limit: 320,
     },
     block: {
-      imgSrc: 'ressources/sprites/Vegeta/block.png',
+      imgSrc: './ressources/sprites/Vegeta/block.png',
       framesMax: 1,
       limit: 410,
     },
     hit: {
-      imgSrc: 'ressources/sprites/Vegeta/hit.png',
+      imgSrc: './ressources/sprites/Vegeta/hit.png',
       framesMax: 3,
       limit: 410,
     },
     mort: {
-      imgSrc: 'ressources/sprites/Vegeta/death.png',
+      imgSrc: './ressources/sprites/Vegeta/death.png',
       framesMax: 4,
       limit: 500,
     },
     fly: {
-      imgSrc: 'ressources/sprites/Vegeta/fly.png',
+      imgSrc: './ressources/sprites/Vegeta/fly.png',
       framesMax: 1,
       limit: 480,
     },
     descendre: {
-      imgSrc: 'ressources/sprites/Vegeta/descendre.png',
+      imgSrc: './ressources/sprites/Vegeta/descendre.png',
       framesMax: 1,
       limit: 393,
     },
@@ -387,6 +397,7 @@ function update() {
       !fin
     ) {
       joueur1.switchSprite('hit')
+      gokuHit.play()
       dec_Health(joueur2, joueur1)
       gsap.to('#j1Vie', {
         width: joueur1.vie + '%',
@@ -428,24 +439,28 @@ window.addEventListener('keydown', (e) => {
       if (joueur1.force < 100) joueur1.force++
       break
     case 'h':
+      goku1.play()
       joueur1.attack()
       touches.h.pressed = true
       joueur1.lastKey = 'h'
       joueur1.force--
       break
     case 'j':
+      goku2.play()
       joueur1.attack()
       touches.j.pressed = true
       joueur1.lastKey = 'j'
       joueur1.force--
       break
     case 'l':
+      goku3.play()
       joueur1.attack()
       touches.l.pressed = true
       joueur1.lastKey = 'l'
       joueur1.force--
       break
     case 'q':
+      if (joueur1.lastKey !== 'q') gokuBlock.play()
       touches.q.pressed = true
       joueur1.lastKey = 'q'
       joueur1.isBlocking = true
