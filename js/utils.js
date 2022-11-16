@@ -9,6 +9,7 @@ function collision_joueurs({ j1, j2 }) {
 }
 
 let fin = false
+var play_once = true
 
 function fin_jeu({ joueur: joueur1, joueur2, timerId }) {
   fin = true
@@ -21,6 +22,8 @@ function fin_jeu({ joueur: joueur1, joueur2, timerId }) {
     joueur1.switchSprite('winning')
     joueur2.switchSprite('winning')
   } else if (joueur1.vie > joueur2.vie) {
+    console.log(play_once)
+    if (play_once) ko.play()
     document.querySelector('#timerRes').innerHTML = 'Joueur1 a gagné'
     joueur2.pos.y = joueur2.sprites.mort.limit
     joueur2.switchSprite('mort')
@@ -29,6 +32,7 @@ function fin_jeu({ joueur: joueur1, joueur2, timerId }) {
       joueur1.switchSprite('winning')
     }
   } else if (joueur1.vie < joueur2.vie) {
+    if (play_once) ko.play()
     document.querySelector('#timerRes').innerHTML = 'Joueur2 a gagné'
     joueur1.pos.y = joueur1.sprites.mort.limit
     joueur1.switchSprite('mort')
@@ -37,6 +41,7 @@ function fin_jeu({ joueur: joueur1, joueur2, timerId }) {
       joueur2.switchSprite('winning')
     }
   }
+  play_once = false
 }
 
 let timer = 100

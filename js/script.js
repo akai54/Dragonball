@@ -14,6 +14,8 @@ const goku3 = document.createElement('audio')
 goku3.src = './ressources/sounds/voices/goku/gokuRushAttack.ogg'
 const gokuHit = document.createElement('audio')
 gokuHit.src = './ressources/sounds/voices/goku/gokuTouchedPropels.ogg'
+const ko = document.createElement('audio')
+ko.src = './ressources/sounds/effects/DBZ_KO.ogg'
 
 const gravity = 0.8
 const bg = new Sprite({
