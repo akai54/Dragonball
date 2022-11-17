@@ -18,6 +18,16 @@ const ko = document.createElement('audio')
 ko.src = './ressources/sounds/effects/DBZ_KO.ogg'
 const fight = document.createElement('audio')
 fight.src = './ressources/sounds/effects/DBZ_FIGHT.ogg'
+const vegetaHit = document.createElement('audio')
+vegetaHit.src = './ressources/sounds/voices/vegeta/6.wav'
+const vegeta1 = document.createElement('audio')
+vegeta1.src = './ressources/sounds/voices/vegeta/34.wav'
+const vegeta2 = document.createElement('audio')
+vegeta2.src = './ressources/sounds/voices/vegeta/35.wav'
+const vegeta3 = document.createElement('audio')
+vegeta3.src = './ressources/sounds/voices/vegeta/36.wav'
+const vegetaBlock = document.createElement('audio')
+vegetaBlock.src = './ressources/sounds/voices/vegeta/19.wav'
 
 let play_fight = true
 const gravity = 0.8
@@ -387,6 +397,7 @@ function update() {
       !fin
     ) {
       joueur2.switchSprite('hit')
+      vegetaHit.play()
       dec_Health(joueur1, joueur2)
       gsap.to('#j2Vie', {
         width: joueur2.vie + '%',
@@ -501,8 +512,10 @@ window.addEventListener('keydown', (e) => {
       touches.o.pressed = true
       joueur2.lastKey = 'o'
       joueur2.force--
+      vegeta1.play()
       break
     case 'p':
+      if (joueur2.lastKey !== 'p') vegetaBlock.play()
       touches.p.pressed = true
       joueur2.lastKey = 'p'
       joueur2.isBlocking = true
@@ -512,12 +525,14 @@ window.addEventListener('keydown', (e) => {
       if (!fin) joueur2.attack()
       touches.i.pressed = true
       joueur2.lastKey = 'i'
+      vegeta2.play()
       joueur2.force--
       break
     case 'u':
       if (!fin) joueur2.attack()
       touches.u.pressed = true
       joueur2.lastKey = 'u'
+      vegeta3.play()
       joueur2.force--
       break
   }
