@@ -36,7 +36,7 @@ const bg = new Sprite({
     x: 0,
     y: 0,
   },
-  imgSrc: './ressources/bg/battle_bg.png',
+  imgSrc: './ressources/bg/test.png',
 })
 
 // Taille de la fenêtre.
