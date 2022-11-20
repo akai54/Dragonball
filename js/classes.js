@@ -265,6 +265,14 @@ class Joueur extends Sprite {
           this.framesCurrent = 0
         }
         break
+      case 'kamehameha':
+        if (this.image !== this.sprites.kamehameha.image) {
+          this.image = this.sprites.kamehameha.image
+          this.framesMax = this.sprites.kamehameha.framesMax
+          this.limit = this.sprites.recharge2.limit
+          this.framesCurrent = 0
+        }
+        break
       case 'block':
         if (this.image !== this.sprites.block.image) {
           this.image = this.sprites.block.image

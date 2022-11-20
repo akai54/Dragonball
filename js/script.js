@@ -135,6 +135,11 @@ const joueur1 = new Joueur({
       framesMax: 1,
       limit: 480,
     },
+    kamehameha: {
+      imgSrc: './ressources/sprites/goku/kamehameha.png',
+      framesMax: 7,
+      limit: 480,
+    },
   },
   attackBox: {
     offset: {
@@ -276,6 +281,9 @@ const touches = {
   q: {
     pressed: false,
   },
+  space: {
+    pressed: false,
+  },
   ArrowLeft: {
     pressed: false,
   },
@@ -353,6 +361,8 @@ function update() {
       joueur1.switchSprite('attack2')
     } else if (touches.l.pressed && joueur1.lastKey === 'l') {
       joueur1.switchSprite('attack3')
+    } else if (touches.space.pressed && joueur1.lastKey === 'space') {
+      joueur1.switchSprite('kamehameha')
     } else if (touches.q.pressed && joueur1.lastKey === 'q') {
       joueur1.switchSprite('block')
     } else if (touches.w.pressed && joueur1.lastKey === 'w') {
@@ -473,9 +483,9 @@ window.addEventListener('keydown', (e) => {
       break
     case 'l':
       goku3.play()
-      joueur1.attack()
       touches.l.pressed = true
       joueur1.lastKey = 'l'
+      joueur1.attack()
       joueur1.force--
       break
     case 'q':
@@ -486,6 +496,8 @@ window.addEventListener('keydown', (e) => {
       joueur1.force--
       break
     case ' ':
+      touches.space.pressed = true
+      joueur1.lastKey = 'space'
       joueur1.attack()
       break
     case 'ArrowRight':
@@ -569,6 +581,10 @@ window.addEventListener('keyup', (e) => {
     case 'q':
       touches.q.pressed = false
       joueur1.isBlocking = false
+      break
+    case ' ':
+      touches.space.pressed = false
+      joueur1.isAttacking = false
       break
     case 'ArrowLeft':
       touches.ArrowLeft.pressed = false
