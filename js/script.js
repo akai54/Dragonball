@@ -312,9 +312,8 @@ const touches = {
 
 dec_Timer()
 
-function dec_Health(p1, p2) {
+function dec_Health(p1) {
   p1.isAttacking = false
-  p2.vie -= 20
 }
 
 // La fonction qui va etre appeler en boucle.
@@ -408,7 +407,7 @@ function update() {
     ) {
       joueur2.switchSprite('hit')
       vegetaHit.play()
-      dec_Health(joueur1, joueur2)
+      dec_Health(joueur1)
       gsap.to('#j2Vie', {
         width: joueur2.vie + '%',
       })
@@ -425,7 +424,7 @@ function update() {
     ) {
       joueur1.switchSprite('hit')
       gokuHit.play()
-      dec_Health(joueur2, joueur1)
+      dec_Health(joueur2)
       gsap.to('#j1Vie', {
         width: joueur1.vie + '%',
       })
@@ -473,6 +472,7 @@ window.addEventListener('keydown', (e) => {
       touches.h.pressed = true
       joueur1.lastKey = 'h'
       joueur1.force--
+      joueur2.vie -= 5
       break
     case 'j':
       goku2.play()
@@ -480,6 +480,7 @@ window.addEventListener('keydown', (e) => {
       touches.j.pressed = true
       joueur1.lastKey = 'j'
       joueur1.force--
+      joueur2.vie -= 7
       break
     case 'l':
       goku3.play()
@@ -487,6 +488,7 @@ window.addEventListener('keydown', (e) => {
       joueur1.lastKey = 'l'
       joueur1.attack()
       joueur1.force--
+      joueur2.vie -= 8
       break
     case 'q':
       if (joueur1.lastKey !== 'q') gokuBlock.play()
@@ -525,6 +527,7 @@ window.addEventListener('keydown', (e) => {
       joueur2.lastKey = 'o'
       joueur2.force--
       vegeta1.play()
+      joueur1.vie -= 5
       break
     case 'p':
       if (joueur2.lastKey !== 'p') vegetaBlock.play()
@@ -539,6 +542,7 @@ window.addEventListener('keydown', (e) => {
       joueur2.lastKey = 'i'
       vegeta2.play()
       joueur2.force--
+      joueur1.vie -= 7
       break
     case 'u':
       if (!fin) joueur2.attack()
@@ -546,6 +550,7 @@ window.addEventListener('keydown', (e) => {
       joueur2.lastKey = 'u'
       vegeta3.play()
       joueur2.force--
+      joueur1.vie -= 8
       break
   }
 })
