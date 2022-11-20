@@ -312,7 +312,7 @@ const touches = {
 
 dec_Timer()
 
-function healthColorChange(p1) {
+function dec_Health(p1) {
   p1.isAttacking = false
 }
 
@@ -407,7 +407,7 @@ function update() {
     ) {
       joueur2.switchSprite('hit')
       vegetaHit.play()
-      healthColorChange(joueur1)
+      dec_Health(joueur1)
       gsap.to('#j2Vie', {
         width: joueur2.vie + '%',
       })
@@ -424,7 +424,7 @@ function update() {
     ) {
       joueur1.switchSprite('hit')
       gokuHit.play()
-      healthColorChange(joueur2)
+      dec_Health(joueur2)
       gsap.to('#j1Vie', {
         width: joueur1.vie + '%',
       })
