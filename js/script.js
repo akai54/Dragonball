@@ -29,7 +29,8 @@ vegeta3.src = './ressources/sounds/voices/vegeta/36.wav'
 const vegetaBlock = document.createElement('audio')
 vegetaBlock.src = './ressources/sounds/voices/vegeta/19.wav'
 
-let play_fight = true
+let gameStarted = false
+
 const gravity = 0.8
 const bg = new Sprite({
   pos: {
@@ -333,14 +334,32 @@ function dec_Health(p1, p2) {
   p2.vie -= 10
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+let changeFight = false
+async function readyAnim() {
+  ready.animation()
+  await sleep(2000)
+  changeFight = true
+  fight_banner.play()
+  await sleep(1000)
+  gameStarted = true
+}
+
 // La fonction qui va etre appeler en boucle.
 function update() {
   window.requestAnimationFrame(update)
   c.fillStyle = 'white'
   c.fillRect(0, 0, canvas.width, canvas.height)
   bg.animation()
-  //ready.animation()
-  fighting.animation()
+  if (!gameStarted) {
+    if (!changeFight) readyAnim()
+    else {
+      fighting.animation()
+    }
+  }
   c.fillStyle = 'rgba(255,255,255, 0.15)'
   c.fillRect(0, 0, canvas.width, canvas.height)
   joueur1.animation()
@@ -350,11 +369,10 @@ function update() {
   joueur1.vitesse.x = 0
   joueur2.vitesse.x = 0
 
-  if (play_fight) fight_banner.play()
   // Par defaut, on joue le sprite idle.
-  if (!fin) {
-    dbz_music.play()
+  if (!fin && gameStarted) {
     // Mouvement joueur1.
+    dbz_music.play()
     if (touches.d.pressed && joueur1.lastKey === 'd') {
       joueur1.vitesse.x = 5
       joueur1.switchSprite('walk')
@@ -454,8 +472,6 @@ function update() {
   if (joueur1.vie <= 0 || joueur2.vie <= 0) {
     fin_jeu({ joueur: joueur1, joueur2, timerId })
   }
-
-  play_fight = false
 }
 
 update()
