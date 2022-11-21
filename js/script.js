@@ -445,7 +445,7 @@ function update() {
       joueur2.switchSprite('hit')
       vegetaHit.play()
       dec_Health(joueur1, joueur2)
-      gsap.to('#j2Vie', {
+      gsap.to('#joueur2Vie', {
         width: joueur2.vie + '%',
       })
     }
@@ -462,7 +462,7 @@ function update() {
       joueur1.switchSprite('hit')
       gokuHit.play()
       dec_Health(joueur2, joueur1)
-      gsap.to('#j1Vie', {
+      gsap.to('#joueur1Vie', {
         width: joueur1.vie + '%',
       })
     }
