@@ -16,8 +16,8 @@ const gokuHit = document.createElement('audio')
 gokuHit.src = './ressources/sounds/voices/goku/gokuTouchedPropels.ogg'
 const ko = document.createElement('audio')
 ko.src = './ressources/sounds/effects/DBZ_KO.ogg'
-const fight = document.createElement('audio')
-fight.src = './ressources/sounds/effects/DBZ_FIGHT.ogg'
+const fight_banner = document.createElement('audio')
+fight_banner.src = './ressources/sounds/effects/DBZ_FIGHT.ogg'
 const vegetaHit = document.createElement('audio')
 vegetaHit.src = './ressources/sounds/voices/vegeta/6.wav'
 const vegeta1 = document.createElement('audio')
@@ -37,6 +37,22 @@ const bg = new Sprite({
     y: 0,
   },
   imgSrc: './ressources/bg/test.png',
+})
+
+const ready = new Sprite({
+  pos: {
+    x: 300,
+    y: 139,
+  },
+  imgSrc: './ressources/bg/ready.png',
+})
+
+const fighting = new Sprite({
+  pos: {
+    x: 300,
+    y: 139,
+  },
+  imgSrc: './ressources/bg/fight.png',
 })
 
 // Taille de la fenêtre.
@@ -323,6 +339,8 @@ function update() {
   c.fillStyle = 'white'
   c.fillRect(0, 0, canvas.width, canvas.height)
   bg.animation()
+  //ready.animation()
+  fighting.animation()
   c.fillStyle = 'rgba(255,255,255, 0.15)'
   c.fillRect(0, 0, canvas.width, canvas.height)
   joueur1.animation()
@@ -332,7 +350,7 @@ function update() {
   joueur1.vitesse.x = 0
   joueur2.vitesse.x = 0
 
-  if (play_fight) fight.play()
+  if (play_fight) fight_banner.play()
   // Par defaut, on joue le sprite idle.
   if (!fin) {
     dbz_music.play()
