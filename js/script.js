@@ -30,6 +30,7 @@ const vegetaBlock = document.createElement('audio')
 vegetaBlock.src = './ressources/sounds/voices/vegeta/19.wav'
 
 let gameStarted = false
+let startTimer = false
 
 const gravity = 0.8
 const bg = new Sprite({
@@ -327,8 +328,6 @@ const touches = {
   },
 }
 
-dec_Timer()
-
 function dec_Health(p1, p2) {
   p1.isAttacking = false
   p2.vie -= 5
@@ -358,6 +357,10 @@ function update() {
     if (!changeFight) readyAnim()
     else {
       fighting.animation()
+      if (!startTimer) {
+        dec_Timer()
+        startTimer = true
+      }
     }
   }
   c.fillStyle = 'rgba(255,255,255, 0.15)'

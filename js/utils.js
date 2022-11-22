@@ -43,7 +43,7 @@ function fin_jeu({ joueur: joueur1, joueur2, timerId }) {
   play_KO = false
 }
 
-let timer = 100
+let timer = 300
 let timerId
 function dec_Timer() {
   if (timer > 0) {
