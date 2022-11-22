@@ -331,7 +331,7 @@ dec_Timer()
 
 function dec_Health(p1, p2) {
   p1.isAttacking = false
-  p2.vie -= 10
+  p2.vie -= 5
 }
 
 function sleep(ms) {
