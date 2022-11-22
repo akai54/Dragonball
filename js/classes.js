@@ -63,6 +63,7 @@ class Joueur extends Sprite {
     offset = { x: 0, y: 0 },
     sprites,
     limit = 408,
+    nom,
   }) {
     super({
       pos,
@@ -85,6 +86,7 @@ class Joueur extends Sprite {
     this.on_ground = false
     this.sprites = sprites
     this.limit = limit
+    this.nom = nom
     this.mort = false
     this.isBlocking = false
     this.attackBox = {
@@ -151,6 +153,13 @@ class Joueur extends Sprite {
   attack() {
     //this.switchSprite('attack2')
     this.isAttacking = true
+  }
+
+  // Changer la couleur de la barre de vie.
+  colorHb() {
+    if (this.vie < 100 && this.vie > 75) {
+      document.getElementById(this.name + 'Vie').style.backgroundColor = 'green'
+    }
   }
 
   switchSprite(sprite) {

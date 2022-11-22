@@ -167,7 +167,7 @@ const joueur1 = new Joueur({
     width: 100,
     height: 50,
   },
-  name: 'joueur1',
+  nom: 'joueur1',
 })
 
 // Le deuxième joueur.
@@ -269,7 +269,7 @@ const joueur2 = new Joueur({
     width: 105,
     height: 50,
   },
-  name: 'joueur2',
+  nom: 'joueur2',
 })
 
 // Les touches pour interagir avec les personnages.
