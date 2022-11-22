@@ -31,6 +31,7 @@ vegetaBlock.src = './ressources/sounds/voices/vegeta/19.wav'
 
 let gameStarted = false
 let startTimer = false
+let menu = true
 
 const gravity = 0.8
 const bg = new Sprite({
@@ -39,6 +40,13 @@ const bg = new Sprite({
     y: 0,
   },
   imgSrc: './ressources/bg/test.png',
+})
+const menuImg = new Sprite({
+  pos: {
+    x: 0,
+    y: 0,
+  },
+  imgSrc: './ressources/bg/menu.png',
 })
 
 const ready = new Sprite({
@@ -352,132 +360,137 @@ async function readyAnim() {
 // La fonction qui va etre appeler en boucle.
 function update() {
   window.requestAnimationFrame(update)
-  c.fillStyle = 'white'
-  c.fillRect(0, 0, canvas.width, canvas.height)
-  bg.animation()
-  if (!gameStarted) {
-    if (!changeFight) readyAnim()
-    else {
-      fighting.animation()
-      if (!startTimer) {
-        dec_Timer()
-        startTimer = true
-      }
-    }
-  }
-  c.fillStyle = 'rgba(255,255,255, 0.15)'
-  c.fillRect(0, 0, canvas.width, canvas.height)
-  joueur1.animation()
-  joueur2.animation()
-
-  // La vitesse par défaut est 0.
-  joueur1.vitesse.x = 0
-  joueur2.vitesse.x = 0
-
-  // Par defaut, on joue le sprite idle.
-  if (!fin && gameStarted) {
-    // Mouvement joueur1.
-    dbz_music.play()
-    if (touches.d.pressed && joueur1.lastKey === 'd') {
-      joueur1.vitesse.x = 5
-      joueur1.switchSprite('walk')
-    } else if (touches.a.pressed && joueur1.lastKey === 'a') {
-      joueur1.vitesse.x = -5
-      joueur1.switchSprite('walkL')
-    } else if (touches.r.pressed && joueur1.lastKey === 'r') {
-      if (joueur1.force < 100) {
-        /* Si le joueur essaie de recharger ses forces, alors qu'il est sur le sol,
-           On monte un peu sa position pour mieux montrer le sprite. */
-        if (joueur1.on_ground) {
-          joueur1.pos.y -= 20
-          joueur1.on_ground = false
+  if (!menu) {
+    document.querySelector('#fdiv').style.display = 'flex'
+    c.fillStyle = 'white'
+    c.fillRect(0, 0, canvas.width, canvas.height)
+    bg.animation()
+    if (!gameStarted) {
+      if (!changeFight) readyAnim()
+      else {
+        fighting.animation()
+        if (!startTimer) {
+          dec_Timer()
+          startTimer = true
         }
-        joueur1.switchSprite('recharge2')
-      } else {
-        joueur1.switchSprite('recharge')
       }
-    } else if (touches.h.pressed && joueur1.lastKey === 'h') {
-      joueur1.switchSprite('attack1')
-    } else if (touches.j.pressed && joueur1.lastKey === 'j') {
-      joueur1.switchSprite('attack2')
-    } else if (touches.l.pressed && joueur1.lastKey === 'l') {
-      joueur1.switchSprite('attack3')
-    } else if (touches.space.pressed && joueur1.lastKey === 'space') {
-      joueur1.switchSprite('kamehameha')
-    } else if (touches.q.pressed && joueur1.lastKey === 'q') {
-      joueur1.switchSprite('block')
-    } else if (touches.w.pressed && joueur1.lastKey === 'w') {
-      joueur1.switchSprite('fly')
-    } else if (touches.s.pressed && joueur1.lastKey === 's') {
-      joueur1.switchSprite('descendre')
-    } else {
-      joueur1.switchSprite('idle')
+    }
+    c.fillStyle = 'rgba(255,255,255, 0.15)'
+    c.fillRect(0, 0, canvas.width, canvas.height)
+    joueur1.animation()
+    joueur2.animation()
+
+    // La vitesse par défaut est 0.
+    joueur1.vitesse.x = 0
+    joueur2.vitesse.x = 0
+
+    // Par defaut, on joue le sprite idle.
+    if (!fin && gameStarted) {
+      // Mouvement joueur1.
+      dbz_music.play()
+      if (touches.d.pressed && joueur1.lastKey === 'd') {
+        joueur1.vitesse.x = 5
+        joueur1.switchSprite('walk')
+      } else if (touches.a.pressed && joueur1.lastKey === 'a') {
+        joueur1.vitesse.x = -5
+        joueur1.switchSprite('walkL')
+      } else if (touches.r.pressed && joueur1.lastKey === 'r') {
+        if (joueur1.force < 100) {
+          /* Si le joueur essaie de recharger ses forces, alors qu'il est sur le sol,
+On monte un peu sa position pour mieux montrer le sprite. */
+          if (joueur1.on_ground) {
+            joueur1.pos.y -= 20
+            joueur1.on_ground = false
+          }
+          joueur1.switchSprite('recharge2')
+        } else {
+          joueur1.switchSprite('recharge')
+        }
+      } else if (touches.h.pressed && joueur1.lastKey === 'h') {
+        joueur1.switchSprite('attack1')
+      } else if (touches.j.pressed && joueur1.lastKey === 'j') {
+        joueur1.switchSprite('attack2')
+      } else if (touches.l.pressed && joueur1.lastKey === 'l') {
+        joueur1.switchSprite('attack3')
+      } else if (touches.space.pressed && joueur1.lastKey === 'space') {
+        joueur1.switchSprite('kamehameha')
+      } else if (touches.q.pressed && joueur1.lastKey === 'q') {
+        joueur1.switchSprite('block')
+      } else if (touches.w.pressed && joueur1.lastKey === 'w') {
+        joueur1.switchSprite('fly')
+      } else if (touches.s.pressed && joueur1.lastKey === 's') {
+        joueur1.switchSprite('descendre')
+      } else {
+        joueur1.switchSprite('idle')
+      }
+
+      // Mouvement joueur2.
+      if (touches.ArrowRight.pressed && joueur2.lastKey === 'ArrowRight') {
+        joueur2.vitesse.x = 5
+        joueur2.switchSprite('walkL')
+      } else if (touches.ArrowLeft.pressed && joueur2.lastKey === 'ArrowLeft') {
+        joueur2.vitesse.x = -5
+        joueur2.switchSprite('walk')
+      } else if (touches.ArrowUp.pressed && joueur2.lastKey === 'ArrowUp') {
+        joueur2.switchSprite('fly')
+      } else if (touches.ArrowDown.pressed && joueur2.lastKey === 'ArrowDown') {
+        joueur2.switchSprite('descendre')
+      } else if (touches.p.pressed && joueur2.lastKey === 'p') {
+        joueur2.switchSprite('block')
+      } else if (touches.o.pressed && joueur2.lastKey === 'o') {
+        joueur2.switchSprite('attack1')
+      } else if (touches.i.pressed && joueur2.lastKey === 'i') {
+        joueur2.switchSprite('attack2')
+      } else if (touches.u.pressed && joueur2.lastKey === 'u') {
+        joueur2.switchSprite('attack3')
+      } else {
+        joueur2.switchSprite('idle')
+      }
+
+      // Détection collisions.
+      if (
+        collision_joueurs({
+          j1: joueur1,
+          j2: joueur2,
+        }) &&
+        joueur1.isAttacking &&
+        !joueur1.isBlocking &&
+        !joueur2.isBlocking &&
+        !fin
+      ) {
+        joueur2.switchSprite('hit')
+        vegetaHit.play()
+        dec_Health(joueur1, joueur2)
+        gsap.to('#joueur2Vie', {
+          width: joueur2.vie + '%',
+        })
+      }
+
+      if (
+        collision_joueurs({
+          j1: joueur2,
+          j2: joueur1,
+        }) &&
+        joueur2.isAttacking &&
+        !joueur1.isBlocking &&
+        !joueur2.isBlocking &&
+        !fin
+      ) {
+        joueur1.switchSprite('hit')
+        gokuHit.play()
+        dec_Health(joueur2, joueur1)
+        gsap.to('#joueur1Vie', {
+          width: joueur1.vie + '%',
+        })
+      }
     }
 
-    // Mouvement joueur2.
-    if (touches.ArrowRight.pressed && joueur2.lastKey === 'ArrowRight') {
-      joueur2.vitesse.x = 5
-      joueur2.switchSprite('walkL')
-    } else if (touches.ArrowLeft.pressed && joueur2.lastKey === 'ArrowLeft') {
-      joueur2.vitesse.x = -5
-      joueur2.switchSprite('walk')
-    } else if (touches.ArrowUp.pressed && joueur2.lastKey === 'ArrowUp') {
-      joueur2.switchSprite('fly')
-    } else if (touches.ArrowDown.pressed && joueur2.lastKey === 'ArrowDown') {
-      joueur2.switchSprite('descendre')
-    } else if (touches.p.pressed && joueur2.lastKey === 'p') {
-      joueur2.switchSprite('block')
-    } else if (touches.o.pressed && joueur2.lastKey === 'o') {
-      joueur2.switchSprite('attack1')
-    } else if (touches.i.pressed && joueur2.lastKey === 'i') {
-      joueur2.switchSprite('attack2')
-    } else if (touches.u.pressed && joueur2.lastKey === 'u') {
-      joueur2.switchSprite('attack3')
-    } else {
-      joueur2.switchSprite('idle')
+    // Fin jeu
+    if (joueur1.vie <= 0 || joueur2.vie <= 0) {
+      fin_jeu({ joueur: joueur1, joueur2, timerId })
     }
-
-    // Détection collisions.
-    if (
-      collision_joueurs({
-        j1: joueur1,
-        j2: joueur2,
-      }) &&
-      joueur1.isAttacking &&
-      !joueur1.isBlocking &&
-      !joueur2.isBlocking &&
-      !fin
-    ) {
-      joueur2.switchSprite('hit')
-      vegetaHit.play()
-      dec_Health(joueur1, joueur2)
-      gsap.to('#joueur2Vie', {
-        width: joueur2.vie + '%',
-      })
-    }
-
-    if (
-      collision_joueurs({
-        j1: joueur2,
-        j2: joueur1,
-      }) &&
-      joueur2.isAttacking &&
-      !joueur1.isBlocking &&
-      !joueur2.isBlocking &&
-      !fin
-    ) {
-      joueur1.switchSprite('hit')
-      gokuHit.play()
-      dec_Health(joueur2, joueur1)
-      gsap.to('#joueur1Vie', {
-        width: joueur1.vie + '%',
-      })
-    }
-  }
-
-  // Fin jeu
-  if (joueur1.vie <= 0 || joueur2.vie <= 0) {
-    fin_jeu({ joueur: joueur1, joueur2, timerId })
+  } else {
+    menuImg.animation()
   }
 }
 
