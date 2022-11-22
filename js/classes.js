@@ -105,9 +105,38 @@ class Joueur extends Sprite {
     }
   }
 
+  // Changer la couleur de la barre de vie.
+  colorHb() {
+    if (this.vie < 100 && this.vie > 75) {
+      document.getElementById(this.nom + 'Vie').style.backgroundColor =
+        'rgb(16,185,129)'
+    }
+    if (this.vie < 75 && this.vie > 50) {
+      document.getElementById(this.nom + 'Vie').style.backgroundColor =
+        'rgb(34,197,94)'
+    }
+    if (this.vie < 50 && this.vie > 25) {
+      document.getElementById(this.nom + 'Vie').style.backgroundColor =
+        'rgb(234,179,8)'
+    }
+    if (this.vie < 25 && this.vie > 15) {
+      document.getElementById(this.nom + 'Vie').style.backgroundColor =
+        'rgb(245, 158, 11)'
+    }
+    if (this.vie < 15 && this.vie > 5) {
+      document.getElementById(this.nom + 'Vie').style.backgroundColor =
+        'rgb(249,115,22)'
+    }
+    if (this.vie <= 5 && this.vie > 0) {
+      document.getElementById(this.nom + 'Vie').style.backgroundColor =
+        'rgb(239,68,68)'
+    }
+  }
+
   // Methode pour mettre a jour, les pos des personnages.
   animation() {
     this.draw()
+    this.colorHb()
     if (!this.mort) this.animateFrame()
     this.attackBox.pos.x = this.pos.x + this.attackBox.offset.x
     this.attackBox.pos.y = this.pos.y
@@ -153,13 +182,6 @@ class Joueur extends Sprite {
   attack() {
     //this.switchSprite('attack2')
     this.isAttacking = true
-  }
-
-  // Changer la couleur de la barre de vie.
-  colorHb() {
-    if (this.vie < 100 && this.vie > 75) {
-      document.getElementById(this.name + 'Vie').style.backgroundColor = 'green'
-    }
   }
 
   switchSprite(sprite) {
