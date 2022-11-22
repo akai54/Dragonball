@@ -22,6 +22,7 @@ function fin_jeu({ joueur: joueur1, joueur2, timerId }) {
     joueur1.switchSprite('winning')
     joueur2.switchSprite('winning')
   } else if (joueur1.vie > joueur2.vie) {
+    joueur2.mort = true
     if (play_KO) ko.play()
     document.querySelector('#timerRes').innerHTML = 'Joueur1 a gagné'
     joueur2.pos.y = joueur2.sprites.mort.limit
@@ -31,6 +32,7 @@ function fin_jeu({ joueur: joueur1, joueur2, timerId }) {
       joueur1.switchSprite('winning')
     }
   } else if (joueur1.vie < joueur2.vie) {
+    joueur1.mort = true
     if (play_KO) ko.play()
     document.querySelector('#timerRes').innerHTML = 'Joueur2 a gagné'
     joueur1.pos.y = joueur1.sprites.mort.limit
