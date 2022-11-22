@@ -442,6 +442,7 @@ function update() {
         j2: joueur2,
       }) &&
       joueur1.isAttacking &&
+      !joueur1.isBlocking &&
       !joueur2.isBlocking &&
       !fin
     ) {
@@ -460,6 +461,7 @@ function update() {
       }) &&
       joueur2.isAttacking &&
       !joueur1.isBlocking &&
+      !joueur2.isBlocking &&
       !fin
     ) {
       joueur1.switchSprite('hit')

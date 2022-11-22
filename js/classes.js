@@ -242,7 +242,7 @@ class Joueur extends Sprite {
         }
         break
       case 'attack1':
-        if (this.image !== this.sprites.attack1.image) {
+        if (this.image !== this.sprites.attack1.image && !this.isBlocking) {
           this.image = this.sprites.attack1.image
           this.framesMax = this.sprites.attack1.framesMax
           this.limit = this.sprites.recharge2.limit
@@ -250,7 +250,7 @@ class Joueur extends Sprite {
         }
         break
       case 'attack2':
-        if (this.image !== this.sprites.attack2.image) {
+        if (this.image !== this.sprites.attack2.image && !this.isBlocking) {
           this.image = this.sprites.attack2.image
           this.framesMax = this.sprites.attack2.framesMax
           this.limit = this.sprites.recharge2.limit
@@ -258,7 +258,7 @@ class Joueur extends Sprite {
         }
         break
       case 'attack3':
-        if (this.image !== this.sprites.attack3.image) {
+        if (this.image !== this.sprites.attack3.image && !this.isBlocking) {
           this.image = this.sprites.attack3.image
           this.framesMax = this.sprites.attack3.framesMax
           this.limit = this.sprites.recharge2.limit
