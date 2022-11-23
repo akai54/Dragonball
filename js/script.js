@@ -4,6 +4,8 @@ const c = canvas.getContext('2d')
 
 const dbz_music = document.createElement('audio')
 dbz_music.src = './ressources/sounds/musics/DBZ_theme.ogg'
+const dbz_menu = document.createElement('audio')
+dbz_menu.src = './ressources/sounds/musics/DBZ_overTheGalaxy.ogg'
 const gokuBlock = document.createElement('audio')
 gokuBlock.src = './ressources/sounds/voices/goku/gokuBlock.ogg'
 const goku1 = document.createElement('audio')
@@ -491,6 +493,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
     }
   } else {
     menuImg.animation()
+    dbz_menu.play()
   }
 }
 
