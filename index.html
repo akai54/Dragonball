@@ -8,17 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
   <title>DBZ</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Montserrat', cursive;
-    }
-
-    body {
-      margin: 0px;
-      padding: 0px;
-    }
-  </style>
+  <style></style>
+  <link rel="stylesheet" href="styles.css" />
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"
     integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -31,76 +22,22 @@
   <!-- container div -->
   <div style="position: relative; display: inline-block">
     <!-- smaller red container div -->
-    <div id="fdiv" style="
-          position: absolute;
-          display: none;
-          width: 100%;
-          align-items: center;
-          padding: 20px;
-        ">
+    <div id="fdiv">
       <!-- Joueur1 VIE-->
-      <div style="
-            position: relative;
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            border: 4px solid white;
-          ">
+      <div id="j1">
         <div style="background-color: #9d174d; height: 30px; width: 100%"></div>
-        <div id="joueur1Vie" style="
-              position: absolute;
-              background-color: #14b8a6;
-              top: 0;
-              bottom: 0;
-              right: 0;
-              width: 100%;
-            "></div>
+        <div id="joueur1Vie"></div>
       </div>
       <!-- Timer -->
-      <div id="timer" style="
-            color: white;
-            -webkit-text-stroke: 2px black;
-            font-size: 45px;
-            font-weight: bold;
-            height: 50px;
-            width: 100px;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          ">
-        300
-      </div>
+      <div id="timer">300</div>
       <!-- Joueur2 VIE-->
-      <div style="position: relative; width: 100%; border: 4px solid white">
-        <div style="background-color: #9d174d; height: 30px"></div>
-        <div id="joueur2Vie" style="
-              position: absolute;
-              background-color: #14b8a6;
-              top: 0;
-              bottom: 0;
-              left: 0;
-              right: 0;
-            "></div>
+      <div id="j2">
+        <div id="j2bg"></div>
+        <div id="joueur2Vie"></div>
       </div>
       <div></div>
     </div>
-    <div id="timerRes" style="
-          position: absolute;
-          color: white;
-          align-items: center;
-          justify-content: center;
-          top: 0;
-          bottom: 0;
-          right: 0;
-          left: 0;
-          display: none;
-        ">
-      Tie
-    </div>
-    <div>
-      <button type="button"></button>
-    </div>
+    <div id="timerRes">Tie</div>
     <canvas></canvas>
   </div>
 </body>

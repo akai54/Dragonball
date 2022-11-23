@@ -1,0 +1,79 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', cursive;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+#fdiv {
+  position: absolute;
+  display: none;
+  width: 100%;
+  align-items: center;
+  padding: 20px;
+}
+
+#j1 {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  border: 4px solid white;
+}
+
+#joueur1Vie {
+  position: absolute;
+  background-color: #14b8a6;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
+
+#timer {
+  color: white;
+  -webkit-text-stroke: 2px black;
+  font-size: 45px;
+  font-weight: bold;
+  height: 50px;
+  width: 100px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#j2 {
+  position: relative;
+  width: 100%;
+  border: 4px solid white;
+}
+
+#j2bg {
+  background-color: #9d174d;
+  height: 30px;
+}
+
+#joueur2Vie {
+  position: absolute;
+  background-color: #14b8a6;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#timeres {
+  position: absolute;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: none;
+}
