@@ -339,6 +339,9 @@ const touches = {
   u: {
     pressed: false,
   },
+  y: {
+    pressed: false,
+  },
 }
 
 function dec_Health(p1, p2) {
@@ -498,6 +501,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
   }
 }
 
+// bouton jouer
 btnJouer.addEventListener('click', function() {
   dbz_menu.pause()
   menu = false
@@ -611,6 +615,11 @@ window.addEventListener('keydown', (e) => {
       vegeta3.play()
       joueur2.force--
       break
+    case 'y':
+      touches.y.pressed = true
+      joueur2.lastKey = 'y'
+      if (joueur2.force < 100) joueur2.force++
+      break
   }
 })
 window.addEventListener('keyup', (e) => {
@@ -677,6 +686,9 @@ window.addEventListener('keyup', (e) => {
     case 'u':
       touches.u.pressed = false
       joueur2.isAttacking = false
+      break
+    case 'y':
+      touches.y.pressed = false
       break
   }
 })
