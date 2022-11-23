@@ -30,6 +30,7 @@ const vegeta3 = document.createElement('audio')
 vegeta3.src = './ressources/sounds/voices/vegeta/36.wav'
 const vegetaBlock = document.createElement('audio')
 vegetaBlock.src = './ressources/sounds/voices/vegeta/19.wav'
+const btnJouer = document.querySelector('#jouer')
 
 let gameStarted = false
 let startTimer = false
@@ -496,6 +497,12 @@ On monte un peu sa position pour mieux montrer le sprite. */
     dbz_menu.play()
   }
 }
+
+btnJouer.addEventListener('click', function() {
+  dbz_menu.pause()
+  menu = false
+  document.querySelector('#btnStart').style.display = 'none'
+})
 
 update()
 
