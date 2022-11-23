@@ -24,6 +24,12 @@ body {
   border: 4px solid white;
 }
 
+#j1bg {
+  background-color: #9d174d;
+  height: 30px;
+  width: 100%;
+}
+
 #joueur1Vie {
   position: absolute;
   background-color: #14b8a6;
