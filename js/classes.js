@@ -64,6 +64,7 @@ class Joueur extends Sprite {
     sprites,
     limit = 408,
     nom,
+    compteur,
   }) {
     super({
       pos,
@@ -87,6 +88,7 @@ class Joueur extends Sprite {
     this.sprites = sprites
     this.limit = limit
     this.nom = nom
+    this.compteur = compteur
     this.mort = false
     this.isBlocking = false
     this.attackBox = {

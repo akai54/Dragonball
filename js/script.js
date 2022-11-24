@@ -179,6 +179,7 @@ const joueur1 = new Joueur({
     height: 50,
   },
   nom: 'joueur1',
+  compteur: 0,
 })
 
 // Le deuxième joueur.
@@ -281,6 +282,7 @@ const joueur2 = new Joueur({
     height: 50,
   },
   nom: 'joueur2',
+  compteur: 0,
 })
 
 // Les touches pour interagir avec les personnages.
@@ -496,13 +498,14 @@ On monte un peu sa position pour mieux montrer le sprite. */
       fin_jeu({ joueur: joueur1, joueur2, timerId })
     }
   } else {
+    //Menu.
     menuImg.animation()
     dbz_menu.play()
   }
 }
 
 // bouton jouer
-btnJouer.addEventListener('click', function() {
+btnJouer.addEventListener('click', function () {
   dbz_menu.pause()
   menu = false
   document.querySelector('#btnStart').style.display = 'none'
