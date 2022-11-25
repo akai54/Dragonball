@@ -1,53 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="data:;base64,=" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
-    <title>DBZ</title>
-    <script
-      defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"
-      integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script defer src="js/utils.js"></script>
-    <script defer src="js/classes.js"></script>
-    <script defer src="js/script.js"></script>
-  </head>
 
-  <body>
-    <!-- container div -->
-    <div id="mainDiv">
-      <div id="btnStart">
-        <button id="jouer">Jouer :)</button>
-        <button id="touches">Les touches</button>
-      </div>
-      <!-- smaller red container div -->
-      <div id="fdiv">
-        <!-- Joueur1 VIE-->
-        <div id="j1">
-          <div id="j1bg"></div>
-          <div id="joueur1Vie"></div>
-        </div>
-        <!-- Timer -->
-        <div id="timer">300</div>
-        <!-- Joueur2 VIE-->
-        <div id="j2">
-          <div id="j2bg"></div>
-          <div id="joueur2Vie"></div>
-        </div>
-        <div></div>
-      </div>
-      <div id="timerRes">Tie</div>
-      <canvas></canvas>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:;base64,=" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <title>DBZ</title>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"
+    integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script defer src="js/utils.js"></script>
+  <script defer src="js/classes.js"></script>
+  <script defer src="js/keys.js"></script>
+  <script defer src="js/script.js"></script>
+</head>
+
+<body>
+  <!-- container div -->
+  <div id="mainDiv">
+    <div id="btnStart">
+      <button id="jouer">Jouer :)</button>
+      <button id="touches">Les touches</button>
     </div>
-  </body>
+    <!-- smaller red container div -->
+    <div id="fdiv">
+      <!-- Joueur1 VIE-->
+      <div id="j1">
+        <div id="j1bg"></div>
+        <div id="joueur1Vie"></div>
+      </div>
+      <!-- Timer -->
+      <div id="timer">300</div>
+      <!-- Joueur2 VIE-->
+      <div id="j2">
+        <div id="j2bg"></div>
+        <div id="joueur2Vie"></div>
+      </div>
+      <div></div>
+    </div>
+    <div id="timerRes">Tie</div>
+    <canvas></canvas>
+  </div>
+</body>
+
 </html>
