@@ -318,7 +318,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
         joueur1.switchSprite('attack1')
       } else if (touches.j.pressed && joueur1.lastKey === 'j') {
         joueur1.switchSprite('attack2')
-      } else if (touches.l.pressed && joueur1.lastKey === 'l') {
+      } else if (touches.k.pressed && joueur1.lastKey === 'k') {
         joueur1.switchSprite('attack3')
       } else if (touches.space.pressed && joueur1.lastKey === 'space') {
         joueur1.switchSprite('kamehameha')

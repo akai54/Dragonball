@@ -21,7 +21,7 @@ const touches = {
   j: {
     pressed: false,
   },
-  l: {
+  k: {
     pressed: false,
   },
   q: {
@@ -98,13 +98,12 @@ window.addEventListener('keydown', (e) => {
       joueur1.lastKey = 'j'
       joueur1.force--
       break
-    case 'l':
+    case 'k':
       goku3.play()
-      touches.l.pressed = true
-      joueur1.lastKey = 'l'
       joueur1.attack()
+      touches.k.pressed = true
+      joueur1.lastKey = 'k'
       joueur1.force--
-      joueur2.vie -= 8
       break
     case 'q':
       if (joueur1.lastKey !== 'q') gokuBlock.play()
@@ -196,8 +195,8 @@ window.addEventListener('keyup', (e) => {
       touches.j.pressed = false
       joueur1.isAttacking = false
       break
-    case 'l':
-      touches.l.pressed = false
+    case 'k':
+      touches.k.pressed = false
       joueur1.isAttacking = false
       break
     case 'q':

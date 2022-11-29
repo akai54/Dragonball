@@ -54,12 +54,6 @@ function dec_Timer() {
   }
 
   if (timer === 0) {
-    /*if (joueur1.vie > joueur2.vie) {
-      joueur2.mort = true
-    }
-    if (joueur1.vie < joueur2.vie) {
-      joueur2.mort = true
-    }*/
     fin_jeu({ joueur: joueur1, joueur2, timerId })
   }
 }

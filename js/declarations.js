@@ -18,7 +18,7 @@ ko.src = './ressources/sounds/effects/DBZ_KO.ogg'
 const fight_banner = document.createElement('audio')
 fight_banner.src = './ressources/sounds/effects/DBZ_FIGHT.ogg'
 
-//Sprites GOKU.
+//Audio GOKU.
 const gokuBlock = document.createElement('audio')
 gokuBlock.src = './ressources/sounds/voices/goku/gokuBlock.ogg'
 const goku1 = document.createElement('audio')
@@ -30,7 +30,7 @@ goku3.src = './ressources/sounds/voices/goku/gokuRushAttack.ogg'
 const gokuHit = document.createElement('audio')
 gokuHit.src = './ressources/sounds/voices/goku/gokuTouchedPropels.ogg'
 
-//Sprites VEGETA.
+//Audio VEGETA.
 const vegetaHit = document.createElement('audio')
 vegetaHit.src = './ressources/sounds/voices/vegeta/6.wav'
 const vegeta1 = document.createElement('audio')
