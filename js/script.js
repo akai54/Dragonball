@@ -265,6 +265,12 @@ async function readyAnim() {
   gameStarted = true
 }
 
+async function showHits(n) {
+  document.querySelector('#j' + n + 'compteur').style.display = 'flex'
+  await sleep(2000)
+  document.querySelector('#j' + n + 'compteur').style.display = 'none'
+}
+
 // La fonction qui va etre appeler en boucle.
 function update() {
   window.requestAnimationFrame(update)
@@ -370,6 +376,9 @@ On monte un peu sa position pour mieux montrer le sprite. */
         vegetaHit.play()
         dec_Health(joueur1, joueur2)
         joueur1.compteur++
+        document.querySelector('#j1compteur').innerHTML =
+          joueur1.compteur + 'Hits'
+        showHits(1)
         gsap.to('#joueur2Vie', {
           width: joueur2.vie + '%',
         })
@@ -389,6 +398,9 @@ On monte un peu sa position pour mieux montrer le sprite. */
         gokuHit.play()
         dec_Health(joueur2, joueur1)
         joueur2.compteur++
+        document.querySelector('#j2compteur').innerHTML =
+          joueur2.compteur + 'Hits'
+        showHits(2)
         gsap.to('#joueur1Vie', {
           width: joueur1.vie + '%',
         })
@@ -398,6 +410,12 @@ On monte un peu sa position pour mieux montrer le sprite. */
     // Fin jeu
     if (joueur1.vie <= 0 || joueur2.vie <= 0) {
       fin_jeu({ joueur: joueur1, joueur2, timerId })
+    }
+
+    //Remettre le compteur des frappes a 0.
+    if (joueur1.isBlocking || joueur2.isBlocking) {
+      joueur1.compteur = 0
+      joueur2.compteur = 0
     }
   } else {
     //Menu.

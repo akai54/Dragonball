@@ -53,6 +53,21 @@ body {
   width: 100%;
 }
 
+#j1compteur {
+  display: none;
+  position: absolute;
+  color: #f97316;
+  -webkit-text-stroke: 2px black;
+  font-size: 45px;
+  font-weight: bold;
+  height: 50px;
+  width: 100px;
+  top: 75px;
+  flex-shrink: 0;
+  align-items: left;
+  justify-content: left;
+}
+
 #timer {
   color: white;
   -webkit-text-stroke: 2px black;
@@ -84,6 +99,22 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+#j2compteur {
+  display: none;
+  position: absolute;
+  color: #f97316;
+  -webkit-text-stroke: 2px black;
+  font-size: 45px;
+  font-weight: bold;
+  height: 50px;
+  width: 100px;
+  top: 75px;
+  left: 75%;
+  flex-shrink: 0;
+  align-items: right;
+  justify-content: right;
 }
 
 #timerRes {
