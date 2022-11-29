@@ -202,6 +202,7 @@ window.addEventListener('keyup', (e) => {
     case 'q':
       touches.q.pressed = false
       joueur1.isBlocking = false
+      joueur1.compteur = 0
       break
     case ' ':
       touches.space.pressed = false
@@ -226,6 +227,7 @@ window.addEventListener('keyup', (e) => {
     case 'p':
       touches.p.pressed = false
       joueur2.isBlocking = false
+      joueur2.compteur = 0
       break
     case 'i':
       touches.i.pressed = false

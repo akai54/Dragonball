@@ -369,6 +369,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
         joueur2.switchSprite('hit')
         vegetaHit.play()
         dec_Health(joueur1, joueur2)
+        joueur1.compteur++
         gsap.to('#joueur2Vie', {
           width: joueur2.vie + '%',
         })
@@ -387,6 +388,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
         joueur1.switchSprite('hit')
         gokuHit.play()
         dec_Health(joueur2, joueur1)
+        joueur2.compteur++
         gsap.to('#joueur1Vie', {
           width: joueur1.vie + '%',
         })
