@@ -388,6 +388,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
           joueur1.compteur + 'Hits'
         showHits(1)
         commentaire()
+        joueur2.compteur = 0
         gsap.to('#joueur2Vie', {
           width: joueur2.vie + '%',
         })
@@ -411,6 +412,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
           joueur2.compteur + 'Hits'
         showHits(2)
         commentaire()
+        joueur1.compteur = 0
         gsap.to('#joueur1Vie', {
           width: joueur1.vie + '%',
         })
