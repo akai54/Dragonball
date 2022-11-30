@@ -271,6 +271,14 @@ async function showHits(n) {
   document.querySelector('#j' + n + 'compteur').style.display = 'none'
 }
 
+async function commentaire() {
+  randomComment = Math.floor(Math.random() * 6)
+  document.querySelector('#mouv').innerHTML = comment[randomComment]
+  document.querySelector('#mouv').style.display = 'flex'
+  await sleep(2000)
+  document.querySelector('#mouv').style.display = 'none'
+}
+
 // La fonction qui va etre appeler en boucle.
 function update() {
   window.requestAnimationFrame(update)
@@ -379,6 +387,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
         document.querySelector('#j1compteur').innerHTML =
           joueur1.compteur + 'Hits'
         showHits(1)
+        commentaire()
         gsap.to('#joueur2Vie', {
           width: joueur2.vie + '%',
         })
@@ -401,6 +410,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
         document.querySelector('#j2compteur').innerHTML =
           joueur2.compteur + 'Hits'
         showHits(2)
+        commentaire()
         gsap.to('#joueur1Vie', {
           width: joueur1.vie + '%',
         })

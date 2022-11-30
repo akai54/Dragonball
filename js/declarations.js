@@ -46,3 +46,5 @@ const gravity = 0.8
 let gameStarted = false
 let startTimer = false
 let menu = true
+
+const comment = ['Smash', 'Chase', 'Super Move', 'Good', 'Fanstastic', 'Great']

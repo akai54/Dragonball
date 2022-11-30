@@ -81,6 +81,22 @@ body {
   justify-content: center;
 }
 
+#mouv {
+  position: absolute;
+  color: #fcd34d;
+  -webkit-text-stroke: 2px black;
+  font-size: 45px;
+  font-weight: bold;
+  height: 50px;
+  width: 100px;
+  top: 90%;
+  left: 45%;
+  flex-shrink: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
 #j2 {
   position: relative;
   width: 100%;
