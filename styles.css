@@ -85,6 +85,7 @@ body {
   position: absolute;
   color: #fcd34d;
   -webkit-text-stroke: 2px black;
+  font-family: 'LeviReBrushed';
   font-size: 45px;
   font-weight: bold;
   height: 50px;

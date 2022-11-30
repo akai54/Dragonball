@@ -47,4 +47,4 @@ let gameStarted = false
 let startTimer = false
 let menu = true
 
-const comment = ['Smash', 'Chase', 'Super Move', 'Good', 'Fanstastic', 'Great']
+const comment = ['Smash', 'Chase', 'Super', 'Good', 'Fanstastic', 'Great']
