@@ -369,7 +369,19 @@ On monte un peu sa position pour mieux montrer le sprite. */
         joueur2.switchSprite('idle')
       }
 
-      // Détection collisions.
+      // Empecher les joueurs de passer l'un a travers l'autre.
+      if (collision_joueurs({ j1: joueur1, j2: joueur2 })) {
+        joueur1.vitesse.x = 0
+        joueur2.vitesse.x = 0
+        if (touches.a.pressed && joueur1.lastKey === 'a') {
+          joueur1.pos.x -= 1
+        }
+        if (touches.ArrowRight.pressed && joueur2.lastKey === 'ArrowRight') {
+          joueur2.pos.x += 1
+        }
+      }
+
+      // Détection collisions pour les attaques.
       if (
         collision_joueurs({
           j1: joueur1,
@@ -380,6 +392,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
         !joueur2.isBlocking &&
         !fin
       ) {
+        console.log('Attaque detecter')
         joueur2.switchSprite('hit')
         vegetaHit.play()
         dec_Health(joueur1, joueur2)

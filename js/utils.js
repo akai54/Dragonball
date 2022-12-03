@@ -3,8 +3,7 @@ function collision_joueurs({ j1, j2 }) {
     j1.attackBox.pos.x + j1.attackBox.width >= j2.attackBox.pos.x &&
     j1.attackBox.pos.x <= j2.pos.x + j2.width &&
     j1.attackBox.pos.y + j1.attackBox.height >= j2.pos.y &&
-    j1.attackBox.pos.y <= j2.pos.y + j2.height &&
-    j1.isAttacking
+    j1.attackBox.pos.y <= j2.pos.y + j2.height
   )
 }
 
