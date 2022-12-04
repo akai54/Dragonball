@@ -246,11 +246,6 @@ const joueur2 = new Joueur({
   compteur: 0,
 })
 
-function dec_Health(p1, p2) {
-  p1.isAttacking = false
-  p2.vie -= 5
-}
-
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
@@ -394,8 +389,10 @@ On monte un peu sa position pour mieux montrer le sprite. */
       ) {
         joueur2.switchSprite('hit')
         vegetaHit.play()
-        dec_Health(joueur1, joueur2)
+        joueur1.isAttacking = false
+        joueur2.dechealth()
         joueur1.compteur++
+
         document.querySelector('#j1compteur').innerHTML =
           joueur1.compteur + 'Hits'
         showHits(1)
@@ -419,7 +416,8 @@ On monte un peu sa position pour mieux montrer le sprite. */
       ) {
         joueur1.switchSprite('hit')
         gokuHit.play()
-        dec_Health(joueur2, joueur1)
+        joueur2.isAttacking = false
+        joueur1.dechealth()
         joueur2.compteur++
         document.querySelector('#j2compteur').innerHTML =
           joueur2.compteur + 'Hits'
@@ -435,6 +433,10 @@ On monte un peu sa position pour mieux montrer le sprite. */
 
     // Fin jeu
     if (joueur1.vie <= 0 || joueur2.vie <= 0) {
+      fin_jeu({ joueur: joueur1, joueur2, timerId })
+    }
+
+    if (timer === 0) {
       fin_jeu({ joueur: joueur1, joueur2, timerId })
     }
 

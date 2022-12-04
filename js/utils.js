@@ -20,7 +20,6 @@ let fin = false
 let play_KO = true
 
 function fin_jeu({ joueur: joueur1, joueur2, timerId }) {
-  fin = true
   clearTimeout(timerId)
   document.querySelector('#timerRes').style.display = 'flex'
   if (joueur1.vie === joueur2.vie) {
@@ -30,7 +29,6 @@ function fin_jeu({ joueur: joueur1, joueur2, timerId }) {
     joueur1.switchSprite('winning')
     joueur2.switchSprite('winning')
   } else if (joueur1.vie > joueur2.vie) {
-    joueur2.mort = true
     if (play_KO) ko.play()
     document.querySelector('#timerRes').innerHTML = 'Joueur1 a gagné'
     joueur2.pos.y = joueur2.sprites.mort.limit
@@ -40,7 +38,6 @@ function fin_jeu({ joueur: joueur1, joueur2, timerId }) {
       joueur1.switchSprite('winning')
     }
   } else if (joueur1.vie < joueur2.vie) {
-    joueur1.mort = true
     if (play_KO) ko.play()
     document.querySelector('#timerRes').innerHTML = 'Joueur2 a gagné'
     joueur1.pos.y = joueur1.sprites.mort.limit
@@ -60,9 +57,5 @@ function dec_Timer() {
     timerId = setTimeout(dec_Timer, 1000)
     timer--
     document.querySelector('#timer').innerHTML = timer
-  }
-
-  if (timer === 0) {
-    fin_jeu({ joueur: joueur1, joueur2, timerId })
   }
 }

@@ -183,12 +183,28 @@ class Joueur extends Sprite {
 
   // Apres 100ms le joueur ne sera plus en état d'attaque.
   attack() {
-    //this.switchSprite('attack2')
     this.isAttacking = true
   }
 
+  dechealth() {
+    this.vie -= 5
+
+    if (this.vie <= 0) {
+      this.switchSprite('mort')
+    } else {
+      this.switchSprite('hit')
+    }
+  }
+
   switchSprite(sprite) {
-    // Si on attaque, on ne montre pas d'autre sprite.
+    // Si on est mort, on ne montre pas d'autre sprite.
+    if (this.image === this.sprites.mort.image) {
+      if (this.framesCurrent === this.sprites.mort.framesMax - 1) {
+        this.mort = true
+        fin = true
+      }
+      return
+    }
     if (
       !fin &&
       this.image === this.sprites.attack1.image &&
@@ -215,13 +231,6 @@ class Joueur extends Sprite {
       this.framesCurrent < this.sprites.hit.framesMax - 1
     )
       return
-
-    // Si on est mort, on ne montre pas d'autre sprite.
-    if (fin && this.image === this.sprites.mort.image) {
-      if (this.framesCurrent === this.sprites.mort.framesMax - 1)
-        this.mort = true
-      return
-    }
 
     switch (sprite) {
       case 'idle':
