@@ -379,11 +379,12 @@ On monte un peu sa position pour mieux montrer le sprite. */
         if (touches.ArrowRight.pressed && joueur2.lastKey === 'ArrowRight') {
           joueur2.pos.x += 1
         }
+        console.log('collsion')
       }
 
       // Détection collisions pour les attaques.
       if (
-        collision_joueurs({
+        collision_attackBox({
           j1: joueur1,
           j2: joueur2,
         }) &&
@@ -409,7 +410,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
       }
 
       if (
-        collision_joueurs({
+        collision_attackBox({
           j1: joueur2,
           j2: joueur1,
         }) &&
