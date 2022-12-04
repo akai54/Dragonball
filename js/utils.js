@@ -19,7 +19,8 @@ function collision_attackBox({ j1, j2 }) {
 let fin = false
 let play_KO = true
 
-function fin_jeu({ joueur: joueur1, joueur2, timerId }) {
+function fin_jeu({ joueur: joueur1, joueur2, timerId }, e) {
+  console.log(e)
   fin = true
   clearTimeout(timerId)
   document.querySelector('#timerRes').style.display = 'flex'
@@ -40,6 +41,7 @@ function fin_jeu({ joueur: joueur1, joueur2, timerId }) {
       joueur1.switchSprite('winning')
     }
   } else if (joueur1.vie < joueur2.vie) {
+    joueur1.mort = true
     if (play_KO) ko.play()
     document.querySelector('#timerRes').innerHTML = 'Joueur2 a gagné'
     joueur1.pos.y = joueur1.sprites.mort.limit
@@ -62,6 +64,6 @@ function dec_Timer() {
   }
 
   if (timer === 0) {
-    fin_jeu({ joueur: joueur1, joueur2, timerId })
+    fin_jeu({ joueur: joueur1, joueur2, timerId }, 'timerend')
   }
 }

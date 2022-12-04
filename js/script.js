@@ -379,7 +379,6 @@ On monte un peu sa position pour mieux montrer le sprite. */
         if (touches.ArrowRight.pressed && joueur2.lastKey === 'ArrowRight') {
           joueur2.pos.x += 1
         }
-        console.log('collsion')
       }
 
       // Détection collisions pour les attaques.
@@ -393,7 +392,6 @@ On monte un peu sa position pour mieux montrer le sprite. */
         !joueur2.isBlocking &&
         !fin
       ) {
-        console.log('Attaque detecter')
         joueur2.switchSprite('hit')
         vegetaHit.play()
         dec_Health(joueur1, joueur2)
@@ -437,7 +435,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
 
     // Fin jeu
     if (joueur1.vie <= 0 || joueur2.vie <= 0) {
-      fin_jeu({ joueur: joueur1, joueur2, timerId })
+      fin_jeu({ joueur: joueur1, joueur2, timerId }, 'Player Died')
     }
 
     //Remettre le compteur des frappes a 0.
