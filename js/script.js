@@ -401,7 +401,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
         showHits(1)
         commentaire(1)
         joueur2.compteur = 0
-        joueur2.vitesse.x = +5
+        joueur2.vitesse.x = +2
         gsap.to('#joueur2Vie', {
           width: joueur2.vie + '%',
         })
@@ -426,7 +426,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
         showHits(2)
         commentaire(2)
         joueur1.compteur = 0
-        joueur1.vitesse.x = -5
+        joueur1.vitesse.x = -2
         gsap.to('#joueur1Vie', {
           width: joueur1.vie + '%',
         })
@@ -435,7 +435,7 @@ On monte un peu sa position pour mieux montrer le sprite. */
 
     // Fin jeu
     if (joueur1.vie <= 0 || joueur2.vie <= 0) {
-      fin_jeu({ joueur: joueur1, joueur2, timerId }, 'Player Died')
+      fin_jeu({ joueur: joueur1, joueur2, timerId })
     }
 
     //Remettre le compteur des frappes a 0.

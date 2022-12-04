@@ -19,8 +19,7 @@ function collision_attackBox({ j1, j2 }) {
 let fin = false
 let play_KO = true
 
-function fin_jeu({ joueur: joueur1, joueur2, timerId }, e) {
-  console.log(e)
+function fin_jeu({ joueur: joueur1, joueur2, timerId }) {
   fin = true
   clearTimeout(timerId)
   document.querySelector('#timerRes').style.display = 'flex'
@@ -64,6 +63,6 @@ function dec_Timer() {
   }
 
   if (timer === 0) {
-    fin_jeu({ joueur: joueur1, joueur2, timerId }, 'timerend')
+    fin_jeu({ joueur: joueur1, joueur2, timerId })
   }
 }
