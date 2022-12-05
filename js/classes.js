@@ -77,6 +77,7 @@ class Joueur extends Sprite {
     this.height = 150
     this.width = 50
     this.lastKey
+    this.lastpad
     this.color = color
     this.isAttacking
     this.vie = 100

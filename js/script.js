@@ -305,10 +305,16 @@ function update() {
     if (!fin && gameStarted) {
       // Mouvement joueur1.
       dbz_music.play()
-      if (touches.d.pressed && joueur1.lastKey === 'd') {
+      if (
+        (touches.d.pressed && joueur1.lastKey === 'd') ||
+        pad.p1.right.pressed
+      ) {
         joueur1.vitesse.x = 5
         joueur1.switchSprite('walk')
-      } else if (touches.a.pressed && joueur1.lastKey === 'a') {
+      } else if (
+        (touches.a.pressed && joueur1.lastKey === 'a') ||
+        pad.p1.left.pressed
+      ) {
         joueur1.vitesse.x = -5
         joueur1.switchSprite('walkL')
       } else if (touches.r.pressed && joueur1.lastKey === 'r') {
@@ -323,19 +329,40 @@ On monte un peu sa position pour mieux montrer le sprite. */
         } else {
           joueur1.switchSprite('recharge')
         }
-      } else if (touches.h.pressed && joueur1.lastKey === 'h') {
+      } else if (
+        (touches.h.pressed && joueur1.lastKey === 'h') ||
+        pad.p1.x.pressed
+      ) {
         joueur1.switchSprite('attack1')
-      } else if (touches.j.pressed && joueur1.lastKey === 'j') {
+      } else if (
+        (touches.j.pressed && joueur1.lastKey === 'j') ||
+        pad.p1.y.pressed
+      ) {
         joueur1.switchSprite('attack2')
-      } else if (touches.k.pressed && joueur1.lastKey === 'k') {
+      } else if (
+        (touches.k.pressed && joueur1.lastKey === 'k') ||
+        pad.p1.b.pressed
+      ) {
         joueur1.switchSprite('attack3')
-      } else if (touches.space.pressed && joueur1.lastKey === 'space') {
+      } else if (
+        (touches.space.pressed && joueur1.lastKey === 'space') ||
+        pad.p1.r2.pressed
+      ) {
         joueur1.switchSprite('kamehameha')
-      } else if (touches.q.pressed && joueur1.lastKey === 'q') {
+      } else if (
+        (touches.q.pressed && joueur1.lastKey === 'q') ||
+        pad.p1.l2.pressed
+      ) {
         joueur1.switchSprite('block')
-      } else if (touches.w.pressed && joueur1.lastKey === 'w') {
+      } else if (
+        (touches.w.pressed && joueur1.lastKey === 'w') ||
+        pad.p1.up.pressed
+      ) {
         joueur1.switchSprite('fly')
-      } else if (touches.s.pressed && joueur1.lastKey === 's') {
+      } else if (
+        (touches.s.pressed && joueur1.lastKey === 's') ||
+        pad.p1.down.pressed
+      ) {
         joueur1.switchSprite('descendre')
       } else {
         joueur1.switchSprite('idle')
@@ -368,10 +395,16 @@ On monte un peu sa position pour mieux montrer le sprite. */
       if (collision_joueurs({ j1: joueur1, j2: joueur2 })) {
         joueur1.vitesse.x = 0
         joueur2.vitesse.x = 0
-        if (touches.a.pressed && joueur1.lastKey === 'a') {
+        if (
+          (touches.a.pressed && joueur1.lastKey === 'a') ||
+          pad.p1.left.pressed
+        ) {
           joueur1.pos.x -= 1
         }
-        if (touches.ArrowRight.pressed && joueur2.lastKey === 'ArrowRight') {
+        if (
+          (touches.ArrowRight.pressed && joueur2.lastKey === 'ArrowRight') ||
+          pad.p2.right.pressed
+        ) {
           joueur2.pos.x += 1
         }
       }
@@ -450,6 +483,8 @@ On monte un peu sa position pour mieux montrer le sprite. */
     menuImg.animation()
     dbz_menu.play()
   }
+  gamepadInput()
+  gamepadActions()
 }
 
 // bouton jouer
