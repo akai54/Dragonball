@@ -174,46 +174,55 @@ function gamepadActions() {
   }
   if (pad.p1.r2.pressed) {
     joueur1.attack()
+    joueur1.force -= 50
   }
-}
-
-function gamepadDone() {
-  if (pad.p1.x.pressed) {
-    joueur1.isAttacking = false
+  // J2.
+  if (pad.p2.x.pressed) {
+    vegeta1.play()
+    joueur2.attack()
+    joueur2.lastpad = 'x'
+    joueur2.force--
   }
-  if (pad.p1.y.pressed) {
-    joueur1.isAttacking = false
+  if (pad.p2.y.pressed) {
+    vegeta2.play()
+    joueur2.attack()
+    joueur2.lastpad = 'y'
+    joueur2.force--
   }
-  if (pad.p1.b.pressed) {
-    joueur1.isAttacking = false
+  if (pad.p2.b.pressed) {
+    vegeta3.play()
+    joueur2.attack()
+    joueur2.lastpad = 'b'
+    joueur2.force--
   }
-  if (pad.p1.up.pressed) {
-    joueur1.lastpad = 'up'
+  if (pad.p2.up.pressed) {
+    joueur2.lastpad = 'up'
     if (!fin) {
-      joueur1.fly()
+      joueur2.fly()
       return
     }
   }
-  if (pad.p1.down.pressed) {
-    joueur1.lastpad = 'down'
+  if (pad.p2.down.pressed) {
+    joueur2.lastpad = 'down'
     if (!fin) {
-      joueur1.descendre()
+      joueur2.descendre()
       return
     }
   }
-  if (pad.p1.l1.pressed) {
+  if (pad.p2.l1.pressed) {
   }
-  if (pad.p1.r1.pressed) {
-    joueur1.lastpad = 'r1'
-    if (joueur1.force < 100) joueur1.force++
+  if (pad.p2.r1.pressed) {
+    joueur2.lastpad = 'r1'
+    if (joueur2.force < 100) joueur2.force++
   }
-  if (pad.p1.l2.pressed) {
-    if (joueur1.lastpad !== 'l2') gokuBlock.play()
-    joueur1.lastpad = 'l2'
-    joueur1.isBlocking = true
-    joueur1.force--
+  if (pad.p2.l2.pressed) {
+    if (joueur2.lastpad !== 'l2') vegetaBlock.play()
+    joueur2.lastpad = 'l2'
+    joueur2.isBlocking = true
+    joueur2.force--
   }
-  if (pad.p1.r2.pressed) {
-    joueur1.attack()
+  if (pad.p2.r2.pressed) {
+    joueur2.attack()
+    joueur2.force -= 50
   }
 }
